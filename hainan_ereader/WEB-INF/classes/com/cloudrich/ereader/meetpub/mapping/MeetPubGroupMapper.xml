@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloudrich.ereader.meetpub.dao.MeetPubGroupDao" >
+
+  <resultMap id="BaseResultMap" type="com.cloudrich.ereader.meetpub.entity.MeetPubGroupEntity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="groupid" property="groupid" jdbcType="INTEGER" />
+    <result column="groupno" property="groupno" jdbcType="CHAR" />
+     <result column="meetid" property="meetid" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="filename" property="filename" jdbcType="VARCHAR" />
+    <result column="filepath" property="filepath" jdbcType="VARCHAR" />     
+     <result column="pushtime" property="pushtime" jdbcType="TIMESTAMP" />
+     <result column="isdel" property="isdel" jdbcType="INTEGER" />
+	<result column="fileguid" property="fileguid" jdbcType="VARCHAR" />        
+  </resultMap>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    update  er_meet_pub_group  set isdel=1
+    where groupid = #{groupid,jdbcType=INTEGER}
+  </delete>
+  
+    <delete id="deleteByMeetid" parameterType="java.util.Map" >
+     update  er_meet_pub_group  set isdel=1
+    where meetid = #{meetid,jdbcType=INTEGER}
+    and groupno = #{groupno,jdbcType=CHAR}
+  </delete>
+  
+  <insert id="insert" useGeneratedKeys="true" keyProperty="groupid" parameterType="com.cloudrich.ereader.meetpub.entity.MeetPubGroupEntity">
+    insert into er_meet_pub_group 
+    ( groupid,groupno, meetid,pushtime,title,filepath,filename,fileguid )
+    values ( #{groupid,jdbcType=INTEGER}, #{groupno,jdbcType=CHAR},#{meetid,jdbcType=INTEGER},#{pushtime,jdbcType=TIMESTAMP} ,#{title,jdbcType=VARCHAR},#{filepath,jdbcType=VARCHAR},#{filename,jdbcType=VARCHAR},#{fileguid,jdbcType=VARCHAR})
+  </insert>
+  
+  <update id="updateByPrimaryKey" parameterType="com.cloudrich.ereader.meetpub.entity.MeetPubGroupEntity" >
+    update er_meet_pub_group
+    set groupno = #{groupno,jdbcType=CHAR},
+      meetid= #{meetid,jdbcType=INTEGER},
+      title= #{title,jdbcType=VARCHAR},
+      filepath=#{filepath,jdbcType=VARCHAR},
+      filename=#{filename,jdbcType=VARCHAR},
+      pushtime= #{pushtime,jdbcType=TIMESTAMP},
+      fileguid=#{fileguid,jdbcType=VARCHAR}
+    where groupid = #{groupid,jdbcType=INTEGER}
+    and isdel=0
+  </update>
+  
+    <update id="updateByMeetid" parameterType="com.cloudrich.ereader.meetpub.entity.MeetPubGroupEntity" >
+    update er_meet_pub_group
+    set 
+      groupno = #{groupno,jdbcType=CHAR},
+      title= #{title,jdbcType=VARCHAR},
+      filepath=#{filepath,jdbcType=VARCHAR},
+      filename=#{filename,jdbcType=VARCHAR},   
+      pushtime= #{pushtime,jdbcType=TIMESTAMP},
+      fileguid=#{fileguid,jdbcType=VARCHAR}
+    where meetid = #{groupid,jdbcType=INTEGER} and groupno = #{groupno,jdbcType=CHAR}
+    and isdel=0
+  </update>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select groupid, groupno, meetid,psuhtime ,title.filename,filepath,fileguid
+    from er_meet_pub_group
+    where groupid = #{groupid,jdbcType=INTEGER}
+    and isdel=0
+  </select>
+  
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select *
+    from er_meet_pub_group
+    where isdel=0
+  </select>
+  
+  <!--根据meetid分组no获取分组内容-->
+  <select id="selectGroupByMeetidAndGroupno" resultMap="BaseResultMap" parameterType="java.util.Map">
+    select groupid, groupno,title,filename,filepath,meetid,pushtime,fileguid
+    from er_meet_pub_group
+    where meetid=#{meetid,jdbcType=INTEGER}
+    and groupno=#{groupno,jdbcType=CHAR}
+    order by pushtime desc
+    limit 0,1
+  </select>
+  
+  <!--根据meetid分组no获取分组内容-->
+  <select id="selectGroupByMeetidAndGroupnoClient" resultMap="BaseResultMap" parameterType="java.util.Map">
+    select groupid, groupno,title,filename,filepath,meetid,pushtime,fileguid
+    from er_meet_pub_group
+    where meetid=#{meetid,jdbcType=INTEGER}
+    and isdel=0
+    order by groupno
+  </select>
+  
+  <!-- 获取 -->
+  <select id="selectFileCountByMeetid" resultType="java.lang.Integer"  parameterType="java.util.Map">
+     select count(id) from er_meet_pub_group
+     where meetid=#{meetid,jdbcType=INTEGER}
+      and isdel=0
+  </select>
+
+</mapper>

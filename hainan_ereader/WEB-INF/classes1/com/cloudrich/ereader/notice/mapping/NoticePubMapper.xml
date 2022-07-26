@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloudrich.ereader.notice.dao.NoticePubDao">
+	<resultMap id="BaseResultMap"
+		type="com.cloudrich.ereader.notice.entity.NoticePubEntity">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="noticeid" property="noticeid" jdbcType="INTEGER" />
+		<result column="title" property="title" jdbcType="VARCHAR" />
+		<result column="pubuserid" property="pubuserid" jdbcType="INTEGER" />
+		<result column="pubtime" property="pubtime" jdbcType="TIMESTAMP" />
+		<result column="sendtype" property="sendtype" jdbcType="CHAR" />
+		<result column="filename" property="filename" jdbcType="VARCHAR" />
+		<result column="path" property="path" jdbcType="VARCHAR" />
+		<result column="sendtime" property="sendtime" jdbcType="TIMESTAMP" />
+		<result column="isdel" property="isdel" jdbcType="INTEGER" />
+		<result column="sendway" property="sendway" jdbcType="CHAR" />
+		<result column="phonenums" property="phonenums" jdbcType="VARCHAR" />
+     	<result column="fileguid" property="fileguid" jdbcType="VARCHAR" />	
+     	<result column="noticereplycode" property="noticereplycode" jdbcType="VARCHAR" />	
+     			
+	</resultMap>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from  er_pub_notice  where noticeid = #{noticeid,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert"
+		parameterType="com.cloudrich.ereader.notice.entity.NoticePubEntity"
+		useGeneratedKeys="true" keyProperty="id">
+	  <selectKey keyProperty="id"  resultType="java.lang.Integer" order="AFTER">
+      	SELECT LAST_INSERT_ID() AS id
+      </selectKey>
+		insert into er_pub_notice (id,noticeid,title, pubuserid,
+		pubtime, sendtype, filename,
+		path, sendtime, isdel,sendway,phonenums,fileguid
+		)
+		values (#{id,jdbcType=INTEGER},#{noticeid,jdbcType=INTEGER},#{title,jdbcType=VARCHAR}, #{pubuserid,jdbcType=INTEGER},
+		#{pubtime,jdbcType=TIMESTAMP}, #{sendtype,jdbcType=CHAR},
+		#{filename,jdbcType=VARCHAR},
+		#{path,jdbcType=VARCHAR}, #{sendtime,jdbcType=TIMESTAMP}, #{isdel,jdbcType=INTEGER}, #{sendway,jdbcType=CHAR},#{phonenums,jdbcType=VARCHAR}
+		,#{fileguid,jdbcType=VARCHAR})
+	</insert>
+	<update id="updateByPrimaryKey"
+		parameterType="com.cloudrich.ereader.notice.entity.NoticePubEntity">
+		update er_pub_notice
+		<set>
+	    	<if test="title!=null">
+	    		title = #{title,jdbcType=VARCHAR}, 
+	    	</if>
+	    	<if test="pubuserid!=null">
+	    		pubuserid = #{pubuserid,jdbcType=INTEGER},
+	    	</if>
+	    	<if test="pubtime!=null">
+	    		pubtime = #{pubtime,jdbcType=TIMESTAMP},
+	    	</if>
+	    	<if test="sendtype!=null">
+	    		sendtype = #{sendtype,jdbcType=CHAR}, 
+	    	</if>
+	    	<if test="filename!=null">
+	    		filename = #{filename,jdbcType=VARCHAR},
+	    	</if>
+	    	<if test="path!=null">
+	    		path = #{path,jdbcType=VARCHAR},
+	    	</if>
+	    	<if test="sendtime!=null">
+	    		sendtime = #{sendtime,jdbcType=TIMESTAMP},
+	    	</if>
+	    	<if test="isdel!=null">
+	    		isdel = #{isdel,jdbcType=INTEGER},
+	    	</if>
+	    	<if test="sendway!=null">
+	    		sendway = #{sendway,jdbcType=CHAR},
+	    	</if>
+	    	<if test="phonenums!=null">
+	    		phonenums = #{phonenums,jdbcType=VARCHAR}
+	    	</if>	    		    	
+	    	<if test="fileguid!=null">
+	    		fileguid= #{fileguid,jdbcType=VARCHAR}
+	    	</if>	    		    	
+		</set>
+			where noticeid = #{noticeid,jdbcType=INTEGER}
+	</update>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select id,noticeid, title, pubuserid, pubtime, sendtype, filename, path,
+		sendtime, isdel,sendway,phonenums,fileguid
+		from er_pub_notice
+		where noticeid = #{noticeid,jdbcType=INTEGER}
+		and isdel =0 
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+		select noticeid, title, pubuserid, pubtime, sendtype, filename, path,
+		sendtime, isdel,sendway,phonenums,fileguid
+		from er_pub_notice
+		where 1=1 and isdel !=1
+		<if test="title!=null">
+			and title like CONCAT(CONCAT('%', #{title}), '%')
+		</if>
+ 		<if test="startTime!=null">
+			and sendtime between #{startTime}
+		</if>
+		<if test="endTime!=null">
+			and #{endTime}
+		</if> 
+		order by pubtime desc
+	</select>
+	
+	<select id="selectNoticeCount"  resultType="java.lang.Integer">
+		select count(*)	from er_pub_notice
+		where isdel =0
+	</select>
+	
+	<select id="selectNoticeByFilename"  resultMap="BaseResultMap"  parameterType="java.lang.String" >
+		select id,noticeid, title, pubuserid, pubtime, sendtype, filename, path,
+		sendtime, isdel,sendway,phonenums,fileguid
+		from er_pub_notice
+		where  isdel =0
+		and filename=#{filename,jdbcType=VARCHAR}
+	</select>
+	
+  
+  <!-- 根据推送范围获取通知 -->
+  <select id="selectAllNoticeByUserid" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+select a.id,a.noticeid, a.title, a.pubuserid, a.pubtime, a.sendtype, a.filename, a.path,
+		a.sendtime, a.isdel,a.sendway,a.phonenums,a.fileguid,b.noticereplycode
+		from er_pub_notice a
+		 LEFT JOIN (select * from er_notice_reply where userid=#{userid,jdbcType=INTEGER}) b 
+             on a.noticeid=b.noticeid
+			     where a.isdel=0
+						and a.noticeid in 
+						 (
+						   select noticeid from er_notice_sendscope where scopeid in
+						   (select scopeid from er_sys_scope_user
+						    where userid=#{userid,jdbcType=INTEGER}
+						   )
+				          )
+                order by a.pubtime desc 
+	</select>
+	
+	
+   <!-- 根据推送范围获取通知数量 -->
+	<select id="selectNoticeCountByUserid"  resultType="java.lang.Integer">
+		select count(*)	from er_pub_notice
+		where isdel=0
+		and noticeid in 
+		 (
+		   select noticeid from er_notice_sendscope where scopeid in
+		   (select scopeid from er_sys_scope_user
+		    where userid=#{userid,jdbcType=INTEGER}
+		   )
+          )
+	</select>
+	
+	 <!-- 获取用户已读通知数量 -->
+	<select id="selectYdNoticeCountByUserid"  resultType="java.lang.Integer">
+		    select count(*)	from er_pub_notice_user
+		       where userid=#{userid,jdbcType=INTEGER}
+		           and noticeid in  (
+		            select noticeid from er_notice_sendscope where scopeid in
+		             (select scopeid from er_sys_scope_user
+		                where userid=#{userid,jdbcType=INTEGER}
+		             )
+                  )
+	</select>
+	
+	<!-- 插入用户已读通知 -->
+	<insert id="insertYdNotice" parameterType="java.util.Map">
+	    insert into er_pub_notice_user(userid,noticeid)
+	    values(#{userid,jdbcType=INTEGER},#{noticeid,jdbcType=INTEGER})
+	</insert>
+	
+	<!-- 查询用户已读通知 -->
+	<select id="selectYdNotice" resultType="java.lang.Integer" parameterType="java.util.Map">
+	    select noticeid from er_pub_notice_user
+	    where userid=#{userid,jdbcType=INTEGER}
+	    and noticeid=#{noticeid,jdbcType=INTEGER}
+	</select>
+	
+	 <!-- 按关键字搜索 -->
+  <select id="searchNoticeByKeyword" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select noticeid, title, pubuserid, pubtime, sendtype, filename, path,
+		sendtime, isdel,fileguid
+		from er_pub_notice
+		where title like CONCAT('%',#{title,jdbcType=VARCHAR},'%' )
+		and isdel=0
+		and noticeid in 
+		 (
+		   select noticeid from er_notice_sendscope where scopeid in
+		   (select scopeid from er_sys_scope_user
+		    where userid=#{userid,jdbcType=INTEGER}
+		   )
+          )
+  </select>
+  
+  <select id="selectAllNotice" resultMap="BaseResultMap" >
+		select *
+		from er_pub_notice
+		where  isdel=0
+		
+	</select>
+	
+</mapper>

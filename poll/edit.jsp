@@ -1,0 +1,145 @@
+<%@page import="RssEasy.MySql.RssListView"%>
+<%@page import="RssEasy.MySql.User.UserList"%>
+<%@page import="RssEasy.MySql.RssList"%>
+<%@page import="RssEasy.MySql.Staff.StaffList"%>
+<%@page import="RssEasy.Core.StringExtend"%>
+<%@page import="RssEasy.Core.Encrypt"%>
+<%@page import="RssEasy.Core.PoPupHelper"%>
+<%@page import="RssEasy.Core.DateTimeExtend"%>
+<%@page import="RssEasy.Core.HttpRequestHelper"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    StaffList.IsLogin(request, response);
+    RssList entity2 = new RssList(pageContext, "poll");
+    RssListView entity = new RssListView(pageContext, "poll");
+    entity.request();
+    entity2.request();
+    if (!entity2.get("action").isEmpty()) {
+        switch (entity2.get("action")) {
+            case "append":
+                entity2.timestamp();
+                entity2.append().submit();
+                break;
+            case "update":
+                entity2.remove("id,myid");
+                entity2.update().where("id=?", entity2.get("id")).submit();
+                break;
+        }
+        PoPupHelper.adapter(out).iframereload();
+        PoPupHelper.adapter(out).showSucceed();
+    }
+    entity.select().where("id=?", entity.get("id")).get_first_rows();
+%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>管理系统</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link href="/css/reset.css" rel="stylesheet" type="text/css" />
+        <link href="/css/layout.css" rel="stylesheet" type="text/css" />
+        <style>
+            #tabheader{background: #82bee9;text-align: center; color: #fff;}
+            .dce{background: #dce6f5;text-indent: 10px}
+            .cellbor td{padding: 0 6px}
+            .cellbor>tbody>tr>td{border: #6caddc solid thin;line-height: 34px;}
+            .cellbor{width: 100%}
+            .cellbor select,.cellbor input{height: 28px;border: #d0d0d0 solid thin }
+            .cellbor input{height: 24px;border: #d0d0d0 solid thin;}
+            .cellbor .institle{text-align: center;}
+            .cellbor>tbody>tr>.uetd{padding:8px 0;background: #dce6f5}
+            .popupwrap>div:first-child{height: 100%;}
+            #matter{line-height: 12px;}
+            .w630{width:630px;}
+            .w280{width: 280px;}
+        </style>
+    </head>
+    <body>
+        <form method="post" class="popupwrap">           
+            <div>
+                <table class="wp100 cellbor">
+                    <tr>
+                        <td colspan="4" class="institle dce">信息处理</td>
+                    </tr>
+                    <tr>
+                        <td class="dce w100 ">标题：<em class="red">*</em></td>
+                        <td colspan="3"><input type="text" maxlength="80" class="w630" name="title" value="<% entity.write("title"); %>" /></td>
+                    </tr>
+                    <tr>
+                        <td class="dce w100 ">是否发布：</td>
+                        <td class="w280"><select class="w250" name="state" dict-select="noticestate" def="<% entity.write("state"); %>"></select></td>
+                        <td class="dce w100 ">分类</td>
+                        <td><select type="text" name="type" dict-select="gztype" def="<% entity.write("type"); %>" ></select></td>
+                    </tr>
+                    <tr style="display:none;">
+                        <td class="dce w100 ">发布者：</td>
+                        <td class="w280"><% entity.write("realname"); %></td>
+                        <td class="dce w100 ">发布时间：</td>
+                        <td rssdate="<% out.print(entity.get("shijian")); %>,yyyy-MM-dd" ></td>
+                    </tr>
+                    <tr>
+                        <td class="dce w100 ">正文<em class="red">*</em></td>
+                        <td colspan="3">【操作提示】为规范信息内容格式,录入完信息内容后,请务必点击排版信息内容</td>
+                    </tr>
+                    <tr>
+                        <td class="dce w100 " colspan="4"><script ueditor="toolbars: [['fullscreen','undo','redo','|','bold','italic','underline','fontborder','strikethrough','superscript','subscript','removeformat','formatmatch','autotypeset','pasteplain','|','forecolor','backcolor','insertorderedlist','insertunorderedlist','|','rowspacingtop','rowspacingbottom','lineheight','|','fontfamily','fontsize','|','justifyleft','justifycenter','justifyright','justifyjustify','indent','|','link','unlink','anchor','|','imagenone','imageleft','imageright','imagecenter','|','insertimage','emotion','spechars','insertvideo']],initialFrameHeight:200" id="matter" name="matter" class="w750" type="text/plain"><% entity.write("matter"); %></script></td>
+                    </tr>
+                    <tr class="thismyid">
+                        <td class="tr">作者ID：</td>
+                        <td colspan="3"><input type="text" name="myid" class="w50" value="<% out.print(UserList.MyID(request)); %>" selectuser=""/> <label></label></td>
+                </table>
+            </div>
+            <div class="footer">
+                <input type="hidden" name="action" value="<% out.print(entity.get("id").isEmpty() ? "append" : "update"); %>" />
+                <button type="submit"><% out.print(entity.get("id").isEmpty() ? "增加" : "修改");%></button>
+            </div>
+        </form>
+        <script src="/data/suggest.js" type="text/javascript"></script>
+        <%@include  file="/inc/js.html" %>
+        <!--<script src="../suggest/mgck.js" type="text/javascript"></script>-->
+        <script src="../data/mingancitype.js" type="text/javascript"></script>
+        <script>
+            var count = 0;
+            //获取敏感词json对象的长度 
+            for (var key in dictdata.mingancitypeclassify) {
+                if (dictdata.mingancitypeclassify.hasOwnProperty(key)) {
+                    count++;
+                }
+            }
+
+            console.log("json的键长度为" + count);
+            $("button").click(function () {
+                if ($("[name='title']").val() == undefined || $("[name='title']").val() == "") {
+                    alert("请填写交流标题");
+                    $("[name='title']").focus();
+                    return false;
+                }
+                var matter = UE.getEditor('matter').getContent();
+                if (matter == undefined || matter == "") {
+                    alert("请填写交流内容");
+                    return false;
+                }
+                for (var i = 1; i <= count; i++) {
+                    //                    if (matter.indexOf(MGC[i]) > 1) {
+                    //                        alert("发表内容包含敏感词['"+MGC[i]+"']!");
+                    //                        return false;
+                    //                    }
+                    if (dictdata.mingancitypeclassify[i] == undefined) {
+                        count++;
+                    }
+                    var aa = dictdata.mingancitypeclassify[i] == undefined ? "" : dictdata.mingancitypeclassify[i];
+                    console.log(count)
+                    for (var ii = 0; ii < aa.length; ii++) {
+                        if (aa[ii] != null) {
+                            if (matter.indexOf(aa[ii]) > 1) {
+                                alert("发表内容包含敏感词['" + aa[ii] + "']!");
+                                return false;
+                            }
+                        }
+                    }
+
+                }
+            });
+        </script>
+    </body>
+</html>

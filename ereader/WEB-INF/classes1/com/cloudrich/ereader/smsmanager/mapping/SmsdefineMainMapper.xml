@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloudrich.ereader.smsmanager.dao.SmsdefineMainDao" >
+  <resultMap id="BaseResultMap" type="com.cloudrich.ereader.smsmanager.entity.SmsdefineMainEntity" >
+    <id column="smsid" property="smsid" jdbcType="INTEGER" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="createuserid" property="createuserid" jdbcType="INTEGER" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="isvalid" property="isvalid" jdbcType="INTEGER" />
+    <result column="isdel" property="isdel" jdbcType="INTEGER" />
+    <result column="tongxluserids" property="tongxluserids" jdbcType="VARCHAR" />
+    <result column="phonenums" property="phonenums" jdbcType="VARCHAR" />
+    <result column="sendtype" property="sendtype" jdbcType="CHAR" />
+    <result column="sendway" property="sendway" jdbcType="CHAR" />
+    <result column="sendtime" property="sendtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  
+   <resultMap id="UserResultMap" type="com.cloudrich.ereader.system.entity.SysUserMainEnity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="passwd" property="passwd" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="truename" property="truename" jdbcType="VARCHAR" />
+    <result column="isdel" property="isdel" jdbcType="INTEGER" />
+    <result column="lastlogin" property="lastlogin" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="deptid" property="deptid" jdbcType="INTEGER" />
+    <result column="usertype" property="usertype" jdbcType="CHAR" />
+    <result column="padmobile" property="padmobile" jdbcType="VARCHAR" />
+    <result column="phone2" property="phone2" jdbcType="VARCHAR" />
+    <result column="officetel" property="officetel" jdbcType="VARCHAR" />
+    <result column="phone3" property="phone3" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="zhiwu" property="zhiwu" jdbcType="VARCHAR" />
+    <result column="danwei" property="danwei" jdbcType="VARCHAR" />
+    <result column="isdestroy" property="isdestroy" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    update er_smsdefine_main set isdel=1
+    where smsid = #{smsid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="smsid" parameterType="com.cloudrich.ereader.smsmanager.entity.SmsdefineMainEntity" >
+    insert into er_smsdefine_main (smsid, content, createuserid, 
+      createtime, isvalid, isdel, 
+      tongxluserids,
+      phonenums,sendtype,sendway,sendtime)
+    values (#{smsid,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{createuserid,jdbcType=INTEGER}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{isvalid,jdbcType=INTEGER}, #{isdel,jdbcType=INTEGER}, 
+      #{tongxluserids,jdbcType=VARCHAR}, #{phonenums,jdbcType=VARCHAR},#{sendtype,jdbcType=CHAR},#{sendway,jdbcType=CHAR},#{sendtime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.cloudrich.ereader.smsmanager.entity.SmsdefineMainEntity" >
+    update er_smsdefine_main
+    set content = #{content,jdbcType=VARCHAR},
+      createuserid = #{createuserid,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      isvalid = #{isvalid,jdbcType=INTEGER},
+      isdel = #{isdel,jdbcType=INTEGER},
+      tongxluserids = #{tongxluserids,jdbcType=VARCHAR},
+      phonenums = #{phonenums,jdbcType=CHAR},
+      sendtype=#{sendtype,jdbcType=CHAR},
+      sendway=#{sendway,jdbcType=CHAR},
+      sendtime=#{sendtime,jdbcType=TIMESTAMP}
+    where smsid = #{smsid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select smsid, content, createuserid, createtime, isvalid, isdel, tongxluserids,phonenums,sendtime,sendway,sendtype
+    from er_smsdefine_main
+    where smsid = #{smsid,jdbcType=INTEGER}  and isdel !=1
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select smsid, content, createuserid, createtime, isvalid, isdel, tongxluserids,phonenums,sendtime,sendway,sendtype
+    from er_smsdefine_main where isdel !=1
+    order by createtime desc
+  </select>
+  
+  
+   <select id="selectScopeUserBySmsid" resultMap="UserResultMap" parameterType="java.lang.Integer">
+       select * from er_sys_user_main 
+           where  FIND_IN_SET (id,(select tongxluserids  from er_smsdefine_main  where smsid = #{smsid,jdbcType=INTEGER} 
+           and isdel=0))
+           and isdel=0
+  </select>
+  
+</mapper>

@@ -1,0 +1,67 @@
+/* CSS Document */
+/*通用css*/
+*{ margin:0; padding:0;}
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video,input
+{margin:0;padding:0;border:none;outline:0;font-size:100%;font:inherit;vertical-align:baseline;}
+html,body,form,fieldset,p,div,h1,h2,h3,h4,h5,h6{-webkit-text-size-adjust:none;}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block;}
+body{font-family:Georgia, "Times New Roman", Times, serif,"Micosoft Yahei","微软雅黑","宋体"; font-size:100%;  vertical-align:middle; }
+ol,ul,li{ list-style-type:none;}
+a{text-decoration:none; color:#333;}
+a:hover{text-decoration:none; color:#fff;}
+.frt{float:right;}
+.flt{float:left;}
+.clear{clear:both;}
+.underline{	padding-bottom:5px;	border-bottom: 1px solid #eee; margin:0 0 20px 0;}
+img{max-width:100%;}
+/*正式css*/
+/*通用头部*/
+.header{width:100%; min-width:960px;height:52px; background:url(images/bj_01.png) repeat-x ; }
+.logo{width:316px;height:52px; margin-left:50px;}
+.icon1{width:540px; height:52px;}
+.wel{width:300px; height:42px; line-height:52px; color:#fff;margin-top:10px;}
+.wel span{font-weight:bold;}
+.icon1 ul{width:90px; height:52px; margin-left:30px; cursor:pointer;}
+.icon1 ul:hover{width:90px; height:52px; margin-left:30px; opacity:0.8;}
+.li1{ width:25px; height:52px;}
+.li1 img{ margin-top:18px;}
+.li2{ width:65px; height:40px;color:#fff;font-size:12px; line-height:20px;padding-top:12px;}
+.li2 a{color:#fff;}
+/*通用左边导航*/
+.main{width:100%; min-width:1315px;height:100%;min-height:716px; background:#e9edf0;position:absolute; top:52px;}
+.leftbar{ width:10%; min-width:112px; height:auto; min-height:588px;}
+.leftbar ul li a{width:105px;padding-left:7px; text-align:center;height:45px; margin-top:10px; line-height:45px; font-size:14px; font-family:"微软雅黑"; font-weight:bold;display:block;background:url(images/bj_06.png) no-repeat center center;}
+.leftbar ul li a:hover{background:url(images/bj_03.png) no-repeat center center;}
+.content{ background-image:url(images/bj_03.png)!important; color:#fff;}
+
+.box{ width:90%; min-width:1173px; height:auto;}
+/*首页*/
+#tabPanel{width:96%;min-width:1008px; height:638px; background:url(images/beijing_10.png); background-size:100% 100%; margin:10px auto;}
+.mainicon{width:886px; height:474px; margin:75px auto;}
+.top{ width:886px; height:224px;}
+.top li{ float:left; margin-left:110px;}
+.top li:hover{ opacity:0.8;}
+.bottom{width:886px; height:188px;margin-top:58px;}
+.bottom li{ float:left;margin-left:53px;}
+.bottom li:hover{ opacity:0.8;}
+
+/*常委会首页*/
+.cwh{width:100%;min-width:1173px; height:588px; background:#fff; margin:10px auto;}
+.cwh_head{ width:100%;height:57px; line-height:53px; text-align:left; text-indent:26px; background:url(images/cwh_03.png); background-size:cover; font-weight:bold; font-family:"微软雅黑"; font-size:18px;color:#fff;}
+.cwh_top{ width:1110px; height:333px;background:url(images/cwh_07.png) no-repeat;}
+.cwh_neirong{}
+.cwh_bottom{ width:1110px; height:160px;background:url(images/cwh_10.png) no-repeat; margin:0 auto;}
+
+/*常委会会议下二级菜单通用*/
+.icon_head{ width:100%; height:54px; background:url(images/beijing_01.png) repeat-x; line-height:42px; color:#f00; text-align:left; text-indent:26px; font-weight:bold;}
+.erjileftbar{ width:112px; height:489px;background:url(images/zongsebeijing.png) no-repeat}
+.erjileftbar dt{ margin-top:21px;}
+.erjileftbar dd{ font-size:14px; font-family:"微软雅黑";}
+.erjimain{ border:1px solid #000; margin:80px;}
+
+/*通知*/
+.tongzhi{ width: 100%; height: 489px; }
+.tongzhi ul{ padding-top: 10px;}
+.tongzhi li{ width: 90%; height: 46px; line-height: 46px; border:1px solid #ccc; background: url(images/tongzhi_beijing.png) repeat-x; margin:10px auto; text-align: left; text-indent: 26px; font-family:"宋体";}
+.button1{ width: 134px; height: 40px; background: url(images/beijing_button1.png); color: #a10000; line-height: 40px; font-family:"微软雅黑";  font-size: 18px; margin-top: 3px; margin-left: 85%; }
+.button2{float:right; margin-top:6px; margin-right:5px;}

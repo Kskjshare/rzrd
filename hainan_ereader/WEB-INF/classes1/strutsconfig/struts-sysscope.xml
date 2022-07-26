@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="sysscope" extends="eread-package" namespace="/sysscope">
+		<action name="selectList" class="SysScopeAction" method="selectList">
+			<result >/module/system/sent.jsp</result>
+		</action>
+		<action name="selectUserList" class="SysScopeAction" method="selectUserList">
+		<result type="json">
+				<param name="root">scopelist</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+		 <action name="saveScope" class="SysScopeAction" method="saveScope">
+			<result type="json">
+				<param name="root">codeMap</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+		<action name="updateScope" class="SysScopeAction" method="updateScope">
+			<result type="json">
+				<param name="root">codeMap</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+		<action name="selectById" class="SysScopeAction" method="selectById">
+		    <result type="json">
+		    <param name="root">map</param>
+		    </result>
+		</action>
+		<action name="delete" class="SysScopeAction" method="delete">
+			<result type="json">
+				<param name="root">codeMap</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+	</package>
+</struts>

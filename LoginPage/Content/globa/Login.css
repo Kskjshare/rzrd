@@ -1,0 +1,14 @@
+body
+{
+    margin-top: 0;
+    background: url('../../images/login.png') no-repeat;
+    background-size: 100% 150%;
+   
+    background-size:100%;
+}
+#shouye
+{
+    margin-top: 0;
+    width: 100%;
+    text-align: center;
+}

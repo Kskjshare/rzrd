@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloudrich.ereader.chuqueqin.dao.ChuqueqinPubDao" >
+  <resultMap id="BaseResultMap" type="com.cloudrich.ereader.chuqueqin.entity.ChuqueqinPubEntity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="absentid" property="absentid" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="pubuserid" property="pubuserid" jdbcType="INTEGER" />
+    <result column="pubtime" property="pubtime" jdbcType="TIMESTAMP" />
+    <result column="filename" property="filename" jdbcType="VARCHAR" />
+    <result column="path" property="path" jdbcType="VARCHAR" />
+    <result column="isdel" property="isdel" jdbcType="INTEGER" />
+    <result column="fileguid" property="fileguid" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="BaseResultMap2" type="com.cloudrich.ereader.chuqueqin.entity.ChuqueqinMainEntity" >
+    <id column="absentid" property="absentid" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="pubuserid" property="pubuserid" jdbcType="INTEGER" />
+    <result column="pubtime" property="pubtime" jdbcType="TIMESTAMP" />
+    <result column="filename" property="filename" jdbcType="VARCHAR" />
+    <result column="path" property="path" jdbcType="VARCHAR" />
+    <result column="isdel" property="isdel" jdbcType="INTEGER" />
+     <result column="fileguid" property="fileguid" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByAbsentid" parameterType="java.lang.Integer" >
+    update er_pub_chuqueqin set isdel=1 where  absentid = #{absentid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cloudrich.ereader.chuqueqin.entity.ChuqueqinPubEntity" >
+    insert into er_pub_chuqueqin (absentid, title, pubuserid, 
+      pubtime, filename, path, 
+      isdel,fileguid)
+    values (#{absentid,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{pubuserid,jdbcType=INTEGER}, 
+      #{pubtime,jdbcType=TIMESTAMP}, #{filename,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, 
+      #{isdel,jdbcType=INTEGER}, #{fileguid,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByAbsentid" parameterType="com.cloudrich.ereader.chuqueqin.entity.ChuqueqinPubEntity" >
+    update er_pub_chuqueqin
+    <set>
+    	<if test="title!=null">
+    		title = #{title,jdbcType=VARCHAR},
+    	</if>
+        <if test="pubtime!=null">
+    		 pubtime = #{pubtime,jdbcType=TIMESTAMP},
+    	</if>
+        <if test="filename!=null">
+    		filename = #{filename,jdbcType=VARCHAR},
+    	</if>
+        <if test="path!=null">
+    		path = #{path,jdbcType=VARCHAR},
+    	</if>
+       <if test="isdel!=null">
+    		isdel = #{isdel,jdbcType=INTEGER},
+    	</if>
+       <if test="fileguid!=null">
+    		fileguid = #{fileguid,jdbcType=VARCHAR}
+    	</if>
+    </set>
+    where absentid = #{absentid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByAbsentid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select absentid, title, pubuserid, pubtime, filename, path, isdel,fileguid
+    from er_pub_chuqueqin
+    where absentid = #{absentid,jdbcType=INTEGER} and isdel==0
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap2" parameterType="java.util.Map">
+    select absentid, title, pubuserid, pubtime, filename, path, isdel,fileguid
+    from er_pub_chuqueqin where  isdel=0
+    <if test="title!=null">
+    	and title like CONCAT(CONCAT('%',#{title}),'%')
+    </if>
+    order by pubtime desc
+  </select>
+  <select id="selectLatestPubtime" resultMap="BaseResultMap" parameterType="java.lang.Integer"  >
+    select  pubtime
+    from er_pub_chuqueqin 
+    where absentid=#{absentid,jdbcType=INTEGER}
+    and isdel=0
+    order by pubtime desc
+    limit 0,1
+  </select>
+    <delete id="deleteAll" >
+     UPDATE er_pub_chuqueqin SET isdel=1 , pubtime=NOW()
+  </delete>
+  
+    
+    <select id="selectAllAbsent" resultMap="BaseResultMap"  >
+    select *
+    from er_pub_chuqueqin
+    where  isdel=0
+  </select>
+</mapper>

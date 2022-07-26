@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloudrich.ereader.meeting.dao.MeetYichenMainDao" >
+  <resultMap id="BaseResultMap" type="com.cloudrich.ereader.meeting.entity.MeetYichenMainEntity" >
+    <id column="yichenid" property="yichenid" jdbcType="INTEGER" />
+    <result column="meetid" property="meetid" jdbcType="INTEGER" />
+    <result column="pyichenid" property="pyichenid" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="isdel" property="isdel" jdbcType="INTEGER" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <resultMap id="YichenFileResultMap" type="com.cloudrich.ereader.meeting.entity.MeetFileMainEntity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="yichenid" property="yichenid" jdbcType="INTEGER" />
+    <result column="fileid" property="fileid" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="filename" property="filename" jdbcType="VARCHAR" />
+    <result column="filepath" property="filepath" jdbcType="VARCHAR" />
+    <result column="uploadtime" property="uploadtime" jdbcType="TIMESTAMP" />
+    <result column="filetype" property="filetype" jdbcType="CHAR" />
+    <result column="fileown" property="fileown" jdbcType="CHAR" />
+    <result column="meetid" property="meetid" jdbcType="INTEGER" />
+	<result column="fileguid" property="fileguid" jdbcType="VARCHAR" />    
+  </resultMap>
+  
+  
+  
+  <update id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    update er_meet_yichen_main set isdel = 1
+    where yichenid = #{yichenid,jdbcType=INTEGER}
+    or pyichenid = #{yichenid,jdbcType=INTEGER}
+  </update>
+  
+  <insert id="insert" useGeneratedKeys="true" keyProperty="yichenid" parameterType="com.cloudrich.ereader.meeting.entity.MeetYichenMainEntity" >
+    insert into er_meet_yichen_main
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="meetid != null" >
+        meetid,
+      </if>
+      <if test="pyichenid != null" >
+        pyichenid,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      </trim> 
+      <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="meetid != null" >
+         #{meetid,jdbcType=INTEGER},
+      </if>
+	    <if test="pyichenid != null" >
+	    	#{pyichenid,jdbcType=INTEGER}, 
+	    </if>
+       <if test="title != null" >
+	    	#{title,jdbcType=VARCHAR}, 
+	    </if>
+	     <if test="sort != null" >
+	    	#{sort,jdbcType=INTEGER}, 
+	    </if>
+      </trim> 
+  </insert>
+  
+  <update id="updateByPrimaryKey" parameterType="com.cloudrich.ereader.meeting.entity.MeetYichenMainEntity" >
+    update er_meet_yichen_main
+    set meetid = #{meetid,jdbcType=INTEGER},
+      <if test="pyichenid != null" >
+	    	pyichenid = #{pyichenid,jdbcType=INTEGER},
+	    </if>
+      <if test="sort != null" >
+	    	sort = #{sort,jdbcType=INTEGER},
+	  </if>
+       title = #{title,jdbcType=VARCHAR}
+    where yichenid = #{yichenid,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select yichenid, meetid, pyichenid, title, isdel, sort
+    from er_meet_yichen_main
+    where yichenid = #{yichenid,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select yichenid, meetid, pyichenid, title, isdel, sort
+    from er_meet_yichen_main
+  </select>
+  
+  <select id="selectYichenByTitleAndMeetid" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select yichenid, meetid, pyichenid, title, isdel, sort
+    from er_meet_yichen_main
+    where 
+    meetid = #{meetid,jdbcType=INTEGER}
+    and title like CONCAT(#{title,jdbcType=VARCHAR},'%' )
+    <if test="pyichenid != null" >
+     and pyichenid=#{pyichenid,jdbcType=INTEGER}
+    </if>
+    and isdel = 0
+  </select>
+  
+  <select id="selectAllByMeetid" resultMap="BaseResultMap"  parameterType="java.lang.Integer">
+    select yichenid, meetid, pyichenid, title, isdel, sort
+    from er_meet_yichen_main
+    where meetid= #{meetid,jdbcType=INTEGER}
+    and isdel='0'
+    order by sort
+  </select>
+  
+  <!-- 获取父议程 -->
+   <select id="selectAllParentYichenByMeetid" resultMap="BaseResultMap"  parameterType="java.lang.Integer">
+    select yichenid, meetid, pyichenid, title, isdel, sort
+    from er_meet_yichen_main
+    where meetid= #{meetid,jdbcType=INTEGER}
+    and isdel=0
+    and pyichenid=0
+    order by sort
+  </select>
+  
+   <!-- 获取子议程 -->
+   <select id="selectAllSubYichenByYichenid" resultMap="BaseResultMap"  parameterType="java.lang.Integer">
+    select yichenid, meetid, pyichenid, title, isdel, sort
+    from er_meet_yichen_main
+    where pyichenid= #{yichenid,jdbcType=INTEGER}
+    and isdel='0'
+    order by sort
+  </select>
+  
+  
+  <!-- 流程中包括已经删除的 -->
+  <select id="selectAllByMeetidProc" resultMap="BaseResultMap"  parameterType="java.lang.Integer">
+    select yichenid, meetid, pyichenid, title, isdel, sort
+    from er_meet_yichen_main
+    where meetid= #{meetid,jdbcType=INTEGER}
+    order by sort
+  </select>
+  
+   <!-- 根据议程id和文件归属 获取文件和路劲-->
+  <select id="selectFilesByYichenid" resultMap="YichenFileResultMap" parameterType="java.lang.Integer" >
+    select t.id, t.sort, t.yichenid, t.fileid,  f.title, f.filename, 
+		f.filepath,f.uploadtime, f.filetype,f.fileown,f.fileguid
+		from er_meet_yichen_file t,er_meet_file_main f
+		where t.fileid=f.fileid
+		and t.yichenid= #{yichenid,jdbcType=INTEGER}
+		and f.fileown='1' 
+		and t.isdel=0
+		and f.isdel=0
+		order by sort 
+  </select>
+  
+  <!-- 删除子议程 -->
+   <update id="deleteSubYichenByPid" parameterType="java.lang.Integer" >
+    update er_meet_yichen_main set isdel = 1
+    where pyichenid = #{yichenid,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 更新序号 -->
+   <update id="updateYichenSort" parameterType="java.util.Map" >
+    update er_meet_yichen_main set sort=#{sort,jdbcType=INTEGER}
+    where yichenid = #{yichenid,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 根据Fileid找到绑定的议程 -->
+  <select id="selectBindYichenByFileid" resultMap="BaseResultMap" parameterType="java.lang.Integer" > 
+  select yichenid, meetid, pyichenid, title, isdel, sort from er_meet_yichen_main 
+     where yichenid in 
+      (select yichenid from er_meet_yichen_file where fileid=#{fileid,jdbcType=INTEGER}  and isdel=0)
+      and isdel=0
+      order by sort
+</select>
+
+<!-- 根据议程id和文件归属 获取文件和路劲-->
+  <select id="selectFilesByYichenidAndUserid" resultMap="YichenFileResultMap" parameterType="java.util.Map" >
+    select t.id, t.sort, t.yichenid, t.fileid,  f.title, f.filename, 
+		f.filepath,f.uploadtime, f.filetype,f.fileown,f.fileguid
+		from er_meet_yichen_file t,er_meet_file_main f
+		where t.fileid=f.fileid
+		and t.yichenid= #{yichenid,jdbcType=INTEGER}
+		and f.fileown='1' 
+		and t.isdel=0
+		and f.isdel=0
+		and f.fileid in
+		 (
+		   select fileid from er_meet_file_scope where scopeid in
+		   (select scopeid from er_sys_scope_user
+		    where userid=#{userid,jdbcType=INTEGER}
+		   )
+       )
+		order by sort 
+  </select>
+</mapper>

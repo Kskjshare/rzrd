@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloudrich.ereader.calendar.dao.CalendarMainDao" >
+  <resultMap id="BaseResultMap" type="com.cloudrich.ereader.calendar.entity.CalendarMainEntity" >
+    <id column="eventid" property="eventid" jdbcType="INTEGER" />
+    <result column="eventname" property="eventname" jdbcType="VARCHAR" />
+    <result column="showdate" property="showdate" jdbcType="DATE" />
+    <result column="createuserid" property="createuserid" jdbcType="INTEGER" />
+    <result column="createdate" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="isdel" property="isdel" jdbcType="INTEGER" />
+    <result column="comment" property="comment" jdbcType="VARCHAR" />
+    <result column="eventtype" property="eventtype" jdbcType="CHAR" />
+  </resultMap>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select eventid, eventname, showdate, createuserid, createdate, isdel, comment,eventtype
+    from er_calendar_main where isdel=0
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select eventid, eventname, showdate, createuserid, createdate, isdel, comment,eventtype
+    from er_calendar_main
+    where isdel=0 and eventid = #{eventid,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" parameterType="com.cloudrich.ereader.calendar.entity.CalendarMainEntity" >
+    insert into er_calendar_main (eventid, eventname, showdate, 
+      createuserid, isdel, 
+      comment,eventtype)
+    values (#{eventid,jdbcType=INTEGER}, #{eventname,jdbcType=VARCHAR}, #{showdate,jdbcType=DATE}, 
+      #{createuserid,jdbcType=INTEGER}, #{isdel,jdbcType=INTEGER}, 
+      #{comment,jdbcType=VARCHAR},
+      #{eventtype,jdbcType=VARCHAR})
+  </insert>
+  <update id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    update er_calendar_main set isdel=1
+    where eventid = #{eventid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cloudrich.ereader.calendar.entity.CalendarMainEntity" >
+    update er_calendar_main
+    set eventname = #{eventname,jdbcType=VARCHAR},
+      showdate = #{showdate,jdbcType=DATE},
+      comment = #{comment,jdbcType=VARCHAR},
+      eventtype = #{eventtype,jdbcType=VARCHAR}
+    where eventid = #{eventid,jdbcType=INTEGER}
+  </update>
+</mapper>

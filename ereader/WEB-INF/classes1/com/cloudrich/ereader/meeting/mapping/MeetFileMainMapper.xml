@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloudrich.ereader.meeting.dao.MeetFileMainDao">
+	<resultMap id="BaseResultMap"
+		type="com.cloudrich.ereader.meeting.entity.MeetFileMainEntity">
+		<id column="fileid" property="fileid" jdbcType="INTEGER" />
+		<result column="title" property="title" jdbcType="VARCHAR" />
+		<result column="filename" property="filename" jdbcType="VARCHAR" />
+		<result column="filepath" property="filepath" jdbcType="VARCHAR" />
+		<result column="uploadtime" property="uploadtime" jdbcType="TIMESTAMP" />
+		<result column="filetype" property="filetype" jdbcType="CHAR" />
+		<result column="fileown" property="fileown" jdbcType="CHAR" />
+		<result column="meetid" property="meetid" jdbcType="INTEGER" />
+		<result column="sort" property="sort" jdbcType="INTEGER" />
+		<result column="isdel" property="isdel" jdbcType="INTEGER" />
+		<result column="mtype" property="mtype" jdbcType="CHAR" />
+		<result column="fileguid" property="fileguid" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<update id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		update er_meet_file_main
+		set isdel=1
+		where fileid = #{fileid,jdbcType=INTEGER}
+	</update>
+
+
+
+	<insert id="insert"
+		parameterType="com.cloudrich.ereader.meeting.entity.MeetFileMainEntity">
+		insert into er_meet_file_main ( title, filename,
+		filepath, filetype,
+		fileown,meetid,sort,mtype,fileguid)
+		values ( #{title,jdbcType=VARCHAR}, #{filename,jdbcType=VARCHAR},
+		#{filepath,jdbcType=VARCHAR}, #{filetype,jdbcType=CHAR},
+		#{fileown,jdbcType=CHAR},#{meetid,jdbcType=INTEGER},#{sort,jdbcType=INTEGER},#{mtype,jdbcType=CHAR},#{fileguid,jdbcType=VARCHAR})
+	</insert>
+
+	<insert id="insertAndGetId" useGeneratedKeys="true" keyProperty="fileid"
+		parameterType="com.cloudrich.ereader.meeting.entity.MeetFileMainEntity">
+		insert into er_meet_file_main ( title, filename,
+		filepath, filetype,
+		fileown,meetid,mtype,sort,fileguid)
+		values ( #{title,jdbcType=VARCHAR}, #{filename,jdbcType=VARCHAR},
+		#{filepath,jdbcType=VARCHAR}, #{filetype,jdbcType=CHAR},
+		#{fileown,jdbcType=CHAR},#{meetid,jdbcType=INTEGER},#{mtype,jdbcType=CHAR},#{sort,jdbcType=INTEGER},#{fileguid,jdbcType=VARCHAR})
+	</insert>
+
+	<update id="updateByPrimaryKey"
+		parameterType="com.cloudrich.ereader.meeting.entity.MeetFileMainEntity">
+		update er_meet_file_main
+		set title = #{title,jdbcType=VARCHAR},
+		filename = #{filename,jdbcType=VARCHAR},
+		filepath = #{filepath,jdbcType=VARCHAR},
+		uploadtime = #{uploadtime,jdbcType=TIMESTAMP},
+		filetype = #{filetype,jdbcType=CHAR},
+		fileown = #{fileown,jdbcType=CHAR},
+		meetid = #{meetid,jdbcType=INTEGER},
+		sort = #{sort,jdbcType=INTEGER},
+		mtype = #{mtype,jdbcType=CHAR},
+		fileguid= #{fileguid,jdbcType=VARCHAR}
+		where fileid = #{fileid,jdbcType=INTEGER}
+	</update>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select fileid, title, filename, filepath, uploadtime, filetype,
+		fileown,meetid,sort,mtype,fileguid
+		from er_meet_file_main
+		where fileid = #{fileid,jdbcType=INTEGER}
+	</select>
+
+	<select id="selectAll" resultMap="BaseResultMap">
+		select fileid, title, filename, filepath, uploadtime, filetype,
+		fileown,meetid,sort,mtype,fileguid
+		from er_meet_file_main
+		and isdel=0
+		order by sort
+	</select>
+
+	<!-- 根据会议id和文件归属获取所有文件 -->
+	<select id="selectAllFileByMeetidAndFileOwn" resultMap="BaseResultMap"
+		parameterType="java.util.HashMap">
+		select fileid, title, filename, filepath, uploadtime, filetype,
+		fileown,meetid,sort,mtype,isdel,fileguid
+		from er_meet_file_main
+		where meetid=#{meetid,jdbcType=INTEGER}
+		<if test="fileown != null">
+			and fileown=#{fileown,jdbcType=CHAR}
+		</if>
+		<if test="filetype != null">
+			and filetype=#{filetype,jdbcType=CHAR}
+		</if>
+		<if test="bindtype !=null">
+			<if test="bindtype ==1">
+				and fileid not in (SELECT fileid FROM er_meet_yichen_file WHERE
+				isdel=0
+				and yichenid in (select yichenid from er_meet_yichen_main where
+				isdel = 0
+				<if test="meetid != null">
+					and meetid=#{meetid,jdbcType=INTEGER}
+				</if>
+				) UNION
+				SELECT fileid FROM er_meet_richen_file WHERE isdel=0)
+			</if>
+			<if test="bindtype ==2">
+				and fileid in (SELECT fileid FROM er_meet_yichen_file WHERE isdel=0
+				and yichenid in (select yichenid from er_meet_yichen_main where
+				isdel = 0
+				<if test="meetid != null">
+					and meetid=#{meetid,jdbcType=INTEGER}
+				</if>
+				)
+				UNION
+				SELECT fileid FROM er_meet_richen_file WHERE isdel=0)
+			</if>
+		</if>
+		and isdel=0
+		order by sort
+	</select>
+
+
+	<!-- 根据推送范围会议id和文件归属获取所有文件 -->
+	<select id="selectAllFileByMeetidAndFileOwnAndUserid" resultMap="BaseResultMap"
+		parameterType="java.util.HashMap">
+		select fileid, title, filename, filepath, uploadtime, filetype,
+		fileown,meetid,sort,mtype,isdel,fileguid
+		from er_meet_file_main
+		where meetid=#{meetid,jdbcType=INTEGER}
+		<if test="fileown != null">
+			and fileown=#{fileown,jdbcType=CHAR}
+		</if>
+		<if test="filetype != null">
+			and filetype=#{filetype,jdbcType=CHAR}
+		</if>
+		and isdel=0
+		and fileid in
+		(
+		select fileid from er_meet_file_scope where scopeid in
+		(select scopeid from er_sys_scope_user
+		where userid=#{userid,jdbcType=INTEGER}
+		)
+		)
+		order by sort
+	</select>
+
+	<!-- 更新文件类型 -->
+	<update id="updateFileTypeByFileId"
+		parameterType="com.cloudrich.ereader.meeting.entity.MeetFileMainEntity">
+		update er_meet_file_main
+		set filetype = #{filetype,jdbcType=CHAR}
+		where fileid = #{fileid,jdbcType=INTEGER}
+	</update>
+
+
+	<!-- 对文件标题进行搜索 -->
+	<select id="searchFileByKeyword" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		select * from er_meet_file_main
+		where ((title like
+		CONCAT('%',#{keyword,jdbcType=VARCHAR},'%' )
+		<if test="filetype != null">
+			and filetype=#{filetype,jdbcType=CHAR}
+		</if>
+		and mtype!='2' and isdel=0)
+		or ( title like CONCAT('%',#{keyword,jdbcType=VARCHAR},'%' )
+		<if test="filetype != null">
+			and filetype=#{filetype,jdbcType=CHAR}
+		</if>
+		and mtype='2' and fileown!='1'
+		and isdel=0
+		))
+		and fileid in
+		(
+		select fileid from er_meet_file_scope where scopeid in
+		(select scopeid from er_sys_scope_user
+		where userid=#{userid,jdbcType=INTEGER}
+		)
+		)
+	</select>
+
+	<!-- 更新Sort -->
+	<update id="updateFileSort" parameterType="java.util.Map">
+		update er_meet_file_main
+		set sort = #{sort,jdbcType=INTEGER}
+		where fileid = #{fileid,jdbcType=INTEGER}
+	</update>
+
+	<!-- 更新置顶Sort -->
+	<update id="updateFileSortZD" parameterType="java.util.Map">
+		UPDATE er_meet_file_main
+		SET sort = (
+		(
+		SELECT
+		MAX(sort)
+		FROM
+		(SELECT * FROM er_meet_file_main) AS x
+		) + 1
+		)
+		WHERE
+		fileid = #{fileid,jdbcType=INTEGER}
+
+
+		<!-- update er_meet_file_main
+		set sort = #{sort,jdbcType=INTEGER}
+		where fileid = #{fileid,jdbcType=INTEGER} -->
+	</update>
+
+	<!-- 获取最新Sort -->
+	<select id="getMeetFileMaxSort" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+		select max(sort) from er_meet_file_main
+		where meetid = #{meetid,jdbcType=INTEGER}
+		and fileown = #{fileown,jdbcType=CHAR}
+		and isdel=0
+	</select>
+
+	<!-- 根据会议id和文件归属获取所有文件 -->
+	<select id="selectFileCountByMeetidAndFileOwnAndUserid"
+		resultType="java.lang.Integer" parameterType="java.util.HashMap">
+		select count(*) from er_meet_file_main
+		where meetid=#{meetid,jdbcType=INTEGER}
+		<if test="fileown != null">
+			and fileown=#{fileown,jdbcType=CHAR}
+		</if>
+		<if test="filetype != null">
+			and filetype=#{filetype,jdbcType=CHAR}
+		</if>
+		and isdel=0
+		and fileid in
+		(
+		select fileid from er_meet_file_scope where scopeid in
+		(select scopeid from er_sys_scope_user
+		where userid=#{userid,jdbcType=INTEGER}
+		)
+		)
+
+	</select>
+
+	<!-- 根据会议id和文件归属获取所有文件 -->
+	<select id="selectYichenFileCountByMeetid" resultType="java.lang.Integer"
+		parameterType="java.lang.Integer">
+		select count(fileid) from er_meet_yichen_file
+		where yichenid in(
+		select yichenid from er_meet_yichen_main
+		where meetid=#{meetid,jdbcType=INTEGER}
+		and isdel=0)
+		and isdel=0
+	</select>
+</mapper>

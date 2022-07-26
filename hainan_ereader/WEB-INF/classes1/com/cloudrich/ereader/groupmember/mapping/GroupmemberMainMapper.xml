@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloudrich.ereader.groupmember.dao.GroupmemberMainDao" >
+  <resultMap id="BaseResultMap" type="com.cloudrich.ereader.groupmember.entity.GroupmemberMainEntity" >
+    <id column="memberid" property="memberid" jdbcType="INTEGER" />
+    <result column="groupcode" property="groupcode" jdbcType="CHAR" />
+    <result column="membertype" property="membertype" jdbcType="CHAR" />
+    <result column="truename" property="truename" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="post" property="post" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="mishuname" property="mishuname" jdbcType="VARCHAR" />
+    <result column="mishuphone" property="mishuphone" jdbcType="VARCHAR" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+    <result column="isdel" property="isdel" jdbcType="INTEGER" />
+  </resultMap>
+  <update id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    update er_groupmember_main set isdel=1 
+    where memberid = #{memberid,jdbcType=INTEGER}
+  </update>
+  <insert id="insert" parameterType="com.cloudrich.ereader.groupmember.entity.GroupmemberMainEntity" >
+    insert into er_groupmember_main (memberid, groupcode, membertype, 
+      truename, tel, post, 
+      sort, address, phone, 
+      mishuname, mishuphone, note, 
+      isdel)
+    values (#{memberid,jdbcType=INTEGER}, #{groupcode,jdbcType=CHAR}, #{membertype,jdbcType=CHAR}, 
+      #{truename,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{post,jdbcType=VARCHAR}, 
+      (select count(b.memberid) from er_groupmember_main b limit 0,1), #{address,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{mishuname,jdbcType=VARCHAR}, #{mishuphone,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, 
+      0)
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.cloudrich.ereader.groupmember.entity.GroupmemberMainEntity" >
+    update er_groupmember_main
+    set groupcode = #{groupcode,jdbcType=CHAR},
+      membertype = #{membertype,jdbcType=CHAR},
+      truename = #{truename,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      post = #{post,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      mishuname = #{mishuname,jdbcType=VARCHAR},
+      mishuphone = #{mishuphone,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR},
+      isdel = #{isdel,jdbcType=INTEGER}
+    where memberid = #{memberid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select memberid, groupcode, membertype, truename, tel, post, sort, address, phone, 
+    mishuname, mishuphone, note, isdel
+    from er_groupmember_main
+    where isdel=0 and memberid = #{memberid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="com.cloudrich.ereader.groupmember.entity.GroupmemberMainEntity">
+    select memberid, groupcode, membertype, truename, tel, post, sort, address, phone, 
+    mishuname, mishuphone, note, isdel
+    from er_groupmember_main where isdel=0
+    <if test="truename!='' or truename!=null">
+     and truename like '%${truename}%'
+     </if>
+    <if test="groupcode!=0">
+     and groupcode = #{groupcode} 
+    </if>
+    <if test="membertype!=0">
+     and membertype = #{membertype}
+    </if>
+    order by sort
+  </select>
+  <select id="selectGroup" resultMap="BaseResultMap" >
+    select memberid, groupcode, membertype, truename, tel, post, sort, address, phone, 
+    mishuname, mishuphone, note, isdel
+    from er_groupmember_main where isdel=0 and groupcode=#{groupcode,jdbcType=VARCHAR} order by sort
+  </select>
+	<update id="updateSort" parameterType="java.util.ArrayList">
+	 	update er_groupmember_main set sort=case memberid 
+	 	<foreach collection="list" item="sortli" open="" close="" separator="">
+	 	when #{sortli.id} then #{sortli.sort} 
+	 	</foreach>
+	 	end where isdel=0 
+	 	<foreach collection="list" item="sortl" open="and memberid in(" close=")" separator=",">
+	 	#{sortl.id}
+	 	</foreach>
+	</update>
+</mapper>

@@ -1,0 +1,190 @@
+/*
+ * @Author: liuxuanxuan 
+ * @Date: 2021-03-19 17:11:06 
+ * @Last Modified by: liuxuanxuan
+ * @Last Modified time: 2021-03-19 19:13:32
+ */
+
+body{
+    min-width: 1260px;
+    background: #FEF9F5 url('../images/countypage.png') center top no-repeat;
+}
+.blank{
+    height: 725px;
+    width: 100%
+}
+.main{
+    width: 1200px;
+    margin: 0 auto;
+    background: #FEF9F5;
+}
+.topline{
+    width: 1000px;
+    padding: 60px 0;
+    margin: 0 auto;
+    text-align: center;
+}
+.topline h1{
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+.topline h1 a{
+    color: #CB3330;
+}
+.topline p{
+    font-size: 16px;
+    line-height: 2;
+}
+.fouceimg{
+    width: 1000px;
+    margin: 0 auto;
+    position: relative;
+    padding: 10px;
+    background: #EDE2CC;
+}
+.fouceimg img{
+    width: 100%;
+    height: 600px;
+}
+.fouceimg p{
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    right: 10px;
+    font-size: 18px;
+    color: #fff;
+    line-height: 3;
+    text-indent: 2em;
+    text-align: center;
+    overflow: hidden;
+}
+.navbar{
+    display: block;
+    text-align: center;
+    margin: 70px auto 40px;
+}
+.bndsbox{
+    width: 100%;
+    height: 650px;
+    overflow: auto;
+}
+.bndsbox li{
+    width: 275px;
+    float: left;
+    margin: 0 20px 20px 0;
+}
+.bndsbox li img{
+    width: 100%;
+    height: 190px;
+}
+.linkmore{
+    display: block;
+    width: 170px;
+    margin: 40px auto;
+    background: #E5E5E5;
+    color: #999;
+    line-height: 2.5;
+    text-align: center;
+    font-size: 16px;
+}
+.news-box{
+    width: 550px;
+}
+.news-item1{
+    line-height: 3;
+    border-bottom: 1px dashed #dedede;
+    font-size: 20px;
+    background: url('../img/08.png') left center no-repeat;
+    text-indent: 15px;
+}
+.news-item2{
+    border-bottom: 1px dashed #dedede;
+    height: 145px;
+    margin-bottom: 15px;
+}
+.news-item2 h3{
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+.news-item2 p{
+    line-height: 2;
+    font-size: 16px;
+    text-indent: 2em;
+}
+.yyljbox a{
+    display: inline-block;
+    line-height: 3;
+    margin-left: 30px;
+    font-size: 20px;
+}
+.footer{
+    margin-top: 80px;
+    background: #D50000;
+}
+.footer a,.footer p{
+    color: #fff;
+}
+.rightNav{
+    background: url('../img/14.png') center top no-repeat;
+    width: 133px;
+    height: 539px;
+    position: fixed;
+    right: 90px;
+    top: 200px;
+    padding: 48px 20px 0;
+}
+.rightNav a{
+    display: block;
+    width: 70%;
+    color: #fff;
+    text-align: center;
+    line-height: 2;
+    margin: 6px auto;
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: none;
+}
+.rightNav a.totop{
+    height: 60px;
+    border: none;
+    margin-top: 56px;
+}
+.rightNav a:hover{
+    color: #E51717;
+    border-radius: 2.5;
+    background: #fff;
+    border-radius: 10px;
+}
+.rightNav a.totop:hover{
+    background: none;
+}
+.rightNav em{
+    display: block;
+    margin: 0 auto;
+    width: 80%;
+    height: 1px;
+    background: #F38B8C;
+}
+.slideBox{position:relative;overflow: hidden;margin: 0 auto;width: 1200px;}
+.slideBox .hd{position:absolute; right:10px; bottom:15px; z-index:1;}
+.slideBox .hd ul li{float:left; margin-right:5px;cursor:pointer;width:7px;height:7px;background: #fff;}
+.slideBox .hd ul li.on{background:#b41a22;width:20px;}
+.slideBox .bd{
+    position:relative;
+    z-index:0;
+    width:1020px;
+    height: 500px;
+    margin-left: 70px;
+    background:#8D6B3B;
+    padding: 20px;
+}
+.slideBox .bd li{position: relative;}
+.slideBox .bd li img{width:1020px;height:500px;}
+.slideBox .bd p{position: absolute;bottom: 0;left: 0;width:100%;height: 50px;line-height: 50px;font-size: 16px;background: rgba(0,0,0,0.60);text-indent: 10px;z-index: 1;}
+.slideBox .bd p a{color: #fff;}
+.slideBox .prev,.slideBox .next{ position:absolute; top:50%; margin-top:-30px; width:30px; height:60px; display: block;}
+.slideBox .prev{ left:0; background:url(../img/arrow_left.png) left center no-repeat;}
+.slideBox .next{ right: 0; background:url(../img/arrow_right.png) right center no-repeat;}

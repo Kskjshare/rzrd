@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloudrich.ereader.meeting.dao.MeetFileUserDao">
+	<resultMap id="BaseResultMap"
+		type="com.cloudrich.ereader.meeting.entity.MeetFileUserEntity">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="fileid" jdbcType="INTEGER" property="fileid" />
+		<result column="userid" jdbcType="INTEGER" property="userid" />
+		<result column="isdel" jdbcType="INTEGER" property="isdel" />
+		<result column="truename" jdbcType="VARCHAR" property="truename" />
+	</resultMap>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		update er_meet_file_user set isdel=1
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert"
+		parameterType="com.cloudrich.ereader.meeting.entity.MeetFileUserEntity">
+		insert into er_meet_file_user (id, fileid, userid,
+		isdel)
+		values (#{id,jdbcType=INTEGER}, #{fileid,jdbcType=INTEGER},
+		#{userid,jdbcType=INTEGER},
+		#{isdel,jdbcType=INTEGER})
+	</insert>
+	<update id="updateByPrimaryKey"
+		parameterType="com.cloudrich.ereader.meeting.entity.MeetFileUserEntity">
+		update er_meet_file_user
+		set fileid = #{fileid,jdbcType=INTEGER},
+		userid = #{userid,jdbcType=INTEGER},
+		isdel = #{isdel,jdbcType=INTEGER}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select id, fileid, userid, isdel
+		from er_meet_file_user
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap">
+		select id, fileid, userid, isdel
+		from er_meet_file_user
+	</select>
+	<!--根据文件fileid获取用户 -->
+	<!-- <select id="selectFileUsersByFileid" parameterType="java.lang.Integer" 
+		resultMap="BaseResultMap"> select ef.id, ef.fileid, ef.userid, ef.isdel,eu.truename 
+		from er_meet_file_user ef left join er_sys_user_main eu on ef.userid = eu.id 
+		where ef.fileid = #{fileid,jdbcType=INTEGER} and ef.isdel=0 </select> -->
+	<!--根据文件fileid获取用户 -->
+	<select id="selectFileUsersByFileid" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select su.id,mf.fileid,su.id,mf.isdel,su.truename
+		from er_meet_file_user mf left join er_sys_scope_user ss on
+		mf.userid=ss.scopeid
+		left join er_sys_user_main su on ss.userid=su.id
+		where mf.fileid=#{fileid,jdbcType=INTEGER} and mf.isdel=0;
+	</select>
+	<!-- 文件管理中根据文件fileid获取用户  -->
+	<select id="selectUserByFileid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+	select mf.id,mf.fileid,mf.userid,mf.isdel,su.truename
+	from er_meet_file_user mf left join er_meet_file_main mfm on mf.fileid=mfm.fileid
+	left join er_sys_user_main su on su.id=mf.userid
+	where mfm.fileid=#{fileid,jdbcType=INTEGER} and mfm.isdel=0;
+	</select>
+</mapper>

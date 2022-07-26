@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="syshelp" extends="eread-package" namespace="/syshelp">
+		<action name="selectAllHelpList" class="SysHelpAction" method="selectAllHelpList">
+			<result >/module/system/help.jsp</result>
+		</action>
+ 		<action name="saveHelpInfo" class="SysHelpAction" method="saveHelpInfo">
+			<result type="json">
+				<param name="root">codeMap</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+		<action name="selectById" class="SysHelpAction" method="selectById">
+		    <result type="json">
+		    <param name="root">entity</param>
+		    </result>
+		</action> 
+		<action name="updateHelpInfo" class="SysHelpAction" method="updateHelpInfo">
+			<result type="json">
+				<param name="root">codeMap</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action> 
+		<action name="delete" class="SysHelpAction" method="delete">
+			<result type="json">
+				<param name="root">codeMap</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action> 
+		<action name="selectErHelpList" class="SysHelpAction" method="selectAllHelpList">
+			<result >/module/support/help.jsp</result>
+		</action>		
+	</package>
+</struts>

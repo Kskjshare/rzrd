@@ -1,0 +1,64 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="textml; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+        <table border="1">
+            <caption>汝州市区、市、县、乡人大代信息名册表</caption>
+            <thead>
+                <tr>
+                    <th>姓名</th>
+                        <th>性别</th>
+                        <th>民族</th>
+                        <th>出生年月</th>
+                        <th>单位职务</th>
+                        <th>详细住址</th>
+                        <th>登录密码</th>
+                        <th>手机号码</th>
+                        <th>登录账号</th>
+                        <th>代表层次</th>
+                        <th>代表证号</th>
+                        <th>代表团</th>
+                        <th>党派</th>
+                        <th>学历</th>
+                        <th>学位</th>
+                        <th>职业</th>
+                        <th>电子邮箱</th>
+                        <th>单位名称</th>
+                        <th>通讯地址</th>
+                        <th>邮编</th>
+                        <th>有效届次</th>
+                        </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>oatest</td> 
+                    <td>保密</td>
+                        <td>未知</td>
+                        <td>1970-01-01</td>    
+                        <td>暂无</td> 
+                    <td></td> 
+                    <td>Oatest123</td> 
+                    <td>11111111111</td> 
+                    <td>oatest</td> 
+                    <td></td>
+                        <td>0</td> 
+                    <td>小屯镇</td>
+                        <td>无</td>
+                        <td>无</td>
+                        <td>无</td>
+                        <td></td> 
+                    <td></td> 
+                    <td>暂无</td> 
+                    <td>暂无</td> 
+                    <td>0</td> 
+                    <td></td>
+                        </tr>
+            </tbody>
+            <tfoot>
+                </tfoot>    
+        </table>
+    </body>
+
+    <ml>

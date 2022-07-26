@@ -1,0 +1,22 @@
+#loginpage article>img{margin: 1rem auto .27rem;display: block;width: 2rem;}
+#loginpage article>p{text-align: center;height: .28rem;font-size: .28rem;color: #186aa3;margin-bottom:1.2rem;}
+#loginpage article form>ul{width: 6.9rem;margin: 0 auto;}
+#loginpage article form>ul>li{border: #e2e2e2 solid thin;border-radius: .15rem;height: .76rem;margin-bottom: .2rem;background: #fff;}
+#loginpage article form>ul>.sel{border:  #186aa3 solid thin;}
+#loginpage article form>ul>li>img{width: .44rem;height: .44rem;margin-left: .3rem;margin-top: .15rem;}
+#loginpage article form>ul>li>input{height:.72rem;line-height: .72rem;padding: 0 .3rem;vertical-align: top;width: 70%;}
+#loginpage article form button{width: 6.9rem;margin: 0 auto;background:#186aa3;color: #fff;height: .76rem;display: block;margin-top: 1rem; }
+#loginpage article form>p{margin-top: .2rem;text-align: right;color:#186aa3;width: 6.9rem;margin: 0 auto; position: relative;}
+#loginpage article form>p>label{position: absolute;left: 0;}
+#loginpage article form>p>label>input{margin:0 .1rem;}
+#loginpage article{background: url(../img/limg/loginbg.png) no-repeat;background-size:100%  }
+#loginpage article div>img{margin: 1rem auto .27rem;display: block;width: 2rem;}
+/*#loginpage article>p{text-align: center;height: .28rem;font-size: .28rem;color: #186aa3;margin-bottom:1.2rem;}*/
+#loginpage article form div>ul{width: 6.9rem;margin: 0 auto;}
+#loginpage article form div>ul>li{border: #e2e2e2 solid thin;border-radius: .15rem;height: .76rem;margin-bottom: .2rem;background: #fff;}
+#loginpage article form div>ul>.sel{border:  #186aa3 solid thin;}
+#loginpage article form div>ul>li>img{width: .44rem;height: .44rem;margin-left: .3rem;margin-top: .15rem;}
+#loginpage article form div>ul>li>input{height:.72rem;line-height: .72rem;padding: 0 .3rem;vertical-align: top;width: 70%;}
+.cfpwd{background-color:silver;padding:.4rem;display:block;position: absolute;top: 4.2rem;display: none;}
+
+#loginpage textarea{font-size:.2rem;display:block;width:100%;height:100%;margin:auto;line-height:.4rem;text-align:center;background-color:silver;color: brown;}

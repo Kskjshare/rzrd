@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="main" style="width:800px;height:800px;">hello</div>
+        <script src="./js/echarts.min.js"></script>
+        <script src="./js/jquery.js"></script>
+        <script src="https://www.makeapie.com/dep/echarts/latest/extension/bmap.min.js"></script>
+
+        <script src="https://www.makeapie.com/dep/echarts/map/js/china.js"></script>
+        <script>
+            var hzmap = "./json/平顶山市.json";
+
+            var xsmap = "./json/湛河区.json";
+
+            var xhmap = "./json/叶县.json";
+
+            var xcmap = "./json/舞钢市.json";
+
+            var tlmap = "./json/郏县.json";
+
+            var scmap = "./json/鲁山县.json";
+
+            var jgmap = "./json/汝州市.json";
+
+            var gsmap = "./json/石龙区.json";
+
+            var fymap = "./json/宝丰县.json";
+
+            var camap = "./json/新华区.json";
+
+            var bjmap = "./json/卫东区.json";
+
+
+            var mapname = hzmap
+            var mapJson = [
+                {
+                    name: "卫东区",
+                    json: bjmap
+                },
+                {
+                    name: "新华区",
+                    json: camap
+                },
+                {
+                    name: "宝丰县",
+                    json: fymap
+                },
+                {
+                    name: "石龙区",
+                    json: gsmap
+                }, {
+                    name: "汝州市",
+                    json: jgmap
+                }, {
+                    name: "鲁山县",
+                    json: scmap
+                }, {
+                    name: "郏县",
+                    json: tlmap
+                }, {
+                    name: "舞钢市",
+                    json: xcmap
+                }, {
+                    name: "叶县",
+                    json: xhmap
+                }, {
+                    name: "湛河区",
+                    json: xsmap
+                }
+            ]
+
+            var mapDate = [
+                {
+                    name: '汝州市',
+                    value: [120.185, 30.274, 29999]
+                },
+                {
+                    name: '湛河区',
+                    value: [120.182, 30.351, 29999]
+                },
+                {
+                    name: '叶县',
+                    value: [120.091, 30.27, 29999]
+                },
+                {
+                    name: '舞钢市',
+                    value: [120.21, 30.209, 29999]
+                }, {
+                    name: '郏县',
+                    value: [120.254, 30.159, 29999]
+                }, {
+                    name: '鲁山县',
+                    value: [120.295, 30.427, 29999]
+                }, {
+                    name: '石龙区',
+                    value: [119.956, 30.05, 29999]
+                }, {
+                    name: '宝丰县',
+                    value: [119.675, 29.784, 29999]
+                }, {
+                    name: '新华区',
+                    value: [119.058, 29.613, 29999]
+                }, {
+                    name: '卫东区',
+                    value: [119.28, 29.464, 29999]
+                },
+            ];
+
+            var myChart = echarts.init(document.getElementById('main'));
+            myChart.showLoading();
+            let index = -1;
+            var timer = setInterval(function () {
+                // 隐藏提示框
+                myChart.dispatchAction({
+                    type: 'hideTip',
+                    seriesIndex: 0,
+                    dataIndex: index
+                });
+                // 显示提示框
+                myChart.dispatchAction({
+                    type: 'showTip',
+                    seriesIndex: 0,
+                    dataIndex: index + 1
+                });
+                // 取消高亮指定的数据图形
+                myChart.dispatchAction({
+                    type: 'downplay',
+                    seriesIndex: 0,
+                    dataIndex: index
+                });
+                // 高亮指定的数据图形
+                myChart.dispatchAction({
+                    type: 'highlight',
+                    seriesIndex: 0,
+                    dataIndex: index + 1
+                });
+                index++;
+                if (index > 13) {
+                    index = -1;
+                }
+            }, 2000);
+
+
+            myChart.on('mousemove', function (e) {
+                clearInterval(timer);
+                myChart.dispatchAction({
+                    type: 'downplay',
+                    seriesIndex: 0
+                });
+                myChart.dispatchAction({
+                    type: 'highlight',
+                    seriesIndex: 0,
+                    dataIndex: e.dataIndex
+                });
+                myChart.dispatchAction({
+                    type: 'showTip',
+                    seriesIndex: 0,
+                    dataIndex: e.dataIndex
+                });
+            }); //---------------------------------------------鼠标移入静止播放
+            myChart.on('mouseout', function (e) {
+                clearInterval(timer);
+                myChart.dispatchAction({
+                    type: 'downplay',
+                    seriesIndex: 0,
+                    dataIndex: e.dataIndex
+                }); //鼠标移出后先把上次的高亮取消
+                timer = setInterval(function () {
+                    // 隐藏提示框
+                    myChart.dispatchAction({
+                        type: 'hideTip',
+                        seriesIndex: 0,
+                        dataIndex: index
+                    });
+                    // 显示提示框
+                    myChart.dispatchAction({
+                        type: 'showTip',
+                        seriesIndex: 0,
+                        dataIndex: index + 1
+                    });
+                    // 取消高亮指定的数据图形
+                    myChart.dispatchAction({
+                        type: 'downplay',
+                        seriesIndex: 0,
+                        dataIndex: index
+                    });
+                    // 高亮指定的数据图形
+                    myChart.dispatchAction({
+                        type: 'highlight',
+                        seriesIndex: 0,
+                        dataIndex: index + 1
+                    });
+                    index++;
+                    if (index > 13) {
+                        index = -1;
+                    }
+                }, 2000);
+            });
+            myChart.on('click', function (e) {
+                console.log(e)
+                var chooseName = mapJson.filter(item => {
+                    return item.name == e.name
+                })
+                console.log(chooseName)
+                mapname = chooseName[0].json
+
+                console.log(mapname, '选择地图')
+
+                mapDate = []
+                $('<div class="back">返回杭州市</div>').appendTo(
+                        $('#chart-panel')
+                        );
+
+                $('.back').css({
+                    'position': 'absolute',
+                    'left': '17px',
+                    'top': '25px',
+                    'color': 'rgb(222,222,222)',
+                    'font-size': '15px',
+                    cursor: 'pointer',
+                    'z-index': '100'
+                })
+                $('.back').click(function () {
+                    mapname = hzmap
+                    mapDate = [
+                    {
+                    name: '汝州市',
+                    value: [120.185, 30.274]
+                },
+                {
+                    name: '湛河区',
+                    value: [120.182, 30.351]
+                },
+                {
+                    name: '叶县',
+                    value: [120.091, 30.27]
+                },
+                {
+                    name: '舞钢市',
+                    value: [120.21, 30.209]
+                }, {
+                    name: '郏县',
+                    value: [120.254, 30.159]
+                }, {
+                    name: '鲁山县',
+                    value: [120.295, 30.427]
+                }, {
+                    name: '石龙区',
+                    value: [119.956, 30.05]
+                }, {
+                    name: '宝丰县',
+                    value: [119.675, 29.784]
+                }, {
+                    name: '新华区',
+                    value: [119.058, 29.613]
+                }, {
+                    name: '卫东区',
+                    value: [119.28, 29.464]
+                },
+                    ];
+                    $('.back').css({
+                        'position': 'absolute',
+                        'left': '17px',
+                        'top': '-25px',
+                        'color': 'rgb(222,222,222)',
+                        'font-size': '15px',
+                        cursor: 'pointer',
+                        'z-index': '100'
+                    })
+
+                    mapInit()
+                })
+                mapInit()
+            })
+            setTimeout(function () {
+                mapInit()
+            }, 1000);
+            var mapInit = () => {
+                console.log('我来了', mapname)
+                $.getJSON(mapname, function (geoJson) {
+                    echarts.registerMap('hanzhou', geoJson);
+                    myChart.hideLoading();
+                    option = {
+                        backgroundColor: '#020933',
+                        title: {
+                            top: 20,
+                            text: '市',
+                            subtext: '',
+                            x: 'center',
+                            textStyle: {
+                                color: '#ccc'
+                            }
+                        },
+
+                        // tooltip: {
+                        //     trigger: 'item',
+                        //     formatter: function(params) {
+                        //         console.log(params)
+                        //             return params.name + ' : ' + params.value[2];
+                        //     }
+                        // },
+                        // visualMap: {
+                        //     min: 0,
+                        //     max: 1000000,
+                        //     right: 100,
+                        //     seriesIndex: 1,
+                        //     type: 'piecewise',
+                        //     bottom: 100,
+                        //     textStyle: {
+                        //         color: '#FFFF'
+                        //     },
+                        //     splitList: [{
+                        //             gt: 50000,
+                        //             color: '#F5222D',
+                        //             label: '困难人数大于5万人'
+                        //         }, //大于5万人
+                        //         {
+                        //             gte: 30000,
+                        //             lte: 50000,
+                        //             color: '#FA541C ',
+                        //             label: '困难人数3-5万人'
+                        //         }, //3-5万人
+                        //         {
+                        //             gte: 10000,
+                        //             lte: 30000,
+                        //             color: '#FA8C16',
+                        //             label: '困难人数1-3万人'
+                        //         }, //1-3万人
+                        //         {
+                        //             lte: 10000,
+                        //             color: '#fbe1d6',
+                        //             label: '困难人数小于1万人'
+                        //         }
+                        //     ]
+                        // },
+                        geo: {
+                            map: 'hanzhou',
+                            aspectScale: 0.75, //长宽比
+                            zoom: 1.1,
+                            roam: false,
+                            itemStyle: {
+                                normal: {
+                                    areaColor: '#013C62',
+                                    shadowColor: '#182f68',
+                                    shadowOffsetX: 0,
+                                    shadowOffsetY: 25
+                                },
+                                emphasis: {
+                                    areaColor: '#2AB8FF',
+                                    borderWidth: 0,
+                                    color: 'green',
+                                    label: {
+                                        show: false
+                                    }
+                                }
+                            }
+                        },
+                        series: [{
+                                type: 'map',
+                                roam: true,
+                                label: {
+                                    normal: {
+                                        show: true,
+                                        textStyle: {
+                                            color: '#fff'
+                                        }
+                                    },
+                                    emphasis: {
+                                        textStyle: {
+                                            color: '#fff'
+                                        }
+                                    }
+                                },
+
+                                itemStyle: {
+                                    normal: {
+                                        borderColor: '#2ab8ff',
+                                        borderWidth: 1.5,
+                                        areaColor: '#12235c'
+                                    },
+                                    emphasis: {
+                                        areaColor: '#2AB8FF',
+                                        borderWidth: 0,
+                                        color: 'green'
+                                    }
+                                },
+                                zoom: 1.1,
+                                roam: false,
+                                map: 'hanzhou' //使用
+                                        // data: this.difficultData //热力图数据   不同区域 不同的底色
+                            },
+                            {
+                                type: 'effectScatter',
+                                coordinateSystem: 'geo',
+                                showEffectOn: 'render',
+                                rippleEffect: {
+                                    period: 15,
+                                    scale: 4,
+                                    brushType: 'fill'
+                                },
+                                hoverAnimation: true,
+                                itemStyle: {
+                                    normal: {
+                                        color: '#ffff',
+                                        shadowBlur: 10,
+                                        shadowColor: '#333'
+                                    }
+                                },
+                                data: mapDate
+                            }
+
+                        ]
+                    };
+                    myChart.setOption(option);
+                });
+            }
+        </script>
+    </body>
+</html>

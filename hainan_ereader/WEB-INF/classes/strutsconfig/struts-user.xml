@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="user" extends="eread-package" namespace="/">
+		<action name="selectuser" class="UserAction" method="selectUser">
+			<result type="json">
+				<param name="root">codeMap</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+	</package>
+	<package name="methods" namespace="/" extends="struts-default">
+
+		<!-- 对应着MethodAction里面的execute方法 -->
+
+		<action name="list" class="MethodAction">
+
+			<result name="success">/index.jsp</result>
+
+		</action>
+
+		<!-- 对应着MethodAction里面的add方法 -->
+
+		<action name="add" class="MethodAction" method="add">
+
+			<result name="success">/index.jsp</result>
+
+		</action>
+
+		<!-- 对应着MethodAction里面的edit方法 -->
+
+		<action name="edit" class="MethodAction" method="edit">
+
+			<result name="success">/index.jsp</result>
+
+		</action>
+
+		<!-- 对应着MethodAction里面的delete方法 -->
+
+		<action name="delete" class="MethodAction" method="delete">
+			<result name="success">/index.jsp</result>
+		</action>
+
+	</package>
+</struts>

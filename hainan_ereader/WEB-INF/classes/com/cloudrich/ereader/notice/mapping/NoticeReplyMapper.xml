@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloudrich.ereader.notice.dao.NoticeReplyDao" >
+  <resultMap id="BaseResultMap" type="com.cloudrich.ereader.notice.entity.NoticeReplyEntity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="noticeid" property="noticeid" jdbcType="INTEGER" />
+    <result column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="noticereplycode" property="noticereplycode" jdbcType="CHAR" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from er_notice_reply
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cloudrich.ereader.notice.entity.NoticeReplyEntity" >
+    insert into er_notice_reply (id, noticeid, userid, 
+      noticereplycode)
+    values (#{id,jdbcType=INTEGER}, #{noticeid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, 
+      #{noticereplycode,jdbcType=CHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.cloudrich.ereader.notice.entity.NoticeReplyEntity" >
+    update er_notice_reply
+    set noticeid = #{noticeid,jdbcType=INTEGER},
+      userid = #{userid,jdbcType=INTEGER},
+      noticereplycode = #{noticereplycode,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <!-- 选择是否重复 -->
+  <select id="selectNoticeReplyByUseridAndNoticeid" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select id, noticeid, userid, noticereplycode
+    from er_notice_reply
+    where noticeid = #{noticeid,jdbcType=INTEGER}
+     and userid = #{userid,jdbcType=INTEGER}
+  </select>
+  
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, noticeid, userid, noticereplycode
+    from er_notice_reply
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, noticeid, userid, noticereplycode
+    from er_notice_reply
+  </select>
+  <select id="selectByNoticeId" resultMap="BaseResultMap" parameterType="int">
+    select id, noticeid, userid, noticereplycode
+    from er_notice_reply where noticeid = #{noticeId,jdbcType=INTEGER}
+  </select>
+  
+    <select id="selectNoticeByType" resultMap="BaseResultMap" parameterType="java.util.Map">
+    select nr.id, nr.noticeid, nr.userid, nr.noticereplycode,um.truename as username,um.padmobile as tel
+    from er_notice_reply nr right join er_sys_user_main um 
+    on nr.userid=um.id
+    where nr.noticeid = #{noticeId,jdbcType=INTEGER}
+    and nr.noticereplycode=#{noticereplycode,jdbcType=CHAR}
+  </select>
+</mapper>

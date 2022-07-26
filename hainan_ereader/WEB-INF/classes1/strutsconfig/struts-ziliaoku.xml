@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="ziliaoku" extends="eread-package" namespace="/ziliaoku">
+		<action name="selectFirstType" class="ZiliaokuAction" method="selectFirstType">
+			<result >/module/ziliaoku/mindex.jsp</result>
+		</action>
+		<action name="selectSecondType" class="ZiliaokuAction" method="selectSecondType">
+			<result >/module/ziliaoku/second.jsp</result>
+		</action>
+		<action name="select" class="ZiliaokuAction" method="select">
+			<result >/module/ziliaoku/ziliao.jsp</result>
+		</action>
+		<action name="selectType" class="ZiliaokuAction" method="selectType">
+			<result >/module/ziliaoku/fenleiweihu.jsp</result>
+		</action>
+		<action name="upload" class="ZiliaokuAction" method="upload">
+			<result name="success" type="redirectAction">
+				<param name="actionName">select</param>
+			</result>
+		</action>
+		<action name="selectById" class="ZiliaokuAction" method="selectById">
+			<result type="json">
+			    <param name="root">entity</param>
+			</result>
+		</action>
+		<action name="selectTypeById" class="ZiliaokuAction" method="selectTypeById">
+			<result type="json">
+			    <param name="root">typeEntity</param>
+			</result>
+		</action>
+		<action name="update" class="ZiliaokuAction" method="update">
+			<result name="success" type="redirectAction">
+				<param name="actionName">select</param>
+			</result>
+		</action>
+		<action name="updateType" class="ZiliaokuAction" method="updateType">
+			<result name="success" type="redirectAction">
+				<param name="actionName">selectType</param>
+			</result>
+		</action>
+		<action name="delete" class="ZiliaokuAction" method="delete">
+			<result name="success" type="redirectAction">
+				<param name="actionName">select</param>
+			</result>
+		</action>
+		<action name="deleteType" class="ZiliaokuAction" method="deleteType">
+			<result name="success" type="redirectAction">
+				<param name="actionName">selectType</param>
+			</result>
+		</action>
+		<action name="addType" class="ZiliaokuAction" method="addType">
+			<result name="success" type="redirectAction">
+				<param name="actionName">selectType</param>
+			</result>
+		</action>
+		<action name="addSecondType" class="ZiliaokuAction" method="addSecondType">
+			<result name="success" type="redirectAction">
+				<param name="actionName">selectType</param>
+			</result>
+		</action>
+	</package>
+</struts>

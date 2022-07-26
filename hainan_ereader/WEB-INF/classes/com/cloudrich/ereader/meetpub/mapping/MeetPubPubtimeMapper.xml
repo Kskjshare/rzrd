@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloudrich.ereader.meetpub.dao.MeetPubPubtimeDao" >
+  <resultMap id="BaseResultMap" type="com.cloudrich.ereader.meetpub.entity.MeetPubPubtimeEntity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="moduleid" property="moduleid" jdbcType="INTEGER" />
+    <result column="meetid" property="meetid" jdbcType="INTEGER" />
+    <result column="pubtime" property="pubtime" jdbcType="TIMESTAMP" />
+  </resultMap>   
+  
+  <delete id="deleteByModuleidAndMtype" parameterType="java.util.Map" >
+    delete from er_meet_pub_pubtime
+    where moduleid = #{moduleid,jdbcType=INTEGER}
+    and meetid = #{meetid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cloudrich.ereader.meetpub.entity.MeetPubPubtimeEntity" >
+    insert into er_meet_pub_pubtime (id, moduleid, meetid
+      )
+    values (#{id,jdbcType=INTEGER}, #{moduleid,jdbcType=INTEGER}, #{meetid,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByModuleidAndMtype" parameterType="com.cloudrich.ereader.meetpub.entity.MeetPubPubtimeEntity" >
+    update er_meet_pub_pubtime
+    set  pubtime = #{pubtime,jdbcType=TIMESTAMP}
+    where 
+    moduleid = #{moduleid,jdbcType=INTEGER}
+    and meetid = #{meetid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByModuleidAndMtype" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select id, moduleid, meetid, pubtime
+    from er_meet_pub_pubtime
+    where 
+    moduleid = #{moduleid,jdbcType=INTEGER}
+    and meetid = #{meetid,jdbcType=INTEGER}
+  </select>
+</mapper>

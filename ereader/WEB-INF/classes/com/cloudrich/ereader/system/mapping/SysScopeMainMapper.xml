@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloudrich.ereader.system.dao.SysScopeMainDao" >
+  <resultMap id="BaseResultMap" type="com.cloudrich.ereader.system.entity.SysScopeMainEntity" >
+    <id column="scopeid" property="scopeid" jdbcType="INTEGER" />
+    <result column="scopename" property="scopename" jdbcType="VARCHAR" />
+    <result column="des" property="des" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from er_sys_scope_main
+    where scopeid = #{scopeid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cloudrich.ereader.system.entity.SysScopeMainEntity" >
+     <selectKey keyProperty="scopeid"  resultType="java.lang.Integer" order="AFTER">
+      	SELECT LAST_INSERT_ID() AS scopeid
+      </selectKey>
+    insert into er_sys_scope_main (scopeid, scopename, des
+      )
+    values (#{scopeid,jdbcType=INTEGER}, #{scopename,jdbcType=VARCHAR}, #{des,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.cloudrich.ereader.system.entity.SysScopeMainEntity" >
+    update er_sys_scope_main
+    set scopename = #{scopename,jdbcType=VARCHAR},
+      des = #{des,jdbcType=VARCHAR}
+    where scopeid = #{scopeid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select scopeid, scopename, des
+    from er_sys_scope_main
+    where scopeid = #{scopeid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select scopeid, scopename, des
+    from er_sys_scope_main
+    order by scopeid desc
+  </select>
+</mapper>

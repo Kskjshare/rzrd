@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloudrich.ereader.meetpub.dao.MeetPubFileScopeDao" >
+  <resultMap id="BaseResultMap" type="com.cloudrich.ereader.meetpub.entity.MeetPubFileScopeEntity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="fileid" property="fileid" jdbcType="INTEGER" />
+    <result column="scopeid" property="scopeid" jdbcType="INTEGER" />
+    <result column="isdel" property="isdel" jdbcType="INTEGER" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+  </resultMap>
+  
+  
+    
+  <resultMap id="UserResultMap" type="com.cloudrich.ereader.system.entity.SysUserMainEnity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="passwd" property="passwd" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="truename" property="truename" jdbcType="VARCHAR" />
+    <result column="isdel" property="isdel" jdbcType="INTEGER" />
+    <result column="lastlogin" property="lastlogin" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="deptid" property="deptid" jdbcType="INTEGER" />
+    <result column="usertype" property="usertype" jdbcType="CHAR" />
+    <result column="padmobile" property="padmobile" jdbcType="VARCHAR" />
+    <result column="phone2" property="phone2" jdbcType="VARCHAR" />
+    <result column="officetel" property="officetel" jdbcType="VARCHAR" />
+    <result column="phone3" property="phone3" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="zhiwu" property="zhiwu" jdbcType="VARCHAR" />
+    <result column="danwei" property="danwei" jdbcType="VARCHAR" />
+    <result column="isdestroy" property="isdestroy" jdbcType="INTEGER" />
+  </resultMap>
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from er_meet_pub_file_scope
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cloudrich.ereader.meetpub.entity.MeetPubFileScopeEntity" >
+    insert into er_meet_pub_file_scope (fileid, scopeid,isdel)
+    values (#{fileid,jdbcType=INTEGER}, #{scopeid,jdbcType=INTEGER},
+     #{isdel,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.cloudrich.ereader.meetpub.entity.MeetPubFileScopeEntity" >
+    update er_meet_pub_file_scope
+    set fileid = #{fileid,jdbcType=INTEGER},
+      scopeid = #{scopeid,jdbcType=INTEGER},
+       isdel = #{isdel,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, fileid, scopeid,isdel,version
+    from er_meet_pub_file_scope
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, fileid, scopeid,isdel,version
+    from er_meet_pub_file_scope
+  </select>
+  
+  <!-- <select id="selectFileSendScopeUser" resultMap="UserResultMap" parameterType="java.util.Map">
+  select * from er_sys_user_main  
+    where id in
+       (select userid  as id from er_sys_scope_user
+          where scopeid in 
+         (select scopeid from er_meet_pub_file_scope where fileid in 
+			 (select fileid from er_meet_pub_file where 
+			 meetid=#{meetid,jdbcType=INTEGER}
+			 )  
+       )
+      )
+   </select> -->
+  <select id="selectFileSendScopeUser" resultMap="UserResultMap" parameterType="java.util.Map">
+  select * from er_sys_user_main  
+    where id in
+       (select userid  as id from er_meet_file_user
+          where fileid in 
+			 (select fileid from er_meet_pub_file where 
+			 meetid=#{meetid,jdbcType=INTEGER}
+			 )  
+       )
+      
+   </select>
+ 
+ <!--删除文件范围  -->
+ <delete id="deletePubFileScopeByMeetid" parameterType="java.util.Map" >
+    delete from er_meet_pub_file_scope
+    where fileid in (select fileid from er_meet_pub_file 
+    where meetid = #{meetid,jdbcType=INTEGER}
+    and fileown=#{fileown,jdbcType=CHAR} )
+  </delete>
+  
+</mapper>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="tongxunlun" extends="eread-package" namespace="/tongxunlun">
+	
+		<action name="select" class="TongxunlunAction" method="select">
+			<result name="success">/module/tongxunlu/contactsmaintain.jsp</result>
+		</action>
+		<action name="selectComp" class="TongxunlunAction" method="selectComp" >
+			<result name="success">/module/tongxunlu/contactsmaintain.jsp</result>
+		</action>
+		<action name="deleteById" class="TongxunlunAction" method="deleteById">
+			<result name="success" type="redirectAction">
+				<param name="actionName">select</param>
+			</result> 
+		</action>
+		<action name="deleteAll" class="TongxunlunAction" method="deleteAll">
+			<result name="success" type="redirectAction">
+				<param name="actionName">select</param>
+			</result> 
+		</action>
+		<action name="update" class="TongxunlunAction" method="update">
+			<result name="success" type="redirectAction">
+				<param name="actionName">select</param>
+			</result>
+		</action>
+		<action name="selectById" class="TongxunlunAction" method="selectById">
+			<result type="json">
+			    <param name="root">entity</param>
+			</result>
+		</action>
+		<action name="add" class="TongxunlunAction" method="add">
+			<result name="success" type="redirectAction">
+				<param name="actionName">select</param>
+			</result>
+		</action>
+		<action name="autoImportUser" class="TongxunlunAction" method="autoImportUser">
+			<result type="json">
+				<param name="root">codeMap</param>
+				<param name="ignoreHierarchy">false</param>
+			</result> 
+		</action>
+		<action name="addPush" class="TongxunlunAction" method="addPush">
+			<result type="json">
+				<param name="root">codeMap</param>
+				<param name="ignoreHierarchy">false</param>
+			</result> 
+		</action>						
+		<action name="selectTxlPermission" class="TongxunlunAction" method="selectTxlPermission"></action>	
+		<action name="savePermission" class="TongxunlunAction" method="savePermission"></action>							
+	</package>
+</struts>

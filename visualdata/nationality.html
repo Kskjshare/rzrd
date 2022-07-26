@@ -1,0 +1,413 @@
+﻿<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>index</title>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <link rel="stylesheet" href="css/comon.css">
+        <style>
+          .mainbox>ul>li:first-child>.bellone{
+              width: 55%;
+          }
+          .mainbox>ul>li{
+            margin-top: -37px;
+            /* color: transparent; */
+          }
+          .footerBox{
+            position: absolute;
+            left: 0%;
+            /* border: 1px solid; */
+            width: 100%;
+            padding: .1rem .18rem;
+            margin-top: -10px;
+            display: flex;
+            justify-content: space-between;
+          }
+          .bellone{
+            width: 24%;
+            height: 0;
+          }
+        .boxall{
+          color: white;
+          padding: .1rem ;
+        }
+        #map_1{
+          transform: translateY(-80px);
+        }
+        #main>div:first-child,#main2>div:first-child,#main3>div:first-child,#main4>div:first-child{
+          width: 100%!important;
+        }
+        </style>
+    </head>
+    <script>
+        $(window).load(function () {
+            $(".loading").fadeOut()
+        })
+
+        /****/
+        $(document).ready(function () {
+            var whei = $(window).width()
+            $("html").css({
+                fontSize: whei / 20
+            })
+            $(window).resize(function () {
+                var whei = $(window).width()
+                $("html").css({
+                    fontSize: whei / 20
+                })
+            });
+        });
+    </script>
+    <script type="text/javascript" src="js/echarts.min.js"></script>
+    <!-- <script language="JavaScript" src="js/js.js"></script> -->
+    <body style="height:100vh;background-position: 0% 100%;">
+        <div class="canvas" style="opacity: .04">
+            <iframe frameborder="0" src="js/index.html" style="width: 100%; height: 180%"></iframe>
+        </div>
+        <div class="loading">
+            <div class="loadbox">
+                <img src="picture/loading.gif">
+                页面加载中...
+            </div>
+        </div>
+        <div class="head">
+          
+        </div>
+        <div class="mainbox_mission">
+            <ul class="clearfix">
+                <li>
+                    <div class="boxall">
+                        <div class="allnav" id="nationality" style="height:1124px;"></div>
+                        <div class="boxfoot"></div>
+                    </div>
+
+            
+                </li>
+               
+               <li>
+                    <div class="boxall">
+                        <div class="allnav" id="nationality_bar" style="height:512px;"></div>
+                        <div class="boxfoot"></div>
+                    </div>
+
+            
+                </li>
+
+            </ul>
+        <div class="back"></div>
+        <!--<script type="text/javascript" src="js/china.js"></script>-->
+        <script type="text/javascript" src="/js/rsseasy.min.js"></script>
+        <script src="/js/rssapi.min.js" type="text/javascript"></script>
+        <script src="/js/md5.min.js" type="text/javascript"></script>
+        <script src="./js/echart_nationality.js"></script>
+
+        <script>
+
+        var ddtArr=[]; 
+        
+        //var globalCan = ["中国共产党", "民主党", "无党派", "共青团", "群众"];
+
+        var nationality0 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+         var nationality1 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+        var nationality2 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality3 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality4 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality5 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality6 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality7 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality8 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality9 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality10 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality11 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality12 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality13 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality14 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality15 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality16 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality17 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality18 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality19 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality20 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality21 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality222 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality23 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality24 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality25 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality26 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality27 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality28 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality29 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality30 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality31 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality32 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality33 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality34 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality35 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality36 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality37 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality38 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality39 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality40 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality41 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality42 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality43 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality44 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality45 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality46 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality47 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality48 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality49 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality50 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality51 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality52 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality53 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality54 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality55 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality56 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      var nationality57 =[ {name:"1027",value:0} , {name:"1028",value:0}   , {name:"1029",value:0} , {name:"1030",value:0}  , {name:"1031",value:0}  , {name:"1032",value:0}  , {name:"1033",value:0}  ,
+            {name:"1034",value:0}  , {name:"1035",value:0}  , {name:"1036",value:0}  , {name:"1037",value:0}  ,{name:"1038",value:0} ,{name:"1039",value:0}  , {name:"1040",value:0} , {name:"1041",value:0}  , 
+            {name:"1042",value:0}, {name:"1043",value:0}, {name:"1043",value:0} , {name:"1044",value:0}, {name:"1046",value:0}, {name:"1047",value:0}];
+      
+
+     
+        var missioncode =[ "1027" , "1028"   , "1029" , "1030" , "1031" , "1032" , "1033" , "1034" , "1035" , "1036" , 
+            "1037" , "1038"  , "1039"  , "1040", "1041", "1042" , "1043", "1044", "1045", "1046", "1047"];
+         
+
+        var nationalityList=[  
+            {name:"未知",value:0},
+            {name:"汉族",value:0},
+            {name:"壮族",value:0},
+            {name:"满族",value:0},
+            {name:"回族",value:0},
+            {name:"苗族",value:0},
+            {name:"藏族",value:0},
+            {name:"维吾尔族",value:0},
+            {name:"土家族",value:0},
+            {name:"彝族",value:0}, 
+            {name:"蒙古族",value:0}, 
+            {name:"布依族",value:0},
+            {name:"侗族",value:0},              
+            {name:"瑶族",value:0},
+            {name:"朝鲜族",value:0},
+            {name:"哈尼族",value:0}, 
+            {name:"哈萨克族",value:0},
+            {name:"黎族",value:0},
+            {name:"傣族",value:0},
+            {name:"畲族",value:0},
+            {name:"傈僳族",value:0},
+            {name:"仡佬族",value:0},
+            {name:"东乡族",value:0},
+            {name:"高山族",value:0},
+            {name:"拉祜族",value:0},
+            {name:"水族",value:0},
+            {name:"佤族",value:0},
+            {name:"纳西族",value:0},
+            {name:"羌族",value:0}, 
+            {name:"土族",value:0}, 
+            {name:"仫佬族",value:0},
+            {name:"锡伯族",value:0},
+            {name:"柯尔克孜族",value:0},
+            {name:"达斡尔族",value:0},
+            {name:"景颇族",value:0},
+            {name:"瑶族",value:0},
+            {name:"撒拉族",value:0},
+            {name:"布朗族",value:0},
+            {name:"塔吉克族",value:0},
+            {name:"阿昌族",value:0},
+            {name:"普米族",value:0},
+            {name:"鄂温克族",value:0},
+            {name:"怒族",value:0},
+            {name:"京族",value:0},
+            {name:"基诺族",value:0},
+            {name:"德昂族",value:0},
+            {name:"保安族",value:0}, 
+            {name:"俄罗斯族",value:0},
+            {name:"乌孜别克族",value:0},
+            {name:"门巴族",value:0}, 
+            {name:"鄂伦春族",value:0}, 
+            {name:"独龙族",value:0}, 
+            {name:"塔塔尔族",value:0}, 
+            {name:"赫哲族",value:0}, 
+            {name:"珞巴族",value:0}, 
+            {name:"毛南族",value:0}
+
+             ];        
+
+		
+            
+        RssApi.Table.List("user").keyvalue({ "pagesize": 100000}).condition({}).getJson(function (json) {
+              json.forEach(item => {     
+                 nationalityList[ item.nationid ].value ++ ;
+               
+                for ( var i= 0 ;i < 56 ; i ++ ) {
+                   if ( item.mission == missioncode[i] ) {
+                        if ( item.nationid == "0"){
+                          nationality0[ i ].value ++;
+                        }
+//                        else if ( item.nationid == "1"){
+//                          nationality1[ i ].value ++;
+//                        }
+                        else if ( item.nationid == "2"){
+                          nationality2[ i ].value ++;
+                        }
+                        else if ( item.nationid == "3"){
+                          nationality3[ i ].value ++;
+                        }
+                        else if ( item.nationid == "4"){
+                          nationality4[ i ].value ++;
+                        }
+                        else if ( item.nationid == "5"){
+                          nationality5[ i ].value ++;
+                        }else if ( item.nationid == "6"){
+                          nationality6[ i ].value ++;
+                        }else if ( item.nationid == "7"){
+                          nationality7[ i ].value ++;
+                        }else if ( item.nationid == "8"){
+                          nationality8[ i ].value ++;
+                        }else if ( item.nationid == "9"){
+                          nationality9[ i ].value ++;
+                        }else if ( item.nationid == "10"){
+                          nationality10[ i ].value ++;
+                        }else if ( item.nationid == "11"){
+                          nationality11[ i ].value ++;
+                        }else if ( item.nationid == "12"){
+                          nationality12[ i ].value ++;
+                        }else if ( item.nationid == "13"){
+                          nationality13[ i ].value ++;
+                        }else if ( item.nationid == "14"){
+                          nationality14[ i ].value ++;
+                        }else if ( item.nationid == "15"){
+                          nationality15[ i ].value ++;
+                        }else if ( item.nationid == "16"){
+                          nationality16[ i ].value ++;
+                        }
+
+                        break;
+                    }
+                }
+
+            });
+            shownationChart( nationalityList )
+            shownationbarChart( nationality0 , nationality1 ,nationality2 ,nationality3 ,nationality4 )
+
+          });
+              
+    
+       </script>
+    </body>
+</html>

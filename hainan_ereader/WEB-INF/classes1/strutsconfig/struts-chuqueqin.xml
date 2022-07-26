@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="absence" extends="eread-package" namespace="/absence">
+		<action name="selectList" class="AbsenceAction" method="selectList">
+			<result >/module/chuqueqin/mindex.jsp</result>
+		</action>
+		<action name="selectSearch" class="AbsenceAction" method="selectSearch">
+			<result >/module/chuqueqin/absencemaintain.jsp</result>
+		</action>
+		<action name="selectBM" class="AbsenceAction" method="selectBM">
+			<result >/module/chuqueqin/selectBM.jsp</result>
+		</action>
+		<action name="saveAbsence" class="AbsenceAction" method="saveAbsence">
+			<result type="json">
+				<param name="root">codeMap</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+		<action name="update" class="AbsenceAction" method="updateAbsence">
+			<result type="json">
+				<param name="root">codeMap</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action> 
+		<action name="selectById" class="AbsenceAction" method="selectById">
+		    <result type="json">
+		    <param name="root">entity</param>
+		    </result>
+		</action>
+		<action name="delete" class="AbsenceAction" method="delete">
+			<result type="json">
+				<param name="root">codeMap</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+		<action name="pushAbsence" class="AbsenceAction" method="pushAbsence"></action>	
+		<action name="selectPubtimeAbsence" class="AbsenceAction" method="selectPubtimeAbsence">
+			<result type="json">
+				<param name="root">codeMap</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>			
+	</package>
+</struts>

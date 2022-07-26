@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloudrich.ereader.dict.dao.DictProcessDefDao" >
+  <resultMap id="BaseResultMap" type="com.cloudrich.ereader.dict.entity.DictProcessDefEntity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="proccode" property="proccode" jdbcType="VARCHAR" />
+    <result column="curstate" property="curstate" jdbcType="CHAR" />
+    <result column="action" property="action" jdbcType="CHAR" />
+    <result column="nextstate" property="nextstate" jdbcType="CHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from er_dict_process_def
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cloudrich.ereader.dict.entity.DictProcessDefEntity" >
+    insert into er_dict_process_def (id, proccode, curstate, 
+      action, nextstate, description
+      )
+    values (#{id,jdbcType=INTEGER}, #{proccode,jdbcType=VARCHAR}, #{curstate,jdbcType=CHAR}, 
+      #{action,jdbcType=CHAR}, #{nextstate,jdbcType=CHAR}, #{description,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.cloudrich.ereader.dict.entity.DictProcessDefEntity" >
+    update er_dict_process_def
+    set proccode = #{proccode,jdbcType=VARCHAR},
+      curstate = #{curstate,jdbcType=CHAR},
+      action = #{action,jdbcType=CHAR},
+      nextstate = #{nextstate,jdbcType=CHAR},
+      description = #{description,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, proccode, curstate, action, nextstate, description
+    from er_dict_process_def
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, proccode, curstate, action, nextstate, description
+    from er_dict_process_def
+  </select>
+  
+  <!-- 获取当前子流程定义 -->
+  <select id="selectCurProcessDef" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select id, proccode, curstate, action, nextstate, description
+    from er_dict_process_def
+    where proccode=#{proccode,jdbcType=VARCHAR}
+    and curstate=#{curstate,jdbcType=VARCHAR}
+  </select>
+  
+  <!-- 获取流程的下一个状态 -->
+  <select id="selectNextProcessState" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select id, proccode, curstate, action, nextstate, description
+    from er_dict_process_def
+    where proccode=#{proccode,jdbcType=VARCHAR}
+    and curstate=#{curstate,jdbcType=CHAR}
+    and action=#{action,jdbcType=CHAR}
+  </select>
+</mapper>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloudrich.ereader.smsmanager.dao.SmsdefineLogDetailDao" >
+  <resultMap id="BaseResultMap" type="com.cloudrich.ereader.smsmanager.entity.SmsdefineLogDetailEntity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="logid" property="logid" jdbcType="INTEGER" />
+    <result column="tongxluserid" property="tongxluserid" jdbcType="INTEGER" />
+    <result column="phonenum" property="phonenum" jdbcType="VARCHAR" />
+    <result column="sendtime" property="sendtime" jdbcType="TIMESTAMP" />
+    <result column="issucess" property="issucess" jdbcType="CHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from er_smsdefine_log_detail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <!-- <insert id="insert" parameterType="com.cloudrich.ereader.smsmanager.entity.SmsdefineLogDetailEntity" >
+    insert into er_smsdefine_log_detail (id, logid, tongxluserid, 
+      phonenum, sendtime,issucess)
+    values (#{id,jdbcType=INTEGER}, #{logid,jdbcType=INTEGER}, #{tongxluserid,jdbcType=INTEGER}, 
+      #{phonenum,jdbcType=VARCHAR}, now(),#{issucess,jdbcType=CHAR})
+  </insert> -->
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.cloudrich.ereader.smsmanager.entity.SmsdefineLogDetailEntity" >
+    insert into er_smsdefine_log_detail (id, logid, tongxluserid, 
+      phonenum, sendtime,issucess)
+    values (#{id,jdbcType=INTEGER}, #{logid,jdbcType=INTEGER}, #{tongxluserid,jdbcType=INTEGER}, 
+      #{phonenum,jdbcType=VARCHAR}, now(),#{issucess,jdbcType=CHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.cloudrich.ereader.smsmanager.entity.SmsdefineLogDetailEntity" >
+    update er_smsdefine_log_detail
+    set logid = #{logid,jdbcType=INTEGER},
+      tongxluserid = #{tongxluserid,jdbcType=INTEGER},
+      phonenum = #{phonenum,jdbcType=VARCHAR},
+      sendtime = #{sendtime,jdbcType=TIMESTAMP}，
+      issucess = #{issucess,jdbcType=CHAR},
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, logid, tongxluserid, phonenum, sendtime, issucess
+    from er_smsdefine_log_detail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+   <select id="selectByLogid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, logid, tongxluserid, phonenum, sendtime, issucess
+    from er_smsdefine_log_detail
+    where logid = #{logid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, logid, tongxluserid, phonenum, sendtime, issucess
+    from er_smsdefine_log_detail
+  </select>
+</mapper>

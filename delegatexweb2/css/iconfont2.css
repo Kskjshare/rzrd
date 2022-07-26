@@ -1,0 +1,98 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 2298571 */
+  src: url('iconfont.woff2?t=1620900722988') format('woff2'),
+       url('iconfont.woff?t=1620900722988') format('woff'),
+       url('iconfont.ttf?t=1620900722988') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-gotop:before {
+  content: "\e694";
+}
+
+.icon-home2:before {
+  content: "\e696";
+}
+
+.icon-loop:before {
+  content: "\e69c";
+}
+
+.icon-order:before {
+  content: "\e63a";
+}
+
+.icon-location:before {
+  content: "\e613";
+}
+
+.icon-arrow-up:before {
+  content: "\e61e";
+}
+
+.icon-arrow-left:before {
+  content: "\e61f";
+}
+
+.icon-arrow-right:before {
+  content: "\e620";
+}
+
+.icon-arrow-down:before {
+  content: "\e621";
+}
+
+.icon-search:before {
+  content: "\e612";
+}
+
+.icon-pen:before {
+  content: "\e611";
+}
+
+.icon-news:before {
+  content: "\e60f";
+}
+
+.icon-home:before {
+  content: "\e606";
+}
+
+.icon-computer:before {
+  content: "\e607";
+}
+
+.icon-checked:before {
+  content: "\e608";
+}
+
+.icon-books:before {
+  content: "\e609";
+}
+
+.icon-menus-more:before {
+  content: "\e60b";
+}
+
+.icon-orgs:before {
+  content: "\e60c";
+}
+
+.icon-notice:before {
+  content: "\e60d";
+}
+
+.icon-law:before {
+  content: "\e60e";
+}
+
+.icon-vote:before {
+  content: "\e610";
+}

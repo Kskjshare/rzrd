@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="sysrole" extends="eread-package" namespace="/sysrole">
+		<action name="selectList" class="SysRoleAction" method="selectList">
+			<result >/module/system/role.jsp</result>
+		</action>
+		<action name="selectUserList" class="SysRoleAction" method="selectUserList">
+		<result type="json">
+				<param name="root">pageUser</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+		<action name="saveRole" class="SysRoleAction" method="saveRole">
+			<result type="json">
+				<param name="root">codeMap</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+		<action name="updateRoleUser" class="SysRoleAction" method="updateRoleUser">
+			<result type="json">
+				<param name="root">codeMap</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+		<action name="updateRole" class="SysRoleAction" method="updateRole">
+			<result type="json">
+				<param name="root">codeMap</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action> 
+		<action name="selectById" class="SysRoleAction" method="selectById">
+		    <result type="json">
+		    <param name="root">map</param>
+		    </result>
+		</action>
+		<action name="delete" class="SysRoleAction" method="delete">
+			<result type="json">
+				<param name="root">codeMap</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+	</package>
+</struts>

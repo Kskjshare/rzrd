@@ -1,0 +1,207 @@
+﻿<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>index</title>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <link rel="stylesheet" href="css/comon0.css">
+        <style>
+            .mainbox>ul>li:first-child > .bellone {
+                width: 55%;
+            }
+            .mainbox > ul > li {
+                margin-top: -37px;
+                /* color: transparent; */
+            }
+            .footerBox {
+                position: absolute;
+                left: 0;
+                /* border: 1px solid; */
+                width: 100%;
+                padding: 0.1rem 0.18rem;
+                margin-top: -10px;
+                display: flex;
+                justify-content: space-between;
+            }
+            .bellone {
+                width: 24%;
+                height: 0;
+            }
+            .boxall {
+                color: white;
+                padding: 0.1rem;
+            }
+            #map_1 {
+                transform: translateY(-80px);
+            }
+            #main>div:first-child,
+            #main2>div:first-child,
+            #main3>div:first-child,
+            #main4>div:first-child {
+                width: 100% !important;
+            }
+            #top_href {
+                width: 300px;
+                height: 60px;
+                /* border: 1px solid rgb(255, 248, 248); */
+                display: flex;
+                justify-content: space-around;
+                list-style: none;
+                position: fixed;
+                top: 5px;
+                left: 100px;
+                z-index: 99999;
+                /* background-color: rgb(106, 236, 124); */
+            }
+            #top_href > li {
+                line-height: 60px;
+                text-align: center;
+                width: 70px;
+
+            }
+            #top_href > li >a{
+              display: block;
+               width: 100%;
+               height: 100%;
+              /* background-color: red; */
+            }
+            .active {
+                color: red;
+                /* background-color: beige; */
+                z-index: 999999;
+            }
+        </style>
+    </head>
+    <script>
+        $(window).load(function () {
+            $(".loading").fadeOut()
+        })
+
+        /****/
+        $(document).ready(function () {
+            var whei = $(window).width()
+            $("html").css({
+                fontSize: whei / 20
+            })
+            $(window).resize(function () {
+                var whei = $(window).width()
+                $("html").css({
+                    fontSize: whei / 20
+                })
+            });
+        });
+    </script>
+    <script type="text/javascript" src="js/echarts.min.js"></script>
+    <!-- <script language="JavaScript" src="js/js.js"></script> -->
+    <body style="height:100vh;background-position: 0% 100%;">
+        <ul id="top_href">
+            <li index="0" class="active"><a href="./index.html">page2</a></li>
+            <li index="1"><a href="./twopage.html">page2</a></li>
+            <li index="2"><a href="./twopage.html">page2</a></li>
+            <li index="3"><a href="./twopage.html">page2</a></li>
+        </ul>
+        <div class="canvas" style="opacity: .2">
+            <iframe frameborder="0" src="js/index.html" style="width: 100%; height: 100%"></iframe>
+        </div>
+        <div class="loading">
+            <div class="loadbox">
+                <img src="picture/loading.gif">
+                页面加载中...
+            </div>
+        </div>
+        <div class="head">
+            <h1>汝州人大大数据可视化平台</h1>
+            <div class="weather"><!--<img src="picture/weather.png"><span>多云转小雨</span>--><span id="showTime"></span>
+            </div>
+            <script>
+                var t = null;
+                t = setTimeout(time, 1000); // 開始运行
+                function time() {
+                    clearTimeout(t); // 清除定时器
+                    dt = new Date();
+                    var y = dt.getFullYear();
+                    var mt = dt.getMonth() + 1;
+                    var day = dt.getDate();
+                    var h = dt.getHours(); // 获取时
+                    var m = dt.getMinutes(); // 获取分
+                    var s = dt.getSeconds(); // 获取秒
+                    document.getElementById("showTime").innerHTML = y + "年" + mt + "月" + day + "日" + "-" + h + "时" + m + "分" + s + "秒";
+                    t = setTimeout(time, 1000); // 设定定时器，循环运行
+                }
+            </script>
+        </div>
+        <div class="mainbox">
+            <ul class="clearfix">
+                <li>
+                    <div class="boxall">
+                        <div class="allnav" id="main3" style="height: 2.6rem;"></div>
+                        <div class="boxfoot"></div>
+                    </div>
+                    <div
+                        class="boxall">
+                        <!-- <div class="alltitle">模块标题样式</div>
+                                                <div class="allnav" id="echart2" ></div> -->
+                        <div class="allnav" id="main" style="height: 2.6rem;"></div>
+                        <div class="boxfoot"></div>
+                    </div>
+
+                </li>
+                <li>
+                    <div class="map">
+                        <div class="map1"><img src="picture/lbx.png"></div>
+                        <div class="map2"><img src="picture/jt.png"></div>
+                        <!-- <div class="map3"><img src="picture/map.png"></div> -->
+                        <div class="map4" id="map_1"></div>
+                    </div>
+                </li>
+                <li>
+                    <div class="boxall">
+                        <div class="allnav" id="main4" style="height: 2.6rem;"></div>
+                        <div class="boxfoot"></div>
+                    </div>
+                    <div class="boxall">
+                        <div class="allnav" id="main2" style="height: 2.6rem;"></div>
+                        <div class="boxfoot"></div>
+                    </div>
+                </li>
+            </ul>
+            <div class="footerBox">
+                <div class="boxall bellone" style="height: 2.8rem">
+                    <div style="height:100%; width: 100%;" id="footerOne"></div>
+                    <div class="boxfoot"></div>
+                </div>
+                <div class="boxall bellone" style="height:  2.8rem">
+                    <div style="height:100%; width: 100%;" id="footerTwo"></div>
+
+                    <div class="boxfoot"></div>
+                </div>
+                <div class="boxall bellone" style="height: 2.8rem">
+                    <div style="height:100%; width: 100%;" id="footerTree">
+                        <div class="boxfoot"></div>
+                        <!-- <div class="sex_left"><h2>男</h2></div>
+                                                  <div class="sex_right"><h2>女</h2></div> -->
+                    </div>
+                </div>
+                <div class="boxall bellone" style="height: 2.8rem">
+                    <div style="height:100%; width: 100%;" id="footerFlour">
+                        <div class="boxfoot"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="js/china.js"></script>
+        <script type="text/javascript" src="js/area_echarts.js"></script>
+        <script type="text/javascript" src="/js/rsseasy.min.js"></script>
+        <script src="/js/rssapi.min.js" type="text/javascript"></script>
+        <script src="/js/md5.min.js" type="text/javascript"></script>
+        <script src="./js/echart_large.js"></script>
+        <script src="./js/visual.js"></script>
+        <script>
+            $("#top_href li").click(function () {
+                console.log($(this).index);
+                $(this).siblings('li').removeClass('active'); // 删除其他兄弟元素的样式
+                $(this).addClass('active'); // 添加当前元素的样式
+            })
+        </script>
+    </body>
+</html>

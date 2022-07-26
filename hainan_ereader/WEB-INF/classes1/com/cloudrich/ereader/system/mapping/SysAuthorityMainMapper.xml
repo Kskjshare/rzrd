@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloudrich.ereader.system.dao.SysAuthorityMainDao" >
+  <resultMap id="BaseResultMap" type="com.cloudrich.ereader.system.entity.SysAuthorityMainEntity" >
+    <id column="authid" property="authid" jdbcType="INTEGER" />
+    <result column="authname" property="authname" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from er_sys_authority_main
+    where authid = #{authid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cloudrich.ereader.system.entity.SysAuthorityMainEntity" >
+    insert into er_sys_authority_main (authid, authname)
+    values (#{authid,jdbcType=INTEGER}, #{authname,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.cloudrich.ereader.system.entity.SysAuthorityMainEntity" >
+    update er_sys_authority_main
+    set authname = #{authname,jdbcType=VARCHAR}
+    where authid = #{authid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select authid, authname
+    from er_sys_authority_main
+    where authid = #{authid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select authid, authname
+    from er_sys_authority_main
+  </select>
+</mapper>

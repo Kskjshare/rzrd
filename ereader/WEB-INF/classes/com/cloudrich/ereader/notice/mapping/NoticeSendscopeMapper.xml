@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloudrich.ereader.notice.dao.NoticeSendscopeDao" >
+  <resultMap id="BaseResultMap" type="com.cloudrich.ereader.notice.entity.NoticeSendscopeEntity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="noticeid" property="noticeid" jdbcType="INTEGER" />
+    <result column="scopeid" property="scopeid" jdbcType="INTEGER" />
+  </resultMap>
+  
+  
+  <resultMap id="UserResultMap" type="com.cloudrich.ereader.system.entity.SysUserMainEnity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="passwd" property="passwd" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="truename" property="truename" jdbcType="VARCHAR" />
+    <result column="isdel" property="isdel" jdbcType="INTEGER" />
+    <result column="lastlogin" property="lastlogin" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="deptid" property="deptid" jdbcType="INTEGER" />
+    <result column="usertype" property="usertype" jdbcType="CHAR" />
+    <result column="padmobile" property="padmobile" jdbcType="VARCHAR" />
+    <result column="phone2" property="phone2" jdbcType="VARCHAR" />
+    <result column="officetel" property="officetel" jdbcType="VARCHAR" />
+    <result column="phone3" property="phone3" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="zhiwu" property="zhiwu" jdbcType="VARCHAR" />
+    <result column="danwei" property="danwei" jdbcType="VARCHAR" />
+    <result column="isdestroy" property="isdestroy" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from er_notice_sendscope
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByNoticeId" parameterType="java.lang.Integer" >
+    delete from er_notice_sendscope
+    where noticeid = #{noticeid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cloudrich.ereader.notice.entity.NoticeSendscopeEntity" >
+    insert into er_notice_sendscope (id, noticeid, scopeid
+      )
+    values (#{id,jdbcType=INTEGER}, #{noticeid,jdbcType=INTEGER}, #{scopeid,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.cloudrich.ereader.notice.entity.NoticeSendscopeEntity" >
+    update er_notice_sendscope
+    set noticeid = #{noticeid,jdbcType=INTEGER},
+      scopeid = #{scopeid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, noticeid, scopeid
+    from er_notice_sendscope
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, noticeid, scopeid
+    from er_notice_sendscope
+  </select>
+   <select id="selectByNoticeId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select id, noticeid, scopeid
+    from er_notice_sendscope where noticeid = #{noticeid,jdbcType=INTEGER}
+  </select>
+  
+  <!-- 选择推送用户 -->
+  <select id="selectScopeUserByNoticeId" resultMap="UserResultMap" parameterType="java.lang.Integer" >
+    select * from er_sys_user_main  
+    where id in
+       (select userid  as id from er_sys_scope_user
+          where scopeid in 
+         (select scopeid from er_notice_sendscope
+           where noticeid= #{noticeid,jdbcType=INTEGER})
+       )
+  </select>
+  
+  
+</mapper>

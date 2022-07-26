@@ -1,0 +1,60 @@
+﻿html, body { height: 100%; width: 100%; font-size: 12px; overflow: auto; }
+textarea { border: solid 1px gray; }
+.tdtop td { vertical-align: top; }
+
+thead { height: 25px; }
+td input { vertical-align: middle; }
+td input[type=checkbox] { height: 12px; width: 12px; }
+td.tr { font-weight: bold; font-size: 12px; }
+a { color: Blue; }
+table tr.line td, table.line tr td { border-bottom: solid 1px #e1e1e1; }
+
+input { border: solid 1px gray; padding: 2px; }
+input[type=checkbox], input[type=radio] { border-color: transparent; }
+.popupwrap>div:first-child{font-size: 14px}
+.popupwrap div .formor tr:first-child{height: 100%;font-size: 12px}
+.popupwrap div .lanmubankuai{height: 90%;font-size: 12px;}
+#sysheader{margin-left:40px;}
+#sysheader li{display:inline-block;text-align:center;padding:10px 0 ;font-size:16px;width:200px;text-align:center;background:#F8F8F8;}
+#sysheader p{color:#07d;margin-top:10px}
+
+
+#account{height:50px;text-align:center;line-height:80px;font-size:25px;background:#000;color:#fff;height:80px;color:#fff;}
+#account h1{width:1000px;margin:0 auto;text-align:left;}
+#account a{color:#fff;float:right;font-size:16px;}
+.selecttype{line-height:80px;font-size:20px;text-align:center;font-weight:900;margin-top:50px;}
+#accounttype{text-align:center;margin-top:30px;}
+#accounttype li{display:inline-block;width:220px;height:300px;text-align: center;font-size:25px;color:#fff;margin:0 50px;cursor: pointer;border:1px solid #ccc;border-radius:7px;position:relative;}
+#accounttype li:nth-child(odd){background:url("/img/img1.jpg") no-repeat;background-size:220px 200px;}
+#accounttype li:nth-child(even){background:url("/img/img2.jpg") no-repeat;background-size:220px 200px;}
+#accounttype li span{margin-top:25px;display:block;}
+#accounttype li em{font-size:16px;position:absolute;top:70px;left:50%;margin-left:-110px;display:block;width:200px;padding:0 10px;}
+#accounttype li button{width:100px;height:30px;border:1px solid #0033ff;color:#0033ff;margin-top:170px;display:inline-block;font-size:14px;border-radius:5px;line-height:30px;}
+#operation{position:relative;}
+#operation table{width:435px;margin:0 auto;}
+#operation table tr{height:50px;}
+#operation table tr td img{margin:0 0 -9px 15px;}
+#operation table input{border:1px solid #ccc;margin-left:10px;width:200px;height:30px;padding:0 10px;}
+#operation table tr button{padding:5px 10px;background:#3276b1;color:#fff;margin-left:15px;}
+#operation div>button{width:100px;height:30px;background:#3276b1;color:#fff;display:block;margin:20px auto 0;}
+#rmengban{width:100%;height:100%;background:#ccc;opacity:0.7;position:fixed;top:0;bottom:0;left:0;right:0;}
+#warning{width:300px;height:150px;background:#fff;position:fixed;top:50%;left:50%;margin:-75px 0 0 -150px;z-index:2;border-radius:10px;color:#000;font-size:16px;text-align:center;}
+#warning>span{display:inline-block;margin:35px 0 36px 0;}
+#warning a{padding:5px 15px;color:#fff;font-size:14px;display:inline-block;background:#3276b1;border-radius:5px;}
+#content>li{display:none;}
+#content>li:first-child{display:block;}
+
+
+h1{margin:50px 0 20px 40px;font-size:18px;}
+#jump{margin:0 0 0 40px;}
+#jump li{display:inline-block;padding:10px 20px;font-size:16px;border:1px solid #ccc;margin-right:20px;}
+#jump li:hover{background:#ccc;}
+
+#sonpower label{display:block;font-size:14px;margin:0 3px;border-bottom:1px dashed #ccc;width:98%;padding:5px 0;}
+#sonpower label input{margin:0 5px;}
+
+.thismyid{display:none;}
+.institle{text-align: center;color: red;font-weight: 600;}
+input,textarea{border: solid 1px #cbcbcb; padding: 2px;}
+.tdleft{text-align: left;text-indent: 3px;}
+#footerpagesize{margin-top: -5px;}

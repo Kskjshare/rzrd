@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloudrich.ereader.ziliaoku.dao.ZiliaokuMainDao" >
+  <resultMap id="BaseResultMap" type="com.cloudrich.ereader.ziliaoku.entity.ZiliaokuMainEntity" >
+    <id column="ziliaoid" property="ziliaoid" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="filename" property="filename" jdbcType="VARCHAR" />
+    <result column="path" property="path" jdbcType="VARCHAR" />
+    <result column="isdel" property="isdel" jdbcType="INTEGER" />
+    <result column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="typeid" property="typeid" jdbcType="INTEGER" />
+    <result column="sname" property="sname" jdbcType="VARCHAR" />
+    <result column="fname" property="fname" jdbcType="VARCHAR" />
+    <result column="fileguid" property="fileguid" jdbcType="VARCHAR" />    
+  </resultMap>
+  <update id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    update er_ziliaoku_main set isdel = 1 where ziliaoid = #{ziliaoid,jdbcType=INTEGER}
+  </update>
+  <insert id="insert" parameterType="com.cloudrich.ereader.ziliaoku.entity.ZiliaokuMainEntity" >
+    insert into er_ziliaoku_main (ziliaoid, name, filename, 
+      path, isdel, userid, 
+      createtime, typeid,fileguid)
+    values (#{ziliaoid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{filename,jdbcType=VARCHAR}, 
+      #{path,jdbcType=VARCHAR}, #{isdel,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{typeid,jdbcType=INTEGER}, #{fileguid,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.cloudrich.ereader.ziliaoku.entity.ZiliaokuMainEntity" >
+    update er_ziliaoku_main
+    set name = #{name,jdbcType=VARCHAR},
+      filename = #{filename,jdbcType=VARCHAR},
+      path = #{path,jdbcType=VARCHAR},
+      isdel = #{isdel,jdbcType=INTEGER},
+      userid = #{userid,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      typeid = #{typeid,jdbcType=INTEGER},
+      fileguid= #{fileguid,jdbcType=INTEGER}
+    where ziliaoid = #{ziliaoid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select ziliaoid, name, filename, path, isdel, userid, createtime, typeid,fileguid
+    from er_ziliaoku_main
+    where isdel=0 and ziliaoid = #{ziliaoid,jdbcType=INTEGER}
+  </select>
+  <select id="select" resultMap="BaseResultMap" parameterType="com.cloudrich.ereader.ziliaoku.entity.ZiliaokuMainEntity">
+    select a.ziliaoid, a.name name, a.filename, a.path, a.isdel, a.userid, a.createtime, a.typeid,a.fileguid,
+    c.name fname,c.typeid ftypeid,b.typeid stypeid,b.name sname    
+	from er_ziliaoku_main a,er_ziliaoku_type b,er_ziliaoku_type c
+	where a.isdel=0
+	and a.typeid=b.typeid
+	and b.ptypeid=c.typeid
+	and b.typeid=#{typeid}
+    and a.name like '%${name}%'
+  </select>
+  
+  
+  <select id="selectByType" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select ziliaoid, name, filename, path, isdel, userid, createtime, typeid ,fileguid
+	from er_ziliaoku_main  
+	where isdel=0 
+	and typeid=#{typeid} 
+  </select>
+  
+  
+  <!-- 按关键字搜索 -->
+  <select id="searchZiliaoByKeyword" resultMap="BaseResultMap" parameterType="java.lang.String" >
+     select ziliaoid, name, filename, path, isdel, userid, createtime, typeid,fileguid
+    from er_ziliaoku_main
+    where  typeid in (select typeid from er_ziliaoku_type where isdel=0)
+    and name like CONCAT('%',#{name,jdbcType=VARCHAR},'%' )
+    and isdel=0
+  </select>
+  
+  
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select *   
+	from er_ziliaoku_main 
+	where isdel=0
+  </select>
+</mapper>

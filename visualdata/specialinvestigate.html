@@ -1,0 +1,244 @@
+﻿<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>index</title>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <link rel="stylesheet" href="css/comon.css">
+        <style>
+          .mainbox>ul>li:first-child>.bellone{
+              width: 55%;
+          }
+          .mainbox>ul>li{
+            margin-top: -37px;
+            /* color: transparent; */
+          }
+          .footerBox{
+            position: absolute;
+            left: 0%;
+            /* border: 1px solid; */
+            width: 100%;
+            padding: .1rem .18rem;
+            margin-top: -10px;
+            display: flex;
+            justify-content: space-between;
+          }
+          .bellone{
+            width: 24%;
+            height: 0;
+          }
+        .boxall{
+          color: white;
+          padding: .1rem ;
+        }
+        #map_1{
+          transform: translateY(-80px);
+        }
+        #main>div:first-child,#main2>div:first-child,#main3>div:first-child,#main4>div:first-child{
+          width: 100%!important;
+        }
+        </style>
+    </head>
+    <script>
+        $(window).load(function () {
+            $(".loading").fadeOut()
+        })
+
+        /****/
+        $(document).ready(function () {
+            var whei = $(window).width()
+            $("html").css({
+                fontSize: whei / 20
+            })
+            $(window).resize(function () {
+                var whei = $(window).width()
+                $("html").css({
+                    fontSize: whei / 20
+                })
+            });
+        });
+    </script>
+    <script type="text/javascript" src="js/echarts.min.js"></script>
+    <!-- <script language="JavaScript" src="js/js.js"></script> -->
+    <body style="height:100vh;background-position: 0% 100%;">
+        <div class="canvas" style="opacity: .04">
+            <iframe frameborder="0" src="js/index.html" style="width: 100%; height: 180%"></iframe>
+        </div>
+        <div class="loading">
+            <div class="loadbox">
+                <img src="picture/loading.gif">
+                页面加载中...
+            </div>
+        </div>
+        <div class="head">
+          
+        </div>
+        <div class="mainbox_mission">
+            <ul class="clearfix">
+                <li>
+                    <div class="boxall">
+                        <div class="allnav" id="deputy" style="height:612px;"></div>
+                        <div class="boxfoot"></div>
+                    </div>
+
+            
+                </li>
+                
+                
+<!--                <li>
+                    <div class="boxall">
+                        <div class="allnav" id="party_bar" style="height:512px;"></div>
+                        <div class="boxfoot"></div>
+                    </div>
+
+            
+                </li>-->
+                
+               
+               <li>
+                    <div class="boxall">
+                        <div class="allnav" id="deputy_bar" style="height:512px;"></div>
+                        <div class="boxfoot"></div>
+                    </div>
+
+            
+                </li>
+                
+                
+
+            </ul>
+        <div class="back"></div>
+        <!--<script type="text/javascript" src="js/china.js"></script>-->
+        <script type="text/javascript" src="/js/rsseasy.min.js"></script>
+        <script src="/js/rssapi.min.js" type="text/javascript"></script>
+        <script src="/js/md5.min.js" type="text/javascript"></script>
+        <script src="./js/specialinvestigate.js"></script>
+
+        <script>
+//            var suggestdata =[ {name:"小屯镇",value:0} , {name:"临汝镇",value:0}   , {name:"寄料镇",value:0} , {name:"温泉镇",value:0}  , {name:"蟒川镇",value:0}  , {name:"杨楼镇",value:0}  , {name:"庙下镇",value:0}  ,
+//            {name:"陵头镇",value:0}  , {name:"米庙镇",value:0}  , {name:"纸坊镇",value:0}  , {name:"大峪镇",value:0}  ,{name:"夏店镇",value:0} ,{name:"焦村镇",value:0}  , {name:"骑岭乡",value:0} , {name:"王寨乡",value:0}  , 
+//            {name:"风穴路街道",value:0}, {name:"煤山街道",value:0}, {name:"洗耳河街道",value:0} , {name:"钟楼街道",value:0}, {name:"汝南街道",value:0}, {name:"紫云路街道",value:0}];
+            
+    //                        ddtArr.push({name:item.allname,myid:item.myid,num:0 ,dbtid:0,lwstate:0 })  //定义新数组，把数据传入
+
+            var suggestdata =[
+                {name:"小屯镇",value:0 ,num:0 ,dbtid:"1027",lwstate:0  } , 
+                {name:"临汝镇",value:0 ,num:0 ,dbtid:"1028",lwstate:0 } , 
+                {name:"寄料镇",value:0 ,num:0 ,dbtid:"1029",lwstate:0 } , 
+                {name:"温泉镇",value:0 ,num:0 ,dbtid:"1030",lwstate:0 }  , 
+                {name:"蟒川镇",value:0,num:0 ,dbtid:"1031",lwstate:0 }  , 
+                {name:"杨楼镇",value:0,num:0 ,dbtid:"1032",lwstate:0 }  , 
+                {name:"庙下镇",value:0,num:0 ,dbtid:"1033",lwstate:0 } ,
+                {name:"陵头镇",value:0,num:0 ,dbtid:"1034",lwstate:0 }  , 
+                {name:"米庙镇",value:0,num:0 ,dbtid:"1035",lwstate:0 }  , 
+                {name:"纸坊镇",value:0,num:0 ,dbtid:"1036",lwstate:0 }  , 
+                {name:"大峪镇",value:0,num:0 ,dbtid:"1037",lwstate:0 }  , 
+                {name:"夏店镇",value:0,num:0 ,dbtid:"1038",lwstate:0 }  , 
+                {name:"焦村镇",value:0,num:0 ,dbtid:"1039",lwstate:0 }  ,   
+                {name:"骑岭乡",value:0,num:0 ,dbtid:"1040",lwstate:0 }  , 
+                {name:"王寨乡",value:0,num:0 ,dbtid:"1041",lwstate:0 }  , 
+                {name:"风穴路街道",value:0,num:0 ,dbtid:"1042",lwstate:0 }  , 
+                {name:"煤山街道",value:0,num:0 ,dbtid:"1043",lwstate:0 }  , 
+                {name:"洗耳河街道",value:0,num:0 ,dbtid:"1044",lwstate:0 }  , 
+                {name:"钟楼街道",value:0,num:0 ,dbtid:"1045",lwstate:0 }  , 
+                {name:"汝南街道",value:0,num:0 ,dbtid:"1046",lwstate:0 }  , 
+                {name:"紫云路街道",value:0,num:0 ,dbtid:"1047",lwstate:0 }                     
+            ];
+           var testNAME="";
+            var ddtArr=[]; 
+            var nameArr =[], valueArr=[]; 
+//            RssApi.View.List("suggest_statics").keyvalue({ "pagesize": 10000}).condition({}).getJson(function(json) {
+//                json.forEach((item,index) => { 
+//                   if(item.name){                      
+//                       ddtArr.push({ name:item.name , mission:item.mission , value : 0 , lwstate:item.lwstate })  //定义新数组，把数据传入
+//                   }
+//                });
+//                RssApi.Table.List("delegation_name").condition({ "state":0 }).keyvalue({ "pagesize": 30 }).getJson(function (json2) {
+//                   ddtArr.forEach((elem ,idx)=> {//遍历两个表得到的数据，进行代表团的id 对比计数
+//                        json2.forEach( ite=>{ 
+//                            elem.mission==ite.mission?ddtArr[idx].value++ : console.log(); 
+//                        })
+//                   });
+//                    
+//                     showdeputybarChart( nameArr, valueArr ,suggestdata,testNAME )
+//                })
+//               
+//               
+//           });
+           
+           var myjson;
+            RssApi.Table.List("delegation_name").condition({ "state":0 }).keyvalue({ "pagesize": 30 }).getJson(function ( json ) {
+                myjson = json;
+                json.forEach((item,index) => { 
+                    ddtArr.push({ name:item.name , mission:item.mission , value : 0 , suggest:0 , bill :0, criticise :0,opinion:0,inquery:0})  //定义新数组，把数据传入
+                   
+                })
+                
+                RssApi.View.List("suggest_statics").keyvalue({ "pagesize": 10000}).condition({}).getJson(function( json2 ) {
+                   myjson.forEach((item,idx) => { 
+                                          
+
+                       json2.forEach(( item2,index2 ) => { 
+                           if ( item2.mission == item.myid ){
+                                ddtArr[idx].value ++ ;
+                                ddtArr[idx].lwstate = item.lwstate ;
+                                if ( item2.lwstate == "1" ) {
+                                  ddtArr[idx].suggest ++;  
+                                }
+                                else if ( item2.lwstate == "2" ){
+                                  ddtArr[idx].bill++  
+                                }
+                                else if ( item2.lwstate == "3" ){
+                                  ddtArr[idx].criticise ++;  
+                                }
+                                else if ( item2.lwstate == "4" ){
+                                  ddtArr[idx].opinion ++;  
+                                }
+                                else if ( item2.lwstate == "5" ){
+                                  ddtArr[idx].inquery ++;  
+                                }
+                           }
+                        });
+                   });
+                   
+                   showdeputyChart( ddtArr )
+                   showdeputybarChart( ddtArr )
+                });
+           
+            })
+           
+    
+//            var ddtArr=[]; 
+//            var value=[],value2=[]; 
+//            RssApi.View.List("userrole").keyvalue({ "pagesize": 10000}).condition({}).getJson(function(json) {
+//                json.forEach((item,index) => { 
+//                   if(item.allname){
+//                       ddtArr.push({name:item.allname,myid:item.myid,num:0})  //定义新数组，把数据传入
+//                   }
+//               });
+//               RssApi.View.List("suggest_leader").keyvalue({ "pagesize": 10000}).condition({}).getJson(function(json2) {
+//                   ddtArr.forEach((elem ,idx)=> {//遍历两个表得到的数据，进行代表团的id 对比计数
+//                         json2.forEach( ite=>{   elem.myid==ite.dbtid?ddtArr[idx].num++ : console.log();  })
+//                   });
+//                   // console.log(ddtArr,json2);
+//                   ddtArr.forEach(val => { //处理函数传参的数据
+//                      if(val.num){
+//                       value.push(val.name); value2.push(val.num);
+//                      }
+//                   });
+//                   echart1(value,value2) //value (X轴)代表团名称 value2 代表团建议的数量 number Y轴显示最大数量
+//               });
+//            });
+            
+            
+            
+
+////                    echart1(value,value2) //value (X轴)代表团名称 value2 代表团建议的数量 number Y轴显示最大数量
+//                    showDeputyChart( nameArr , valueArr ,suggestdata )
+//                    showdeputybarChart( nameArr, valueArr ,suggestdata,testNAME )
+//                });
+//            });        
+            
+         </script>
+    </body>
+</html>

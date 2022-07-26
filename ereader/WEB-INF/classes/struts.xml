@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.custom.i18n.resources" value="message_zh"></constant>
+        <!-- 静态资源不过滤 -->
+        <constant name="struts.action.excludePattern" value="/third/.*?" /><!-- default locale -->
+	<!-- 搜索此配置下的所有包 -->
+	<constant name="struts.objectFactory"
+		value="org.apache.struts2.spring.StrutsSpringObjectFactory" />
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.action.extension" value="action,do" />
+	<package name="eread-package" extends="struts-default,json-default">
+		<interceptors>
+			<interceptor name="LoginInterceptor" class="com.cloudrich.ereader.common.interceptor.LoginInterceptor">
+				<param name="excludeMethods">login,logout</param>
+			</interceptor>
+			<interceptor-stack name="eread-stack">
+			</interceptor-stack>
+		</interceptors>
+	</package>
+	<include file="strutsconfig/struts-user.xml"></include>
+	<include file="strutsconfig/struts-notify.xml"></include>
+	<include file="strutsconfig/struts-login.xml"></include>
+	<include file="strutsconfig/struts-meeting.xml"></include>
+	<include file="strutsconfig/struts-tongxunlun.xml"></include>
+	<include file="strutsconfig/struts-chuqueqin.xml"></include>
+	<include file="strutsconfig/struts-groupmember.xml"></include>
+	<include file="strutsconfig/struts-ziliaoku.xml"></include>
+	<include file="strutsconfig/struts-sysuser.xml"></include>
+	<include file="strutsconfig/struts-sysrole.xml"></include>
+	<include file="strutsconfig/struts-sysscope.xml"></include>
+	<include file="strutsconfig/struts-smsdefine.xml"></include>
+	<include file="strutsconfig/struts-calendar.xml"></include>
+	<include file="strutsconfig/struts-service.xml"></include>
+	<include file="strutsconfig/struts-filemonitor.xml"></include>
+	<include file="strutsconfig/struts-sysmeetmaintain.xml"></include>
+	<include file="strutsconfig/struts-sysdictdata.xml"></include>
+	<include file="strutsconfig/struts-sysversion.xml"></include>
+	<include file="strutsconfig/struts-syshelp.xml"></include>
+</struts>

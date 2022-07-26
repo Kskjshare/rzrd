@@ -1,0 +1,1 @@
+var Gsubstationid ="100";

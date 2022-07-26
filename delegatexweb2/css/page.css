@@ -1,0 +1,102 @@
+#pageArea {
+	clear: both;
+	overflow: hidden;
+	text-align: center;
+	margin: 0 auto;
+	font-size: 14px;
+	padding-top: 60px;
+	/* padding-left: 380px; */
+}
+
+#pageArea #pageDec {
+	float: left;
+	text-align: right;
+}
+#pageArea #pageDec a{
+	display: inline-block;
+	width: 60px;
+	text-align: center;
+	color: #FFFFFF;
+	background-color: #D0D0D0;
+}
+#pageArea #pageDec span {
+	width: 60px;
+	height: 35px;
+	cursor: pointer;
+	margin: 0 3px;
+	margin-top: -5px;
+	line-height: 35px;
+	padding: 0 10px;
+	color: #FFFFFF;
+	display: inline-block;
+	text-align: center;
+	background-color: #D0D0D0;
+}
+
+#pageArea #pageDec strong {
+	cursor: pointer;
+	float: left;
+	background: #93c7ef;
+	border: 1px solid #85b3d6;
+	font-weight: bold;
+	color: #fff;
+	padding: 0 12px;
+	height: 30px;
+	line-height: 30px;
+	margin: 0 3px
+}
+
+#pageArea #pageDec a,
+#pageArea #pageDec a:visited {
+	height: 35px;
+	line-height: 35px;
+	padding: 0 10px;
+	display: inline-block;
+	margin: 0 3px;
+}
+
+#pageArea #pageDec a:hover {
+	background: #1c92cf;
+	color: #FFFFFF!important;
+	text-decoration: none;
+}
+
+#pageArea #pageSelect label {
+	float: left;
+	padding-top: 10px;
+	width: 56px;
+}
+#pageSelect span{
+	float: left;
+}
+#pageArea #pageJump {
+	border: #E8E8E8 solid 1px;
+	height: 35px;
+	line-height: 35px;
+	width: 50px;
+	text-align: center;
+	margin: 0 3px;
+	float: left;
+}
+
+#pageArea span {
+	padding-top: 10px;
+}
+#pageCount{
+	width: 76px;
+}
+#pageArea .btn2 {
+	padding: 0;
+	margin-left: 8px;
+	float: left;
+	cursor: pointer;
+	width: 80px;
+	height: 35px;
+	font-size: 14px;
+	border: none;
+	color: #FFFFFF;
+	background-color: #1c92cf;
+}
+.pageList{
+	padding-left: 270px !important;
+}

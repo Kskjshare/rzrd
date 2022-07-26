@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloudrich.ereader.system.dao.SysRolePermissionDao" >
+  <resultMap id="BaseResultMap" type="com.cloudrich.ereader.system.entity.SysRolePermissionEntity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="roleid" property="roleid" jdbcType="INTEGER" />
+    <result column="permissioncode" property="permissioncode" jdbcType="CHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from er_sys_role_permission
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <!-- 根据roleid删除权限 -->
+  <delete id="deletePermissionByRoleid" parameterType="java.lang.Integer" >
+    delete from er_sys_role_permission
+    where roleid = #{roleid,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="com.cloudrich.ereader.system.entity.SysRolePermissionEntity" >
+    insert into er_sys_role_permission (id, roleid, permissioncode
+      )
+    values (#{id,jdbcType=INTEGER}, #{roleid,jdbcType=INTEGER}, #{permissioncode,jdbcType=CHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.cloudrich.ereader.system.entity.SysRolePermissionEntity" >
+    update er_sys_role_permission
+    set roleid = #{roleid,jdbcType=INTEGER},
+      permissioncode = #{permissioncode,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, roleid, permissioncode
+    from er_sys_role_permission
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, roleid, permissioncode
+    from er_sys_role_permission
+    order by id desc
+  </select>
+  
+  <!-- 根据roleid选择权限code -->
+  <select id="selectPermissionByRoleid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, roleid, permissioncode
+    from er_sys_role_permission
+    where roleid = #{roleid,jdbcType=INTEGER}
+  </select>
+</mapper>

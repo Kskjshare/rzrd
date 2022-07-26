@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloudrich.ereader.meeting.dao.MeetYichenFileDao" >
+
+  <resultMap id="BaseResultMap" type="com.cloudrich.ereader.meeting.entity.MeetYichenFileEntity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="yichenid" property="yichenid" jdbcType="INTEGER" />
+    <result column="fileid" property="fileid" jdbcType="INTEGER" />
+    <result column="isdel" property="isdel" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <update id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    update er_meet_yichen_file
+    set isdel=1
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <insert id="insert" parameterType="com.cloudrich.ereader.meeting.entity.MeetYichenFileEntity" >
+    insert into er_meet_yichen_file
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="yichenid != null" >
+        yichenid,
+      </if>
+      <if test="fileid != null" >
+        fileid,
+      </if>
+      </trim> 
+      <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sort != null" >
+         #{sort,jdbcType=INTEGER},
+      </if>
+	    <if test="yichenid != null" >
+	    	#{yichenid,jdbcType=INTEGER}, 
+	    </if>
+	     <if test="fileid != null" >
+	    	#{fileid,jdbcType=INTEGER}, 
+	    </if>
+      </trim> 
+  </insert>
+  
+  <update id="updateByPrimaryKey" parameterType="com.cloudrich.ereader.meeting.entity.MeetYichenFileEntity" >
+    update er_meet_yichen_file
+    set 
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="yichenid != null" >
+       yichenid = #{yichenid,jdbcType=INTEGER},
+      </if>
+      <if test="fileid != null" >
+        fileid = #{fileid,jdbcType=INTEGER}
+      </if>
+       where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, sort, yichenid, fileid,isdel
+    from er_meet_yichen_file
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+
+  <select id="selectByYichenFileEntity" resultMap="BaseResultMap" parameterType="com.cloudrich.ereader.meeting.entity.MeetYichenFileEntity" >
+    select id, sort, yichenid, fileid,isdel
+    from er_meet_yichen_file
+    where yichenid = #{yichenid,jdbcType=INTEGER}
+    and fileid= #{fileid,jdbcType=INTEGER}
+    and isdel=0
+  </select>
+  
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, sort, yichenid, fileid,isdel
+    from er_meet_yichen_file
+    where isdel=0
+  </select>
+  
+  
+  <update id="deleteYichFileByYichenid" parameterType="java.lang.Integer" >
+    update er_meet_yichen_file
+    set isdel=1
+    where yichenid = #{yichenid,jdbcType=INTEGER}
+  </update>
+  
+    <update id="deleteYichFileByFileid" parameterType="java.lang.Integer" >
+    update er_meet_yichen_file
+    set isdel=1
+    where fileid = #{fileid,jdbcType=INTEGER}
+  </update>
+  
+   <!-- 根据yichenid获取yichenfile -->
+   <select id="selectByYichenid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, sort, yichenid, fileid,isdel
+    from er_meet_yichen_file
+    where yichenid = #{yichenid,jdbcType=INTEGER}
+    and isdel=0
+  </select>
+  
+   <!-- 根据meetid获取议程关联文件 -->
+   <select id="selectYichenFileBymeetid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, sort, yichenid, fileid,isdel
+    from er_meet_yichen_file
+    where yichenid in 
+	 (select yichenid from er_meet_yichen_main where meetid = #{meetid,jdbcType=INTEGER} and isdel=0)
+    and isdel=0
+  </select>
+ 
+      <!-- 根据fileid和yichenid获取议程关联文件 -->
+   <select id="selectYichenFileByFileidAndYichenid" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select id, sort, yichenid, fileid,isdel
+    from er_meet_yichen_file
+    where yichenid in (select yichenid from er_meet_yichen_main where isdel=0) 
+    and fileid=#{fileid,jdbcType=INTEGER}
+    and isdel=0
+  </select>
+</mapper>

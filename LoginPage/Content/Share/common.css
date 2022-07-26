@@ -1,0 +1,323 @@
+body
+{
+    font-size: 13px;
+    margin: 0px;
+}
+
+h2
+{
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+    margin-bottom: 15px;
+}
+
+.header
+{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 45px;
+    width: 100%;
+    background: #0090D1;
+}
+
+.header .header-logo
+{
+    width: 50%;
+    display: inline-block;
+}
+
+.header-logo .logo-icon
+{
+    margin-top: 5px;
+    height: 65px;
+}
+
+.header .header-right
+{
+    float: right;
+    text-align: right;
+    padding: 0px 20px 0px 0px;
+}
+
+.header .header-right .userinfo
+{
+    display: inline-block;
+    color: #ffffff;
+    font-size: 14px;
+    padding-left: 20px;
+}
+
+.header-menu
+{
+    position: fixed;
+    top: 90px;
+    left: 0px;
+    height: 33px;
+    width: 100%;
+    background-color: #EFF6FF;
+    background: linear-gradient(to bottom,#F8FCFB 0,#EFF6FF 100%);
+    border-bottom: 4px solid #4C91D4;
+}
+
+.header-menu ul
+{
+    margin: 0px;
+    padding: 0px;
+    position: relative;
+    position: absolute;
+    display: inline;
+    left: 10px;
+    top: 5px;
+}
+
+.header-menu ul li
+{
+    list-style-type: none;
+    display: inline;
+}
+
+.header-menu ul li a
+{
+    text-decoration: none;
+    padding: 7px 20px 7px 20px;
+    font-size: 17px;
+    color: #444;
+    font-family: "寰蒋闆呴粦";
+}
+
+.header-menu ul li a.active
+{
+    color: #ffffff;
+    background: #4C91D4;
+}
+
+.header-menu .menu-right
+{
+    display: inline;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+}
+
+.left-menu
+{
+    padding: 0px;
+    margin: 0px;
+}
+
+.left-menu a
+{
+    text-decoration: none;
+    color: black;
+    padding-right: 50px;
+}
+/*鑷畾涔夊乏杈硅彍鍗�/
+.left-menu li{
+	list-style-type:none;  
+	padding: 5px 20px 5px 20px;
+	position: relative;
+	height: 20px;
+}
+.left-menu li img{
+	top:6px;
+	left:6px;
+	height:16px;
+	width:16px;
+	position: absolute;
+}
+.left-menu li a{
+	top:6px;
+	left:26px;
+	font-size: 14px;
+	position: absolute;
+}
+.left-menu li.active{
+	background-color:#4C91D4;
+}
+.left-menu li.active a{
+	color:#ffffff;
+}
+/*鑷畾涔夊乏杈硅彍鍗�/
+/*鑷畾涔塼ree鑿滃崟*/
+.left-menu .tree-node
+{
+    padding: 3px;
+}
+.left-menu .tree-title
+{
+    font-size: 15px;
+}
+.left-menu .tree-file
+{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.left-menu .tree-folder
+{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.left-menu .tree-folder-open
+{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+/*鑷畾涔塼ree鑿滃崟*/
+.tabs
+{
+    padding-left: 2px;
+}
+
+.tab-body
+{
+    padding: 2px;
+}
+
+.footer
+{
+    position: relative;
+    text-align: center;
+    padding-top: 5px;
+}
+/*鍏冪礌鍒嗛殧绗�/
+.item-split {
+	color: #CECFCE;
+}
+/*琛ㄥ崟涓殑table鏍峰紡*/
+form
+{
+    width: 100%;
+}
+
+form table, .tb-info
+{
+    border-collapse: collapse;
+    border-right: 1px dotted #a7a5a5;
+    border-bottom: 1px dotted #a7a5a5;
+    width: 100%;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+form table td, .tb-info td
+{
+    border-left: 1px dotted #a7a5a5;
+    border-top: 1px dotted #a7a5a5;
+}
+
+form table td input[type="text"], input[type="password"], select
+{
+    width: 170px;
+}
+
+form table .tb-p, .tb-info .tb-p
+{
+    text-align: right;
+    padding: 3px 2px 3px 0px;
+    background-color: #dce7f3;
+    width: 9%;
+}
+
+form table .tb-v, .tb-info .tb-v
+{
+    text-align: left;
+    padding: 3px 0px 3px 2px;
+    width: 17%;
+}
+/*甯冨眬椤甸潰*/
+/*属性表格明细样式*/
+.content table
+{
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.content table td
+{
+    border: 1px solid #fff;
+}
+
+.content table tr:nth-child(even) td
+{
+    background-color: #FCFAF6;
+}
+
+.content table tr:nth-child(odd) td
+{
+    background-color: #E6EBFF;
+}
+
+.content table .tb-p
+{
+    text-align: right;
+    padding: 3px 7px 3px 0px;
+    background-color: #CEDDF0 !important;
+    width: 9%;
+}
+
+.content table .tb-v
+{
+    text-align: left;
+    padding: 3px 7px 3px 5px;
+    width: 17%;
+}
+/*属性表格明细样式*/
+
+/*流程表格明细样式*/
+.content table.process th, .content table.process td
+{
+    border: 1px solid #fff;
+    text-align: center;
+    padding: 3px 7px;
+}
+
+.content table.process tr:nth-child(even) td
+{
+    background-color: #FCFAF6;
+}
+
+.content table.process tr:nth-child(odd) td
+{
+    background-color: #E6EBFF;
+}
+
+.content table.process th
+{
+    background-color: #CEDDF0 !important;
+    font-weight: bold;
+    padding: 7px 7px;
+}
+.scrollbar
+{
+    width: 30px;
+    height: 300px;
+    margin: 0 auto;
+}
+.gundong_div_one::-webkit-scrollbar
+{
+    /*滚动条整体样式*/
+    width: 10px; /*高宽分别对应横竖滚动条的尺寸*/
+    height: 1px;
+}
+.gundong_div_one::-webkit-scrollbar-thumb
+{
+    /*滚动条里面小方块*/
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    background: #d4e1f2;
+}
+.gundong_div_one::-webkit-scrollbar-track
+{
+    /*滚动条里面轨道*/
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    background: #EDEDED;
+}
+/*流程表格明细样式*/

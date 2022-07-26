@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloudrich.ereader.chuqueqin.dao.ChuqueqinMainDao" >
+  <resultMap id="BaseResultMap" type="com.cloudrich.ereader.chuqueqin.entity.ChuqueqinMainEntity" >
+    <id column="absentid" property="absentid" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="pubuserid" property="pubuserid" jdbcType="INTEGER" />
+    <result column="pubtime" property="pubtime" jdbcType="TIMESTAMP" />
+    <result column="filename" property="filename" jdbcType="VARCHAR" />
+    <result column="path" property="path" jdbcType="VARCHAR" />
+    <result column="isdel" property="isdel" jdbcType="INTEGER" />
+    <result column="fileguid" property="fileguid" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="BookMarkerMap" type="com.cloudrich.ereader.chuqueqin.entity.BookMarkerVO" >
+    <result column="filename" property="filename" jdbcType="VARCHAR" />
+    <result column="mtype" property="mtype" jdbcType="VARCHAR" />
+    <result column="fname" property="fname" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="TIMESTAMP" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="meetingname" property="meetingname" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    update er_chuqueqin_main set isdel=1 where  absentid = #{absentid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cloudrich.ereader.chuqueqin.entity.ChuqueqinMainEntity" useGeneratedKeys="true" keyProperty="absentid" >
+	  <selectKey keyProperty="absentid"  resultType="java.lang.Integer" order="AFTER">
+      	SELECT LAST_INSERT_ID() AS absentid
+      </selectKey>  
+    insert into er_chuqueqin_main (absentid, title, pubuserid, 
+      pubtime, filename, path, 
+      isdel,fileguid)
+    values (#{absentid,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{pubuserid,jdbcType=INTEGER}, 
+      #{pubtime,jdbcType=TIMESTAMP}, #{filename,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, 
+      #{isdel,jdbcType=INTEGER}, #{fileguid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertBM" parameterType="com.cloudrich.ereader.chuqueqin.entity.BookMarkerEntity" useGeneratedKeys="true" keyProperty="id" >
+	  <selectKey keyProperty="id"  resultType="java.lang.Integer" order="AFTER">
+      	SELECT LAST_INSERT_ID() AS id
+      </selectKey>  
+    insert into er_meet_bookmarker (page, content,createtime,userid,filename,fileguid)
+    values (#{page,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{createtime,jdbcType=INTEGER}, 
+      #{userid,jdbcType=TIMESTAMP}, #{filename,jdbcType=VARCHAR},#{fileguid,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.cloudrich.ereader.chuqueqin.entity.ChuqueqinMainEntity" >
+    update er_chuqueqin_main
+    <set>
+    	<if test="title!=null">
+    		title = #{title,jdbcType=VARCHAR},
+    	</if>
+        <if test="pubtime!=null">
+    		 pubtime = #{pubtime,jdbcType=TIMESTAMP},
+    	</if>
+        <if test="filename!=null">
+    		filename = #{filename,jdbcType=VARCHAR},
+    	</if>
+        <if test="path!=null">
+    		path = #{path,jdbcType=VARCHAR},
+    	</if>
+       <if test="isdel!=null">
+    		isdel = #{isdel,jdbcType=INTEGER},
+    	</if>
+       <if test="fileguid!=null">
+    		fileguid = #{fileguid,jdbcType=VARCHAR}
+    	</if>
+    </set>
+    where absentid = #{absentid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select absentid, title, pubuserid, pubtime, filename, path, isdel,fileguid
+    from er_chuqueqin_main
+    where absentid = #{absentid,jdbcType=INTEGER} and isdel!=1
+  </select>
+  <select id="selectBm" resultMap="BookMarkerMap" parameterType="java.util.Map" >
+   select a.*,b.truename,c.title as fname,d.mname as meetingname,d.mtype from er_meet_bookmarker a left join 
+	er_sys_user_main b on a.userid=b.id left join er_meet_file_main c 
+	on a.filename=c.filepath left join er_meet_main d on c.meetid=d.meetid where 1=1
+	<if test="meetingname!=null">
+    	and d.mname =#{meetingname}
+    </if>
+	<if test="title!=null">
+    	and c.title like CONCAT(CONCAT('%',#{fname}),'%')
+    </if>
+	<if test="truename!=null">
+    	and b.truename like CONCAT(CONCAT('%',#{truename}),'%')
+    </if>
+    and now()<![CDATA[<=]]>d.edate
+    and d.isdel=0
+  </select>
+  <select id="selectBookMeeting" resultMap="BaseResultMap">
+    select a.mname as title,b.name as filename from er_meet_main a left join er_dict_data b
+ on a.mtype=b.code where b.type='mtype'
+  and now()<![CDATA[<=]]>a.edate
+    and a.isdel=0
+  order by a.meetid desc
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="java.util.Map">
+    select absentid, title, pubuserid, pubtime, filename, path, isdel,fileguid
+    from er_chuqueqin_main where  isdel!=1
+    <if test="title!=null">
+    	and title like CONCAT(CONCAT('%',#{title}),'%')
+    </if>
+    order by pubtime desc
+  </select>
+</mapper>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloudrich.ereader.login.dao.LoginClientDao" >
+  <resultMap id="BaseResultMap" type="com.cloudrich.ereader.login.entity.LoginClientUser" >
+   
+    <result column="padmobile" property="padmobile" jdbcType="VARCHAR" />
+    <result column="truename" property="truename" jdbcType="VARCHAR" />
+     <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="usertype" property="usertype" jdbcType="VARCHAR" />
+     <result column="isdestroy" property="isdestory" jdbcType="INTEGER" />
+
+  
+  </resultMap>
+  
+  
+  <resultMap id="SysUserResultMap" type="com.cloudrich.ereader.login.entity.LoginUser" >
+   
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="truename" property="truename" jdbcType="VARCHAR" />
+     <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="usertype" property="usertype" jdbcType="VARCHAR" />
+
+  
+  </resultMap>
+  
+  <select id="selectLoginClientUser" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select * from er_sys_user_main 
+		where 
+		(padmobile=#{padmobile,jdbcType=VARCHAR} or username= #{padmobile,jdbcType=VARCHAR} or tel=#{padmobile,jdbcType=VARCHAR})
+		and passwd=#{passwd,jdbcType=VARCHAR}
+		and isdel=0
+  </select>
+  
+   <select id="selectLoginSysUser" resultMap="SysUserResultMap" parameterType="java.util.Map" >
+    select * from er_sys_user_main 
+		where username=#{username,jdbcType=VARCHAR}
+		and passwd=#{passwd,jdbcType=VARCHAR}
+		and isdel=0
+		and isdestroy=0
+  </select>
+ 
+</mapper>

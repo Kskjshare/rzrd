@@ -1,0 +1,495 @@
+.icon-blank{
+  background:url('icons/blank.gif')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/blank.gif*/ no-repeat center center;
+}
+.icon-add{
+  background:url('icons/edit_add.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/edit_add.png*/ no-repeat center center;
+}
+.icon-edit{
+  background:url('icons/pencil.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/pencil.png*/ no-repeat center center;
+}
+.icon-clear{
+  background:url('icons/clear.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/clear.png*/ no-repeat center center;
+}
+.icon-remove{
+  background:url('icons/edit_remove.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/edit_remove.png*/ no-repeat center center;
+}
+.icon-save{
+  background:url('icons/filesave.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/filesave.png*/ no-repeat center center;
+}
+.icon-folder_page{
+  background:url('icons/folder_page.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/folder_page.png*/ no-repeat center center;
+}
+.icon-cut{
+  background:url('icons/cut.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/cut.png*/ no-repeat center center;
+}
+.icon-ok{
+  background:url('icons/ok.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/ok.png*/ no-repeat center center;
+}
+.icon-no{
+  background:url('icons/no.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/no.png*/ no-repeat center center;
+}
+.icon-cancel{
+  background:url('icons/cancel.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/cancel.png*/ no-repeat center center;
+}
+.icon-reload{
+  background:url('icons/reload.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/reload.png*/ no-repeat center center;
+}
+.icon-search{
+  background:url('icons/search.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/search.png*/ no-repeat center center;
+}
+.icon-print{
+  background:url('icons/print.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/print.png*/ no-repeat center center;
+}
+.icon-help{
+  background:url('icons/help.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/help.png*/ no-repeat center center;
+}
+.icon-undo{
+  background:url('icons/undo.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/undo.png*/ no-repeat center center;
+}
+.icon-redo{
+  background:url('icons/redo.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/redo.png*/ no-repeat center center;
+}
+.icon-back{
+  background:url('icons/back.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/back.png*/ no-repeat center center;
+}
+.icon-sum{
+  background:url('icons/sum.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/sum.png*/ no-repeat center center;
+}
+.icon-tip{
+  background:url('icons/tip.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/tip.png*/ no-repeat center center;
+}
+.icon-filter{
+  background:url('icons/filter.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/filter.png*/ no-repeat center center;
+}
+.icon-man{
+  background:url('icons/man.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/man.png*/ no-repeat center center;
+}
+.icon-lock{
+  background:url('icons/lock.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/lock.png*/ no-repeat center center;
+}
+.icon-more{
+  background:url('icons/more.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/more.png*/ no-repeat center center;
+}
+
+
+.icon-mini-add{
+  background:url('icons/mini_add.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/mini_add.png*/ no-repeat center center;
+}
+.icon-mini-edit{
+  background:url('icons/mini_edit.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/mini_edit.png*/ no-repeat center center;
+}
+.icon-mini-refresh{
+  background:url('icons/mini_refresh.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/mini_refresh.png*/ no-repeat center center;
+}
+
+.icon-large-picture{
+  background:url('icons/large_picture.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/large_picture.png*/ no-repeat center center;
+}
+.icon-large-clipart{
+  background:url('icons/large_clipart.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/large_clipart.png*/ no-repeat center center;
+}
+.icon-large-shapes{
+  background:url('icons/large_shapes.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/large_shapes.png*/ no-repeat center center;
+}
+.icon-large-smartart{
+  background:url('icons/large_smartart.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/large_smartart.png*/ no-repeat center center;
+}
+.icon-large-chart{
+  background:url('icons/large_chart.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/large_chart.png*/ no-repeat center center;
+}
+
+.icon-house{
+  background:url('icons/house.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/house.png*/ no-repeat center center;
+}
+.icon-organization{
+  background:url('icons/organization.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/organization.png*/ no-repeat center center;
+}
+.icon-user{
+  background:url('icons/user.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/user.png*/ no-repeat center center;
+}
+.icon-group{
+  background:url('icons/group.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/group.png*/ no-repeat center center;
+}
+.icon-role{
+  background:url('icons/role.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/role.png*/ no-repeat center center;
+}
+.icon-application_double{
+  background:url('icons/application_double.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/application_double.png*/ no-repeat center center;
+}
+.icon-mail{
+  background:url('icons/mail.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/mail.png*/ no-repeat center center;
+}
+.icon-application_view_detail{
+  background:url('icons/application_view_detail.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/application_view_detail.png*/ no-repeat center center;
+}
+.icon-page_white_stack{
+  background:url('icons/page_white_stack.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/page_white_stack.png*/ no-repeat center center;
+}
+.icon-chart{
+  background:url('icons/chart.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/chart.png*/ no-repeat center center;
+}
+.icon-upload{
+  background:url('icons/upload.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/upload.png*/ no-repeat center center;
+}
+.icon-arrow_ew{
+  background:url('icons/arrow_ew.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/arrow_ew.png*/ no-repeat center center;
+}
+.icon-arrow_turn_right{
+  background:url('icons/arrow_turn_right.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/arrow_turn_right.png*/ no-repeat center center;
+}
+.icon-arrow_up{
+  background:url('icons/arrow_up.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/arrow_up.png*/ no-repeat center center;
+}
+.icon-arrow_down{
+  background:url('icons/arrow_down.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/arrow_down.png*/ no-repeat center center;
+}
+.icon-arrow_in{
+  background:url('icons/arrow_in.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/arrow_in.png*/ no-repeat center center;
+}
+.icon-arrow_undo{
+  background:url('icons/arrow_undo.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/arrow_undo.png*/ no-repeat center center;
+}
+.icon-arrow_redo{
+  background:url('icons/arrow_redo.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/arrow_redo.png*/ no-repeat center center;
+}
+.icon-arrow_turn_left{
+  background:url('icons/arrow_turn_left.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/arrow_turn_left.png*/ no-repeat center center;
+}
+.icon-text_align_center{
+  background:url('icons/text_align_center.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/text_align_center.png*/ no-repeat center center;
+}
+.icon-application_form_magnify{
+  background:url('icons/application_form_magnify.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/application_form_magnify.png*/ no-repeat center center;
+}
+.icon-smartphone{
+  background:url('icons/smartphone.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/smartphone.png*/ no-repeat center center;
+}
+.icon-excel{
+  background:url('icons/excel.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/excel.png*/ no-repeat center center;
+}
+.icon-folder_bell{
+  background:url('icons/folder_bell.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/folder_bell.png*/ no-repeat center center;
+}
+.icon-refresh{
+  background:url('icons/refresh.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/refresh.png*/ no-repeat center center;
+}
+.icon-file{
+  background:url('icons/file.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/file.png*/ no-repeat center center;
+}
+.icon-pencil_go{
+  background:url('icons/pencil_go.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/pencil_go.png*/ no-repeat center center;
+}
+.icon-page_white_go{
+  background:url('icons/page_white_go.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/page_white_go.png*/ no-repeat center center;
+}
+.icon-page_white_get{
+  background:url('icons/page_white_get.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/page_white_get.png*/ no-repeat center center;
+}
+.icon-time{
+  background:url('icons/time.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/time.png*/ no-repeat center center;
+}
+.icon-arrow_rotate_clockwise{
+  background:url('icons/arrow_rotate_clockwise.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/arrow_rotate_clockwise.png*/ no-repeat center center;
+}
+.icon-zoom_in{
+  background:url('icons/zoom_in.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/zoom_in.png*/ no-repeat center center;
+}
+.icon-group_go{
+  background:url('icons/group_go.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/group_go.png*/ no-repeat center center;
+}
+.icon-control_power_blue{
+  background:url('icons/control_power_blue.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/control_power_blue.png*/ no-repeat center center;
+}
+.icon-cog{
+  background:url('icons/cog.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/cog.png*/ no-repeat center center;
+}
+.icon-computer{
+  background:url('icons/computer.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/computer.png*/ no-repeat center center;
+}
+.icon-menu{
+  background:url('icons/shrink.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/shrink.png*/ no-repeat center center;
+}
+.icon-folder_explore{
+  background:url('icons/folder_explore.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/folder_explore.png*/ no-repeat center center;
+}
+.icon-folder_table{
+  background:url('icons/folder_table.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/folder_table.png*/ no-repeat center center;
+}
+.icon-folder_go{
+  background:url('icons/folder_go.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/folder_go.png*/ no-repeat center center;
+}
+.icon-large-logout{
+  background:url('icons/large-logout.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/large-logout.png*/ no-repeat center center;
+}
+.icon-large-home{
+  background:url('icons/large-home.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/large-home.png*/ no-repeat center center;
+}
+.icon-large-switchuser{
+  background:url('icons/large-switchuser.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/large-switchuser.png*/ no-repeat center center;
+}
+.icon-database{
+  background:url('icons/database.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/database.png*/ no-repeat center center;
+}
+.icon-database_lightning{
+  background:url('icons/database_lightning.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/database_lightning.png*/ no-repeat center center;
+}
+.icon-arrows_right{
+  background:url('icons/arrows_right.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/arrows_right.png*/ no-repeat center center;
+}
+.icon-DeleteRed{
+  background:url('icons/DeleteRed.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/DeleteRed.png*/ no-repeat center center;
+}
+.icon-application_view_list{
+  background:url('icons/application_view_list.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/application_view_list.png*/ no-repeat center center;
+}
+.icon-database_glbdh{
+  background:url('icons/database_glbdh.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/database_glbdh.png*/ no-repeat center center;
+}
+.icon-database_glbudh{
+  background:url('icons/database_glbudh.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/database_glbudh.png*/ no-repeat center center;
+}
+.icon-table_multiple{
+  background:url('icons/table_multiple.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/table_multiple.png*/ no-repeat center center;
+}
+.icon-custom{
+  background:url('icons/custom.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/custom.png*/ no-repeat center center;
+}
+.icon-export{
+  background:url('icons/export.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/export.png*/ no-repeat center center;
+}
+.icon-page_white_add{
+  background:url('icons/page_white_add.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/page_white_add.png*/ no-repeat center center;
+}
+.icon-folder{
+  background:url('icons/folder.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/folder.png*/ no-repeat center center;
+}
+.icon-text_smallcaps{
+  background:url('icons/text_smallcaps.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/text_smallcaps.png*/ no-repeat center center;
+}
+.icon-application_side_list{
+  background:url('icons/application_side_list.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/application_side_list.png*/ no-repeat center center;
+}
+.icon-application_view_columns{
+  background:url('icons/application_view_columns.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/application_view_columns.png*/ no-repeat center center;
+}
+.icon-chart_line{
+  background:url('icons/chart_line.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/chart_line.png*/ no-repeat center center;
+}
+.icon-database_key{
+  background:url('icons/database_key.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/database_key.png*/ no-repeat center center;
+}
+.icon-user_alert{
+  background:url('icons/user_alert.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/user_alert.png*/ no-repeat center center;
+}
+.icon-return{
+  background:url('icons/return.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/return.png*/ no-repeat center center;
+}
+.icon-large-chart{
+  background:url('icons/large-chart.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/large-chart.png*/ no-repeat center center;
+}
+.icon-large-datamaintain{
+  background:url('icons/large-datamaintain.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/large-datamaintain.png*/ no-repeat center center;
+}
+.icon-large-meeting{
+  background:url('icons/large-meeting.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/large-meeting.png*/ no-repeat center center;
+}
+.icon-large-search{
+  background:url('icons/large-search.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/large-search.png*/ no-repeat center center;
+}
+.icon-large-setting{
+  background:url('icons/large-setting.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/large-setting.png*/ no-repeat center center;
+}
+.icon-lightning{
+  background:url('icons/lightning.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/lightning.png*/ no-repeat center center;
+}
+.icon-book_open{
+  background:url('icons/book_open.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/book_open.png*/ no-repeat center center;
+}
+.icon-book_open_mark{
+  background:url('icons/book_open_mark.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/book_open_mark.png*/ no-repeat center center;
+}
+.icon-advancedsettings{
+  background:url('icons/advancedsettings.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/advancedsettings.png*/ no-repeat center center;
+}
+.icon-report_edit{
+  background:url('icons/report_edit.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/report_edit.png*/ no-repeat center center;
+}
+.icon-user_home{
+  background:url('icons/user_home.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/user_home.png*/ no-repeat center center;
+}
+.icon-thereof{
+  background:url('icons/thereof.ico')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/thereof.ico*/ no-repeat center center;
+}
+.icon-next{
+  background:url('icons/resultset_next.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/resultset_next.png*/ no-repeat center center;
+}
+.icon-before{
+  background:url('icons/resultset_before.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/resultset_before.png*/ no-repeat center center;
+}
+.icon-slcs{
+  background:url('icons/slcs.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/slcs.png*/ no-repeat center center;
+}
+.icon-yqwsl{
+  background:url('icons/yqwsl.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/yqwsl.png*/ no-repeat center center;
+}
+.icon-bjtx{
+  background:url('icons/bjtx.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/bjtx.png*/ no-repeat center center;
+}
+.icon-yqwbj{
+  background:url('icons/yqwbj.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/yqwbj.png*/ no-repeat center center;
+}
+.icon-cfj{
+  background:url('icons/cfj.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/cfj.png*/ no-repeat center center;
+}
+.icon-ja{
+  background:url('icons/ja.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/ja.png*/ no-repeat center center;
+}
+.icon-db{
+  background:url('icons/db.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/db.png*/ no-repeat center center;
+}
+.icon-jssl{
+  background:url('icons/jssl.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/jssl.png*/ no-repeat center center;
+}
+.icon-aqbj{
+  background:url('icons/aqbj.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/aqbj.png*/ no-repeat center center;
+}
+.icon-yqsl{
+  background:url('icons/yqsl.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/yqsl.png*/ no-repeat center center;
+}
+.icon-yqbj{
+  background:url('icons/yqbj.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/yqbj.png*/ no-repeat center center;
+}
+.icon-folder_page_white{
+  background:url('icons/folder_page_white.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/folder_page_white.png*/ no-repeat center center;
+}
+.icon-text_signature{
+  background:url('icons/text_signature.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/text_signature.png*/ no-repeat center center;
+}
+.icon-folder_magnify{
+  background:url('icons/folder_magnify.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/folder_magnify.png*/ no-repeat center center;
+}
+.icon-phone_go{
+  background:url('icons/phone_go.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/phone_go.png*/ no-repeat center center;
+}
+.icon-letter{
+  background:url('icons/letter.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/letter.png*/ no-repeat center center;
+}
+.icon-ywbl{
+  background:url('icons/ywbl.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/ywbl.png*/ no-repeat center center;
+}
+.icon-search-big{
+  background:url('icons/search-big.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/search-big.png*/ no-repeat center center;
+}
+.icon-setting{
+  background:url('icons/setting.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/setting.png*/ no-repeat center center;
+}
+.icon-basedata{
+  background:url('icons/basedata.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/basedata.png*/ no-repeat center center;
+}
+.icon-important{
+  background:url('icons/important.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/important.png*/ no-repeat center center;
+}
+.icon-review{
+  background:url('icons/review.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/review.png*/ no-repeat center center;
+}
+.icon-insert{
+  background:url('icons/insert.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/insert.png*/ no-repeat center center;
+}
+.icon-fcfhcs{
+	background:url('icons/fcfhcs.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/fcfhcs.png*/ no-repeat center center;
+}
+.icon-fcfhyq{
+	background:url('icons/fcfhyq.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/fcfhyq.png*/ no-repeat center center;
+}
+.icon-flag{
+	background:url('icons/flag.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/flag.png*/ no-repeat center center;
+}
+.icon-merge{
+	background:url('icons/merge.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/merge.png*/ no-repeat center center;
+}
+.icon-tingyong{
+	background:url('icons/tingyong.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/tingyong.png*/ no-repeat center center;
+}
+.icon-qiyong{
+	background:url('icons/qiyong.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/qiyong.png*/ no-repeat center center;
+}
+.icon-yzsbl{
+	background:url('icons/yzsbl.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/yzsbl.png*/ no-repeat center center;
+}
+.icon-xfbmyj{
+	background:url('icons/xfbmyj.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/xfbmyj.png*/ no-repeat center center;
+}
+.icon-zrdwyj{
+	background:url('icons/zrdwyj.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/zrdwyj.png*/ no-repeat center center;
+}
+.icon-maintenance{
+	background:url('icons/maintenance.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/maintenance.png*/ no-repeat center center;
+}
+.icon-lcsfqk{
+	background:url('icons/lcsfqk.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/lcsfqk.png*/ no-repeat center center;
+}
+.icon-goto{
+	background:url('icons/goto.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/goto.png*/ no-repeat center center;
+}
+.icon-senior{
+	background:url('icons/senior.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/senior.png*/ no-repeat center center;
+}
+.icon-recovery{
+	background:url('icons/recovery.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/recovery.png*/ no-repeat center center;
+}
+.icon-zhankai{
+	background:url('icons/zhankai.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/zhankai.png*/ no-repeat center center;
+}
+.icon-shousuo{
+	background:url('icons/shousuo.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/shousuo.png*/ no-repeat center center;
+}
+.icon-remark{
+	background:url('icons/remark.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/remark.png*/ no-repeat center center;
+}
+.icon-jiaoban{
+	background:url('icons/jiaoban.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/jiaoban.png*/ no-repeat center center;
+}
+.icon-exportExcel{
+	background:url('icons/exportExcel.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/exportExcel.png*/ no-repeat center center;
+}
+.icon-returnVisit{
+	background:url('icons/returnVisit.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/returnVisit.png*/ no-repeat center center;
+}
+.icon-wbj{
+	background:url('icons/wbj.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/wbj.png*/ no-repeat center center;
+}
+.icon-xsyd{
+	background:url('icons/xsyd.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/xsyd.png*/ no-repeat center center;
+}
+.icon-cover{
+	background:url('icons/cover.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/cover.png*/ no-repeat center center;
+}
+.icon-cover{
+	background:url('icons/zdaj.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/zdaj.png*/ no-repeat center center;
+}
+.icon-play{
+	background:url('icons/play.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/play.png*/ no-repeat center center;
+}
+.icon-stop{
+	background:url('icons/stop.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/stop.png*/ no-repeat center center;
+}
+.icon-imageToWord{
+	background:url('icons/imageToWord.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/imageToWord.png*/ no-repeat center center;
+}
+.icon-jh-user{
+	background: url('icons/man.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/man.png*/ no-repeat center;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    z-index: 1;
+}
+
+.icon-xfbmslyj{
+	background:url('icons/xfbmslyj.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/xfbmslyj.png*/ no-repeat center center;
+}
+.icon-report{
+	background:url('icons/report.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/report.png*/ no-repeat center center;
+}
+.icon-step_next{ 
+	background:url('icons/step_next.png')/*tpa=http://58.16.86.103:8086/dhsrdys/FormWork/easyui/themes/icons/step_next.png*/ no-repeat center center;
+}

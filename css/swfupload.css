@@ -1,0 +1,29 @@
+﻿.swfuploadwrap { margin-top: 5px; margin-left: 5px; height: auto; margin-bottom: 5px; }
+.swfuploadwrap li { display: inline-block;  width: 160px; margin-right: 12px; margin-top: 5px; overflow: hidden; vertical-align: top; position: relative; }
+.swfuploadwrap li div.swfuploadimg { height: 98px; overflow: hidden; border-radius: 3px; text-align: center; border: solid 1px #888; }
+.swfuploadwrap li div.swfuploadimg div { display: table-cell; height: 100px; width: 158px; vertical-align: middle; text-align: center; }
+.swfuploadwrap li img { cursor: pointer; vertical-align: middle; height: 100%; }
+.swfuploadwrap li h2 { position: absolute; top: 45px; left: 1px; right: 1px; border: solid 1px #20c1ff; height: 12px; overflow: hidden; background: rgba(255, 255, 255, 0.5); text-align: center; font-size: 12px; line-height: 12px; }
+.swfuploadwrap li p { margin: 3px 0px; height: 18px; overflow: hidden; word-break: keep-all; }
+.swfuploadwrap li h2 div { background: #20c1ff; font-size: 10px; color: Black; text-align: center; height: 12px; }
+.swfuploadwrap li label { vertical-align: middle; }
+.swfuploadwrap li input{margin-right: 2px;vertical-align: middle;}
+.swfuploadwrap li input.text { vertical-align: middle; height: 12px; line-height: 12px; font-size: 12px; width: 105px; }
+.swfuploadwrap li del{ position:absolute; right:0; top: 1px; background:white url("img/cls.gif") no-repeat center; width: 14px; height: 14px; border:red 1px solid; border-radius: 50%; overflow: hidden; cursor:pointer;}
+
+.swfuploadimgh120 li div.swfuploadimg { height: 118px; }
+.swfuploadimgh120 li h2 { top: 48px; }
+.swfuploadimgh140 li div.swfuploadimg { height: 138px; }
+.swfuploadimgh140 li h2 { top: 58px; }
+.swfuploadimgh150 li div.swfuploadimg { height: 148px; }
+.swfuploadimgh150 li h2 { top: 68px; }
+
+.swfuploadwrap.square li {width: 180px;  height: 180px; }
+.swfuploadwrap.square li div.swfuploadimg{ height: 176px;}
+.swfuploadwrap.square li div.swfuploadimg div{height: 176px; width: 178px;}
+.swfuploadwrap.square li h2 { top: 85px; }
+
+.swfuploadwrap.square.w120 li {width: 120px;  height: 120px; }
+.swfuploadwrap.square.w120 li div.swfuploadimg{ height: 116px;}
+.swfuploadwrap.square.w120 li div.swfuploadimg div{height: 116px; width: 118px;}
+.swfuploadwrap.square.w120 li h2 { top: 55px; }

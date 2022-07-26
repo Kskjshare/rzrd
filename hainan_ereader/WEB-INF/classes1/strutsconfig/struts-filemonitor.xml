@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="filemonitor" extends="eread-package" namespace="/filemonitor">
+		<action name="select" class="FileMonitorAction" method="select">
+			<result name="success">/module/filemonitor/mindex.jsp</result>
+		</action>
+		<action name="selectMeet" class="FileMonitorAction" method="selectMeet">
+			<result type="json">
+			    <param name="root">meetList</param>
+			</result>
+		</action>
+		<action name="allReceived" class="FileMonitorAction" method="allReceived">
+			<result name="success">/module/filemonitor/mindex.jsp</result>
+		</action>
+		<action name="allNotReceived" class="FileMonitorAction" method="allNotReceived">
+			<result name="success">/module/filemonitor/mindex.jsp</result>
+		</action>
+		<action name="notAllReceived" class="FileMonitorAction" method="notAllReceived">
+			<result name="success">/module/filemonitor/mindex.jsp</result>
+		</action>
+	</package>
+</struts>

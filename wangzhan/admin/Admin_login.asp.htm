@@ -1,0 +1,96 @@
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>花网互联企业网站管理系统</title>
+<META content=花网互联是平顶山资历最深的基础互联网服务商 name=description>
+<META content=平顶山域名注册，平顶山域名，平顶山空间租用,平顶山网站空间,虚拟主机租用,服务器托管,服务器租用,电子邮件租用 name=keywords>
+<style type="text/css">
+
+</STYLE>
+  <link rel="stylesheet" href="css/nav.css">
+<script language="JavaScript" type="text/javascript">
+CheckBrowerVersion();
+function CheckBrowerVersion()
+{
+	var MajorVer=navigator.appVersion.match(/MSIE (.)/)[1];
+	var MinorVer=navigator.appVersion.match(/MSIE .\.(.)/)[1];
+	var IE6OrMore=MajorVer>= 5.5||(MajorVer>=5.5&&MinorVer>=5.5);
+	if (!IE6OrMore)
+	{
+		alert('IE浏览器版本太低，系统将不能正常运行。点击确定将带你到下载地址！');
+		location.href="http://nj.onlinedown.net/soft/17441.htm"
+	}
+}
+function CheckForm()
+{
+	if(document.myform.name.value=="")
+	{
+		alert("请输入您的用户名！");
+		document.myform.name.focus();
+		return false;
+	}
+	if(document.myform.password.value == "")
+	{
+		alert("请输入您的密码！");
+		document.myform.password.focus();
+		return false;
+	}
+	if (document.myform.VerifyCode.value==""){
+       alert ("请输入您的验证码！");
+       document.myform.VerifyCode.focus();
+       return(false);
+    }
+}
+</script>
+</head>
+
+<body>
+<table width="380" height="419" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td background="Images/bg.jpg" tppabs="http://www.pdsrd.gov.cn/admin/Images/bg.jpg"><table width="100%" height="232" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="649">&nbsp;</td>
+        <td width="307" valign="top"><table width="288" height="112" border="0" align="center" cellpadding="0" cellspacing="0">
+          <form action="http://www.pdsrd.gov.cn/admin/CheckLogin"  method="post" name="myform" id="myform"  onsubmit="return CheckForm();">
+            <tr>
+              <td width="20%" height="16"><div align="center">用户名 </div></td>
+              <td width="80%" height="16"><input name="name" type="text" class="input_1" id="name4" style="width:160px"></td>
+            </tr>
+			
+			 <tr>
+              <td height="9"></td>
+              <td></td>
+            </tr>
+			
+            <tr>
+              <td height="15"><div align="center">密　码</div></td>
+              <td height="15"><input name="password" type="password" class="input_1" id="password4" style="width:160px;FONT-SIZE:12px;" /></td>
+            </tr>
+			 <tr>
+              <td height="9"></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td height="19"><div align="center">验证码</div></td>
+              <td height="19"><input name="VerifyCode" type="text" class="input_1" id="VerifyCode" size="12" maxlength="10"/>                
+                <img src="../Inc/GetCode-.bmp" tppabs="http://www.pdsrd.gov.cn/Inc/GetCode?" onClick="this.src+=Math.random()" alt="图片看不清？点击重新得到验证码" style="cursor:hand;" /></td>
+            </tr>
+			
+			 <tr>
+              <td height="58"></td>
+              <td></td>
+            </tr>
+			
+            <tr class="back">
+              <td height="21" class="hback">&nbsp;</td>
+              <td height="21" class="hback"><input type="image" name="Submit" src="images/login.gif" tppabs="http://www.pdsrd.gov.cn/admin/images/login.gif"></td>
+            </tr>
+          </form>   
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+</body>
+</html>

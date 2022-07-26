@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloudrich.ereader.meeting.dao.MeetProcessLogDao" >
+  <resultMap id="BaseResultMap" type="com.cloudrich.ereader.meeting.entity.MeetProcessLogEntity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="meetid" property="meetid" jdbcType="INTEGER" />
+    <result column="submodulecode" property="submodulecode" jdbcType="VARCHAR" />
+    <result column="curstate" property="curstate" jdbcType="CHAR" />
+     <result column="tjaction" property="tjaction" jdbcType="CHAR" />
+    <result column="tjuserid" property="tjuserid" jdbcType="INTEGER" />
+    <result column="tjdatetime" property="tjdatetime" jdbcType="TIMESTAMP" />
+    <result column="shenheren" property="shenheren" jdbcType="INTEGER" />
+    <result column="shenhetime" property="shenhetime" jdbcType="TIMESTAMP" />
+    <result column="comment" property="comment" jdbcType="VARCHAR" />
+    <result column="globalid" property="globalid" jdbcType="INTEGER" />
+    <result column="tjuser" property="tjuser" jdbcType="VARCHAR" />
+    <result column="shenheuser" property="shenheuser" jdbcType="VARCHAR" />
+     <result column="version" property="version" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from er_meet_process_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="com.cloudrich.ereader.meeting.entity.MeetProcessLogEntity" >
+    insert into er_meet_process_log ( meetid, 
+      submodulecode, curstate, tjuserid, tjaction,
+       comment,globalid,version)
+    values ( #{meetid,jdbcType=INTEGER}, 
+      #{submodulecode,jdbcType=VARCHAR}, #{curstate,jdbcType=CHAR}, #{tjuserid,jdbcType=INTEGER}, 
+     #{tjaction,jdbcType=CHAR}, #{comment,jdbcType=VARCHAR}, #{globalid,jdbcType=INTEGER},#{version,jdbcType=INTEGER})
+  </insert>
+  
+  <update id="updateByPrimaryKey" parameterType="com.cloudrich.ereader.meeting.entity.MeetProcessLogEntity" >
+    update er_meet_process_log
+    set
+      meetid = #{meetid,jdbcType=INTEGER},
+      submodulecode = #{submodulecode,jdbcType=CHAR},
+      curstate = #{curstate,jdbcType=CHAR},
+      tjaction = #{tjaction,jdbcType=CHAR},
+      tjuserid = #{tjuserid,jdbcType=INTEGER},
+      comment = #{comment,jdbcType=VARCHAR},
+      globalid= #{globalid,jdbcType=INTEGER},
+      version= #{version,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id,  meetid, submodulecode, curstate, tjuserid, tjdatetime, comment,tjaction,globalid,version
+    from er_meet_process_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id,  meetid, submodulecode, curstate, tjuserid, tjdatetime, comment,tjaction,globalid,version
+    from er_meet_process_log
+  </select>
+  
+  <!-- 获取审核记录 -->
+  <select id="selectProcessLogByMeetid" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select a.meetid,a.submodulecode,a.tjuserid,a.tjdatetime ,b.version,c.username tjuser,b.curstate,b.tjuserid shenheren,b.tjdatetime shenhetime,c.username shenheuser 
+    from er_meet_process_log a ,er_meet_process_log  b,er_sys_user_main c where a.tjaction='1' and b.curstate='0' 
+    and a.meetid=b.meetid and a.submodulecode=b.submodulecode 
+    and a.meetid= #{meetid,jdbcType=INTEGER}
+    and a.globalid=b.globalid
+    and (a.tjuserid=c.id or b.tjuserid=c.id)
+    
+  </select>
+  
+  <!-- 选择最大的globalid -->
+  <select id="selectMaxProcessLogGlobalid" resultType="java.lang.Integer">
+      select max(globalid) from er_meet_process_log
+  </select>
+</mapper>

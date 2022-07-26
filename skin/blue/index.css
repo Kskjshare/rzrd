@@ -1,0 +1,45 @@
+html, body { padding: 0; margin: 0; width: 100%; height: 100%; overflow: hidden; }
+body { font: 12px Arial, "宋体", Verdana, sans-serif; background: #fff; }
+
+#header { position: absolute; background: #3e78c1;  z-index: 1; width: 100%; }
+#header p { height: 20px; }
+#header>div{position:absolute; right:10px; top:25px; color:white;}
+#header>div img{vertical-align:middle;}
+#header>div a{ color:white;}
+
+#nav { overflow: hidden; height: 69px; border-bottom: solid 1px #1764b2;}
+#nav li { display: inline-block; background: #6198db; color: white; height: 40px; margin:0 10px; margin-top: 14px; margin-right: 0; font-size: 13px; font-weight: bold; text-decoration: none; cursor: pointer; padding: 0 20px; line-height: 40px; border-radius: 5px; border: solid 1px #1764b2; }
+#nav li.actived { color: #fff; text-decoration: none; text-align: center; background: #134c93; border-color: #173c68; }
+
+#content { position: absolute; top: 70px; bottom: 30px; left: 0px; right: 0px; }
+#content table { width: 100%; }
+#left { position: absolute; top: 0; left: 0; bottom: 0; width: 160px; overflow: hidden; border-right: solid 1px #ccc; }
+
+#right { position: absolute; left: 160px; top: 0; right: 0; bottom: 0; }
+#right > ul { position: absolute;top: 3px; left: 10px; right: 0; height: 45px; line-height: 24px;  }
+#right > ul li { display: inline-block; background-color: rgb(52, 152, 219); padding: 0 8px; border: 1px solid rgb(26, 188, 156); color: #ccc; margin: 3px 5px; border-radius: 5px; cursor: pointer;}
+#right > ul li.actived { background: rgb(52, 152, 219); color: #fff; }
+#right > ul b { float: right; width:15px; height: 15px; text-align: center; line-height: 15px; margin-top: 4px; margin-left: 3px; border-radius:50%; border: solid 1px gray; }
+#right > ul b:hover { border-color: #fff; }
+#right > div { position: absolute; left: 0; right: 0; top: 40px; bottom: 0; }
+#right iframe { width: 100%; height: 100%; border: none; }
+
+#left { position: absolute; left: 0; right: 0; }
+#leftMenus { margin: 0px auto; margin-bottom: 20px; }
+#leftMenus li { background: white; cursor: pointer; }
+#leftMenus li, #leftMenus p { border-bottom: 1px solid #d8ecff; border-left: 1px solid #ffffff; border-right: 1px solid #ffffff; padding: 5px 0px; padding-left: 26px; }
+#leftMenus p { background: #fff; color: #3d6bac; text-decoration: none; }
+#leftMenus p { border-bottom: solid 1px #ccc; }
+#leftMenus p:hover { color: #6198db; font-weight: bold; }
+#leftMenus p.selected { color: red; }
+
+#leftMenus dl { margin-bottom: 5px; padding-bottom: 5px; }
+#leftMenus dt { height: 30px; line-height: 30px; color: #333; font-weight: bold; padding-left: 8px; background-color: #f3f2f8; cursor: pointer; }
+#leftMenus li.reset { padding: 0; background: none; line-height: normal; border: none; }
+
+#controlbtn { cursor: pointer; padding-right: 10px; }
+
+#footer { background: #3e78c1; position: absolute; bottom: 0px; height: 30px; line-height: 30px; width: 100%; text-align: center; color: white; }
+#login { color: blue; text-align: right; }
+#login img { vertical-align: middle; }
+#login a { color: blue; }

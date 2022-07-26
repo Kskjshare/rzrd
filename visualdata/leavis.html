@@ -1,0 +1,342 @@
+﻿<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>index</title>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <link rel="stylesheet" href="css/comon.css">
+        <style>
+          .mainbox>ul>li:first-child>.bellone{
+              width: 55%;
+          }
+          .mainbox>ul>li{
+            margin-top: -37px;
+            /* color: transparent; */
+          }
+          .footerBox{
+            position: absolute;
+            left: 0%;
+            /* border: 1px solid; */
+            width: 100%;
+            padding: .1rem .18rem;
+            margin-top: -10px;
+            display: flex;
+            justify-content: space-between;
+          }
+          .bellone{
+            width: 24%;
+            height: 0;
+          }
+          
+          .bellone1{
+            width: 34%;
+            height: 0;
+          }
+        .boxall{
+          color: white;
+          padding: .1rem ;
+        }
+        #map_1{
+          transform: translateY(-80px);
+        }
+        #main>div:first-child,#main2>div:first-child,#main3>div:first-child,#main4>div:first-child{
+          width: 100%!important;
+        }
+        </style>
+    </head>
+    <script>
+        $(window).load(function () {
+            $(".loading").fadeOut()
+        })
+
+        /****/
+        $(document).ready(function () {
+            var whei = $(window).width()
+            $("html").css({
+                fontSize: whei / 20
+            })
+            $(window).resize(function () {
+                var whei = $(window).width()
+                $("html").css({
+                    fontSize: whei / 20
+                })
+            });
+        });
+    </script>
+    <script type="text/javascript" src="js/echarts.min.js"></script>
+    <!-- <script language="JavaScript" src="js/js.js"></script> -->
+    <body style="height:100vh;background-position: 0% 100%;">
+        <div class="canvas" style="opacity: .04">
+            <iframe frameborder="0" src="js/index.html" style="width: 100%; height: 180%"></iframe>
+        </div>
+        <div class="loading">
+            <div class="loadbox">
+                <img src="picture/loading.gif">
+                页面加载中...
+            </div>
+        </div>
+        <div class="head">
+          
+        </div>
+        <div class="mainbox">
+            <ul class="clearfix">
+                <li>
+                    <div class="boxall">
+                        <div class="allnav" id="businessAccepted" style="height: 3.6rem;"></div>
+                        <div class="boxfoot"></div>
+                    </div>
+                    <div class="boxall">                      
+                        <div class="allnav" id="main" style="height: 3.6rem;"></div>
+                        <div class="boxfoot"></div>
+                    </div>
+                    
+              
+                     <div class="boxall">                      
+                        <div class="allnav" id="main_4" style="height: 3.6rem;"></div>
+                        <div class="boxfoot"></div>
+                    </div>
+                </li>
+               
+                <li>
+                    <div class="boxall">
+                        <div class="allnav" id="businessHandle"  style="height: 3.6rem;"></div>
+                        <div class="boxfoot"></div>
+                    </div>
+                    <div class="boxall">
+                        <div class="allnav" id="main2"  style="height: 3.6rem;"></div>
+                        <div class="boxfoot"></div>
+                    </div>
+                    
+                     <div class="boxall">
+                        <div class="allnav" id="main_5"  style="height: 3.6rem;"></div>
+                        <div class="boxfoot"></div>
+                    </div>
+                </li>
+            </ul>
+              <div class="footerBox">
+<!--                        <div class="boxall bellone1"   style="height: 3.8rem">
+                          <div style="height:100%; width: 100%;"id="main_1"></div>
+                          <div class="boxfoot"></div>
+                        </div>
+                        <div class="boxall bellone1"  style="height:  3.8rem">
+                          <div style="height:100%; width: 100%;" id="main_2" >
+                          </div>
+                          
+                          <div class="boxfoot"></div>
+                      </div>
+                      <div class="boxall bellone1" style="height: 3.8rem">
+                        <div style="height:100%; width: 100%;"  id="main_3">
+                          <div class="boxfoot"></div>
+                        
+                        </div>
+                      </div>-->
+<!--                      <div class="boxall1 bellone" style="height: 0.8rem">
+                        <div style="height:100%; width: 100%;"  id="footerFlour">
+                          <div class="boxfoot"></div>
+                        </div>
+                      </div>-->
+                    </div>
+            
+            
+ 
+            
+            
+        </div>
+        <div class="back"></div>
+        <!--<script type="text/javascript" src="js/china.js"></script>-->
+        <script type="text/javascript" src="/js/rsseasy.min.js"></script>
+        <script src="/js/rssapi.min.js" type="text/javascript"></script>
+        <script src="/js/md5.min.js" type="text/javascript"></script>
+        <script src="./js/echart_leavis.js"></script>
+
+        <script>
+
+          
+
+          // 初始值
+            var businessAccepted =[ 
+              {name:"来信登记",value: 0 },
+              {name:"来访登记",value: 0 },
+              {name:"网上来信",value: 0 },
+              {name:"上级转交",value: 0 },            
+            ],
+      
+            businessHandle =[ 
+              {name:"待办",value: 0 },
+             
+              {name:"正办",value: 0 },
+              {name:"待审核",value: 0 },
+              {name:"已办",value: 0 },
+            ],
+            lvZhi=[  
+            {name:"代表视察",value:0},
+            {name:"专题调研",value:0},
+            {name:"代表小组",value:0},
+            {name:"执法检查",value:0},
+            {name:"出列席会议",value:0},
+            {name:"代表培训",value:0},
+            ];
+            
+            var datasss_1 =[ 
+              {name:"临汝镇",value:13},
+              {name:"小屯镇",value:5},
+              {name:"米庙镇",value:23},
+              {name:"庙下镇",value:50},            
+            ];
+            
+             var datasss_2 =[ 
+              {name:"已公开",value:13},
+              {name:"未公开",value:5},
+                    
+            ];
+
+            RssApi.Table.List("petition").keyvalue({ "pagesize": 100000}).condition({}).getJson(function (json) {
+                  json.forEach(item => { // 便利数组，当datasss.value 不为null时，进行value ++
+                    if ( item.type == "1" ) {
+                        businessAccepted[ 0 ].value ++ ;
+                    }
+                    else if ( item.type == "2" ) {
+                        businessAccepted[ 1 ].value ++ ;
+                    }
+                    else if ( item.type == "3" ) {
+                        businessAccepted[ 2 ].value ++ ;
+                    }
+                    if ( item.type == "4" ) {
+                        businessAccepted[ 3 ].value ++ ;
+                    }
+                    
+                    if ( item.handle == "1") {
+                        businessHandle[ 0 ].value ++ ;
+                    }
+                    else if ( item.handle == "2" ) {
+                        businessHandle[ 1 ].value ++ ;
+                    }
+                    else if ( item.handle == "3" ) {
+                        businessHandle[ 2 ].value ++ ;
+                    }
+                    if ( item.handle == "4" ) {
+                        businessHandle[ 3 ].value ++ ;
+                    }
+                    else {
+                         businessHandle[ 0 ].value ++ ;
+                    }
+                    
+                    
+                  });              
+                  // console.log(datasss,"cccccccc");
+                  echart_businessAccepted( businessAccepted ) // 调用函数 穿入满足条件后的数组
+                  businessHandleChart( businessHandle ) 
+
+              });
+            //-------代表团建议表-------
+            var ddtArr=[]; 
+            var value=[],value2=[]; // 定义echart1(value,value2) 的参数
+            RssApi.View.List("userrole").keyvalue({ "pagesize": 10000}).condition({state:4}).getJson(function(json) {
+                   json.forEach((item,index) => { 
+                      if(item.allname){
+                          ddtArr.push({name:item.allname,myid:item.myid,num:0})  //定义新数组，把数据传入
+                      }
+                  });
+                  RssApi.View.List("suggest_leader").keyvalue({ "pagesize": 10000}).condition({}).getJson(function(json2) {
+                      ddtArr.forEach((elem ,idx)=> {//遍历两个表得到的数据，进行代表团的id 对比计数
+                            json2.forEach( ite=>{   elem.myid==ite.dbtid?ddtArr[idx].num++ : console.log();  })
+                      });
+                      // console.log(ddtArr,json2);
+                      ddtArr.forEach(val => { //处理函数传参的数据
+                         if(val.num){
+                          value.push(val.name); value2.push(val.num);
+                         }
+                      });
+                      echart1(value,value2) //value (X轴)代表团名称 value2 代表团建议的数量 number Y轴显示最大数量
+                  });
+            });
+              //------男女分析表------
+            RssApi.View.List("user_delegation").keyvalue({ "pagesize": 100000}).condition({}).getJson(function (json) {
+//                  var male =0,female=0,maleFor,femaleFor;
+//                  json.forEach(item => { // 便利数组，当datasss.value 不为null时，进行value ++
+//                      if(item.sex=="1"){
+//                        female++;
+//                        maleFor=((female/json.length)*100).toFixed(2) //百分比
+//                      }else if(item.sex=="2"){
+//                        male++;
+//                        femaleFor=((male/json.length)*100).toFixed(2)
+//                      }
+//                  });
+//                  footerTree(male,female,maleFor,femaleFor)
+              });
+          
+             //-------建议办理      {type:1 建议,deal:0 是否交办,draft:2 已提交,examination:2 以审查,handlestate:3//已确定,
+            // isxzsc:0 是否乡镇审查,level:1 ，lwstate：1 建议}
+            var suggestArr=[];
+            RssApi.View.List("company_sug").select("").keyvalue({ "pagesize": 100000}).condition({}).getJson(function (json) {
+                 let arr=json.filter(item=>{ //  待处理 获取总数
+                   return (item.deal==0 &&  item.draft==2 &&  item.examination==2 
+                   &&  item.handlestate==2 &&  item.isxzsc==0 && item.lwstate==1);
+                })
+                let arr2=json.filter(item=>{ // 处理中 获取总数
+                  return (item.deal==0 &&  item.draft==2 &&  item.examination==2 
+                   &&  item.handlestate==3 &&  item.lwstate==1 );
+                });
+                let arr3=json.filter(item=>{ // 已处理 获取总数
+                  return (item.deal==1 &&  item.draft==2 &&  item.examination==2 
+                   &&  item.handlestate==3 &&  item.lwstate==1 );
+                });
+                RssApi.View.List("userrole").keyvalue({ "pagesize": 100000}).condition({state:3}).getJson(function (json2) {
+//                        json2.forEach((item,index) => { 
+//                            suggestArr.push({product:item.account,myid:item.myid,dcl:0,clz:0,ywc:0})  //定义新数组，把数据传入 ，dcl:待处理，clz:处理中，ywc:已完成
+//                        });
+//                        suggestArr.forEach((ele,idx)=>{ // 通过myid和companyid对suggestArr遍历 数值叠加
+//                          arr.forEach(val=>{
+//                              if(ele.myid ==val.companyid){ suggestArr[idx].dcl++; } 
+//                            })
+//                        })
+//                        suggestArr.forEach((ele,idx)=>{
+//                          arr2.forEach(val=>{
+//                              if(ele.myid ==val.companyid){ suggestArr[idx].clz++; }
+//                            })
+//                        })
+//                        suggestArr.forEach((ele,idx)=>{
+//                          arr3.forEach(val=>{
+//                              if(ele.myid ==val.companyid){ suggestArr[idx].ywc++; }
+//                            })
+//                        })
+//                        suggestArr= suggestArr.filter((val,idx)=>{
+//                              return (val.dcl !=0 || val.clz !=0 || val.ywc!=0);
+//                            })
+//                        let obj = []; //定义新数组，传入echart图表所需要的数据格式 和字段
+//                        suggestArr.forEach((val,idx)=>{ 
+//                                // delete val["myid"]
+//                                console.log(val);
+//                                obj.push({product:val.product,"待处理":val.dcl,"处理中":val.clz,"已完成":val.ywc})
+//                        })
+//                        footerTwo(obj)
+                 });
+           
+            });
+            // ------履职活动表
+            RssApi.View.List("activitiesmy").keyvalue({ "pagesize": 100000}).condition({}).getJson(function (json) {
+                
+                json.forEach( val => {  //{"1": "代表视察活动", "2": "专题调研活动", "3": "代表小组活动", "4": "执法检查活动", "5": "出列席会议", "6": "代表培训", "7": "述职管理"}
+                  //  console.log(val.classify-1,"cccc");
+                  if(val.classify<7){
+                    lvZhi[val.classify-1].value++; //  当初始化数据的顺序和 代表的数据顺序相同时， 上面的后台数值 -1 当下标使用
+                  }
+                });
+                let name = lvZhi.map(item=>{ return item.name }) //返回值有name属性的数组
+                let value = lvZhi.map(item=>{ return item.value }) //返回值有value属性的数组
+                footerFlour(name,value)
+                echart2()
+//                footerOne()
+//                echart5()
+                echart_main_1()
+                echart_main_2(datasss_1)
+                echart_main_3()
+                echart_main_4(datasss_1)
+                echart_main_5(datasss_2)
+                // footerFlour(name,value,5) // name (X轴) value 活动数量 number Y轴显示最大数量
+            });
+       
+
+       </script>
+    </body>
+</html>

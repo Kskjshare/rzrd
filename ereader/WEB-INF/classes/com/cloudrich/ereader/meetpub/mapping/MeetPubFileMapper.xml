@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloudrich.ereader.meetpub.dao.MeetPubFileDao">
+	<resultMap id="BaseResultMap"
+		type="com.cloudrich.ereader.meetpub.entity.MeetPubFileEntity">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="fileid" property="fileid" jdbcType="INTEGER" />
+		<result column="meetid" property="meetid" jdbcType="INTEGER" />
+		<result column="sort" property="sort" jdbcType="INTEGER" />
+		<result column="title" property="title" jdbcType="VARCHAR" />
+		<result column="filename" property="filename" jdbcType="VARCHAR" />
+		<result column="filepath" property="filepath" jdbcType="VARCHAR" />
+		<result column="uploadtime" property="uploadtime" jdbcType="TIMESTAMP" />
+		<result column="filetype" property="filetype" jdbcType="CHAR" />
+		<result column="fileown" property="fileown" jdbcType="CHAR" />
+		<result column="isdel" property="isdel" jdbcType="INTEGER" />
+		<result column="mtype" property="mtype" jdbcType="CHAR" />
+		<result column="version" property="version" jdbcType="INTEGER" />
+		<result column="pubtime" property="pubtime" jdbcType="TIMESTAMP" />
+		<result column="fileguid" property="fileguid" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<resultMap id="BaseFileResultMap"
+		type="com.cloudrich.ereader.meeting.entity.MeetFileMainEntity">
+		<id column="fileid" property="fileid" jdbcType="INTEGER" />
+		<result column="title" property="title" jdbcType="VARCHAR" />
+		<result column="filename" property="filename" jdbcType="VARCHAR" />
+		<result column="filepath" property="filepath" jdbcType="VARCHAR" />
+		<result column="uploadtime" property="uploadtime" jdbcType="TIMESTAMP" />
+		<result column="filetype" property="filetype" jdbcType="CHAR" />
+		<result column="fileown" property="fileown" jdbcType="CHAR" />
+		<result column="meetid" property="meetid" jdbcType="INTEGER" />
+		<result column="sort" property="sort" jdbcType="INTEGER" />
+		<result column="isdel" property="isdel" jdbcType="INTEGER" />
+		<result column="mtype" property="mtype" jdbcType="CHAR" />
+		<result column="fileguid" property="fileguid" jdbcType="VARCHAR" />
+		<result column="yichenid" property="yichenid" jdbcType="INTEGER"></result>
+	</resultMap>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		er_meet_pub_file
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert"
+		parameterType="com.cloudrich.ereader.meetpub.entity.MeetPubFileEntity">
+		insert into er_meet_pub_file (id, fileid, meetid,
+		sort,
+		title, filename,
+		filepath, uploadtime, filetype,
+		fileown,isdel,fileguid)
+		values (#{id,jdbcType=INTEGER},
+		#{fileid,jdbcType=INTEGER},
+		#{meetid,jdbcType=INTEGER},
+		#{sort,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR},
+		#{filename,jdbcType=VARCHAR},
+		#{filepath,jdbcType=VARCHAR},
+		#{uploadtime,jdbcType=TIMESTAMP},
+		#{filetype,jdbcType=CHAR},
+		#{fileown,jdbcType=CHAR},#{isdel,jdbcType=INTEGER},#{fileguid,jdbcType=VARCHAR})
+	</insert>
+	<update id="updateByPrimaryKey"
+		parameterType="com.cloudrich.ereader.meetpub.entity.MeetPubFileEntity">
+		update er_meet_pub_file
+		set fileid =
+		#{fileid,jdbcType=INTEGER},
+		meetid = #{meetid,jdbcType=INTEGER},
+		sort =
+		#{sort,jdbcType=INTEGER},
+		title = #{title,jdbcType=VARCHAR},
+		filename =
+		#{filename,jdbcType=VARCHAR},
+		filepath = #{filepath,jdbcType=VARCHAR},
+		uploadtime = #{uploadtime,jdbcType=TIMESTAMP},
+		filetype =
+		#{filetype,jdbcType=CHAR},
+		fileown = #{fileown,jdbcType=CHAR},
+		isdel =
+		#{isdel,jdbcType=INTEGER},
+		fileguid= #{fileguid,jdbcType=VARCHAR}
+		where
+		id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select id, fileid, meetid, sort, title, filename,
+		filepath, uploadtime,
+		filetype,
+		fileown,fileguid
+		from er_meet_pub_file
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap">
+		select *
+		from er_meet_pub_file
+		where isdel=0
+	</select>
+
+	<!-- 获取最新的版本号 -->
+	<select id="selectMeetMaxVersion" resultType="java.lang.Integer"
+		parameterType="java.lang.Integer">
+		select ifnull(max(version),0) from er_meet_pub_file
+		where meetid=#{meetid,jdbcType=INTEGER}
+	</select>
+
+	<!-- 对文件标题进行搜索 -->
+	<select id="searchPubFileByKeyword" resultMap="BaseFileResultMap"
+		parameterType="java.util.Map">
+		select * from er_meet_pub_file
+		where title like
+		CONCAT('%',#{keyword,jdbcType=VARCHAR},'%' )
+		<if test="filetype != null">
+			and filetype=#{filetype,jdbcType=CHAR}
+		</if>
+		and fileid in
+		(
+		select fileid from er_meet_pub_file_scope where scopeid
+		in
+		(select scopeid from er_sys_scope_user
+		where
+		userid=#{userid,jdbcType=INTEGER}
+		)
+		)
+
+	</select>
+
+	<!-- 根据会议id和文件归属获取所有文件 -->
+	<select id="selectAllFileByMeetidAndFileOwn" resultMap="BaseFileResultMap"
+		parameterType="java.util.Map">
+		select fileid, title, filename, filepath, uploadtime, filetype,
+		fileown,meetid,sort,mtype,isdel,fileguid
+		from er_meet_pub_file
+		where
+		meetid=#{meetid,jdbcType=INTEGER}
+		<if test="fileown != null">
+			and fileown=#{fileown,jdbcType=CHAR}
+		</if>
+		<if test="filetype != null">
+			and filetype=#{filetype,jdbcType=CHAR}
+		</if>
+		<if test="meeid != null">
+			and meetid=#{meetid,jdbcType=INTEGER}
+		</if>
+		and isdel=0
+		order by sort
+	</select>
+
+
+
+	<!-- 根据会议id和文件归属和version版本号获取所有文件 -->
+	<select id="selectAllFileByMeetidAndFileOwnAndVersion"
+		resultMap="BaseFileResultMap" parameterType="java.util.Map">
+		select fileid, title, filename, filepath, uploadtime, filetype,
+		fileown,meetid,sort,mtype,isdel,version,fileguid
+		from er_meet_pub_file
+		where meetid=#{meetid,jdbcType=INTEGER}
+		<if test="fileown != null">
+			and fileown=#{fileown,jdbcType=CHAR}
+		</if>
+		<if test="filetype != null">
+			and filetype=#{filetype,jdbcType=CHAR}
+		</if>
+		and isdel=0
+		order by sort
+	</select>
+
+	<!-- 根据会推送范围 -->
+	<select id="selectAllFileByMeetidAndFileOwnAndVersionAndUserid"
+		resultMap="BaseFileResultMap" parameterType="java.util.Map">
+		select fileid, title, filename, filepath, uploadtime, filetype,
+		fileown,meetid,sort,mtype,isdel,version,fileguid
+		from er_meet_pub_file
+		where meetid=#{meetid,jdbcType=INTEGER}
+		<if test="fileown != null">
+			and fileown=#{fileown,jdbcType=CHAR}
+		</if>
+		<if test="filetype != null"> and filetype=#{filetype,jdbcType=CHAR}
+		</if>
+		and isdel=0
+		and fileid IN (SELECT fileid FROM er_meet_file_user WHERE userid=#{userid,jdbcType=INTEGER})
+		<!-- and fileid in ( select fileid from er_meet_pub_file_scope where scopeid 
+			in (select scopeid from er_sys_scope_user where userid=#{userid,jdbcType=INTEGER} 
+			) ) -->
+		order by sort
+	</select>
+	<!-- 获取日程文件路径 -->
+	<select id="selectRcFileByMeetid" resultMap="BaseFileResultMap"
+		parameterType="java.util.Map">
+		select distinct
+		mfm.fileid,mfm.filename,mfm.filepath,mfm.uploadtime,mfm.filetype,mfm.fileguid,mpry.yitiid as yichenid
+		from er_meet_file_main mfm, er_meet_yichen_file myf,er_meet_pub_richen_yiti mpry,er_meet_richen_main mrm
+		where mrm.richenid=mpry.richenid and mpry.bindyichenid=myf.yichenid
+		and mfm.fileid=myf.fileid and mfm.meetid=mrm.meetid and mfm.meetid=#{meetid,jdbcType=INTEGER}
+		and mfm.isdel=0 AND mpry.isdel=0
+		order by mfm.fileid
+	</select>
+	<!-- 获得会议文件路径以及父节点 -->
+	<select id="selectAllFileByMeetid" resultMap="BaseFileResultMap"
+		parameterType="java.util.Map">
+		select mpf.fileid,
+		title,filename,filepath,uploadtime,filetype,fileown,meetid,mpf.sort,mtype,mpf.isdel,mpf.version,fileguid,yichenid
+		from er_meet_pub_file mpf right join er_meet_pub_yichen_file mpyf on
+		mpf.fileid=mpyf.fileid
+		where mpf.meetid=#{meetid,jdbcType=INTEGER} and
+		mpf.isdel=0
+		and mpf.isdel=0
+		order by mpf.sort
+	</select>
+	<!-- 根据会议id和文件归属获取所有文件 -->
+	<select id="selectCYFileCountByMeetidAndVersionAndUserid"
+		resultType="java.lang.Integer" parameterType="java.util.Map">
+		select count(*) from
+		er_meet_pub_file
+		where meetid=#{meetid,jdbcType=INTEGER}
+		and
+		filetype='3'
+		and isdel=0
+		and fileid in
+		(
+		select fileid from
+		er_meet_pub_file_scope where scopeid in
+		(select scopeid from
+		er_sys_scope_user
+		where userid=#{userid,jdbcType=INTEGER}
+		)
+		)
+	</select>
+
+	<!-- 根据会议id和文件归属获取所有文件 -->
+	<select id="selectPubFileCountByMeetidAndVersionAndUserid"
+		resultType="java.lang.Integer" parameterType="java.util.Map">
+		select count(fileid) from
+		er_meet_pub_file
+		where meetid=#{meetid,jdbcType=INTEGER}
+		and isdel=0
+		and
+		fileown=#{fileown,jdbcType=CHAR}
+		and filetype!='3'
+		and fileid in
+		(
+		select
+		fileid from er_meet_pub_file_scope where scopeid in
+		(select scopeid
+		from er_sys_scope_user
+		where userid=#{userid,jdbcType=INTEGER}
+		)
+		)
+	</select>
+
+	<!-- 删除发布的文件 -->
+	<delete id="deletePubFileByMeetid" parameterType="java.util.Map">
+		delete from
+		er_meet_pub_file
+		where meetid = #{meetid,jdbcType=INTEGER}
+		and fileown=
+		#{fileown,jdbcType=CHAR}
+	</delete>
+
+	<!--根据会议id获取会议文件程最后的发布时间 -->
+	<select id="selectFilePubtimeByMeetid" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		select pubtime
+		from er_meet_pub_file
+		where meetid
+		=#{meetid,jdbcType=INTEGER}
+		and fileown= #{fileown,jdbcType=CHAR}
+		and
+		isdel=0
+		limit 0,1
+	</select>
+
+
+</mapper>

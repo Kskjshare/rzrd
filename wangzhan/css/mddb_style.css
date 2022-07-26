@@ -1,0 +1,128 @@
+*{
+	margin:0;
+	padding:0;
+}
+a{
+	text-decoration:none;
+	color:inherit;
+}
+.con{
+    max-width: 1126px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.pos{
+    font-size: 18px;
+    color: #000000;
+    border-left:solid 4px #38a8ff;
+    padding-left: 15px;
+    margin: 40px 0;
+}
+
+.pos a {
+    font-size: 18px;
+    color: #000000;
+}
+
+.posA {
+    font: 18px 微软雅黑;
+    color: #000000;
+}
+
+.mdLeft{
+    width:21.49%;
+    float: left;
+    box-sizing: border-box;
+	padding-bottom: 20px;
+}
+
+.mdlm{
+    width: 100%;
+    height:67px;
+    font-size: 20px;
+    color: #ffffff;
+    text-align: center;
+    line-height: 67px;
+    font-weight: bold;
+    background: url("../images/bg_mddb.jpg") no-repeat #1e77ce;
+}
+
+.mdLeft .itm{
+    width: 90%;
+    height: 67px;
+    line-height: 67px;
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.mdLeft .itm2 {
+    width: 90%;
+    height: 67px;
+    line-height: 67px;
+    margin: 0 auto;
+    border-bottom: dashed 1px #000;
+    text-align: right;
+}
+
+.mdRight{
+    width: 75%;
+    float: right;
+    /*border: solid 1px #b9d1de;*/
+    border: solid 1px #ffffff;/*去掉边框,变为白色*/
+    box-sizing: border-box;
+    padding:20px 1%;
+    overflow: hidden;
+}
+
+.mdRight .itm{
+/*    width: 15%;*/
+    height: 210px;
+    
+    width: 138px;
+    /*height: 174px;*/
+    overflow: hidden;
+    float: left;
+
+    margin:20px 2.5%;
+    text-align: center;
+    text-align: -webkit-center;
+    margin-top:-10px; /*把整体位置往上移动*/
+    margin-left:-3px; /*把整体位置往左移动*/
+    margin-right: 29px;
+}
+.cwwyh_box{width: 100%;}
+.cwwyh_box .itm{
+	width: 9%;
+}
+.mdRight .itm img{
+    width: 86%; 
+    height: 140px;
+}
+
+.mdRight .itm p{
+    width: 100%;
+    height: 40px;
+    line-height:40px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.daibiaoStyle {
+    font: 12px 微软雅黑;
+    color: #000000;
+}
+
+.mdRight .itm span{
+    width: 100%;
+    height: 20px;
+    line-height:20px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.jobStyle {
+    font: 10px 微软雅黑;
+    color: #000000;
+}

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloudrich.ereader.ziliaoku.dao.ZiliaokuTypeDao" >
+  <resultMap id="BaseResultMap" type="com.cloudrich.ereader.ziliaoku.entity.ZiliaokuTypeEntity" >
+    <id column="typeid" property="typeid" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="ptypeid" property="ptypeid" jdbcType="INTEGER" />
+    <result column="isdel" property="isdel" jdbcType="INTEGER" />
+  </resultMap>
+  <update id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    update er_ziliaoku_type set isdel=1 
+    where typeid = #{typeid,jdbcType=INTEGER}
+  </update>
+  <insert id="addFirstType" parameterType="com.cloudrich.ereader.ziliaoku.entity.ZiliaokuTypeEntity" >
+    insert into er_ziliaoku_type (typeid, name, sort, 
+      ptypeid, isdel)
+    values (#{typeid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, 
+      #{ptypeid,jdbcType=INTEGER}, #{isdel,jdbcType=INTEGER})
+  </insert>
+  <insert id="addSecondType" parameterType="com.cloudrich.ereader.ziliaoku.entity.ZiliaokuTypeEntity" >
+    insert into er_ziliaoku_type (typeid, name, sort, 
+      ptypeid, isdel)
+    values (#{typeid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, 
+      #{ptypeid}, #{isdel,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.cloudrich.ereader.ziliaoku.entity.ZiliaokuTypeEntity" >
+    update er_ziliaoku_type
+    set name = #{name,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      isdel = #{isdel,jdbcType=INTEGER}
+    where typeid = #{typeid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select typeid, name, sort, ptypeid, isdel
+    from er_ziliaoku_type
+    where isdel=0 and typeid = #{typeid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select typeid, name, sort, ptypeid, isdel
+    from er_ziliaoku_type where isdel=0
+  </select>
+  <select id="selectFirstType" resultMap="BaseResultMap" >
+    select typeid, name, sort, ptypeid, isdel
+    from er_ziliaoku_type where isdel=0 and ptypeid=0
+  </select>
+  <select id="selectSecondType" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select typeid, name, sort, ptypeid, isdel
+    from er_ziliaoku_type where isdel=0 and ptypeid=#{typeid,jdbcType=INTEGER}
+  </select>
+</mapper>

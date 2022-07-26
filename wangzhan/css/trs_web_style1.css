@@ -1,0 +1,111 @@
+@charset "utf-8";
+/* TRS WEB style 初始化样式 */
+/* 初始化CSS */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0px; padding:0px;}
+body{font-size:12px; font-family: 微软雅黑;}
+fieldset, img{border:none;}
+em{font-style:normal;}
+img{border:0;vertical-align:middle;}
+ul, ol { list-style:none; }
+li{list-style-type:none;}
+p{word-wrap:break-word}
+h1, h2, h3, h4, h5, h6 { font-size:100%;}
+
+input { padding-top:0; padding-bottom:0;}
+select,input { vertical-align:middle; }
+table{border-collapse:collapse;border-spacing:0;}
+td{ padding:0px; margin:0px}
+
+#body_st{font-family:"宋体";}
+#body_wryh{font-family:"微软雅黑";}
+
+/* 清除浮动 */
+.clearfix { zoom:1; }/*清除ie6的浮动*/
+.clear{ clear:both;}
+.clearleft{ clear:left;}
+.clearright{ clear:right;}
+.left{ float:left;}
+.right{ float:right;}
+
+/* 链接的样式*/
+a{ text-decoration:none; color:#000;}
+/* a:hover{text-decoration:underline; } */
+
+/* 显示隐藏 */
+.hidden{visibility:hidden;}
+.visible{visibility:visible;}
+.undis{display:none}
+.dis{display:block}
+.noborder{border:0;}
+
+/*行高*/
+.line_22 {line-height:22px;}
+.line_24 {line-height:24px;}
+.line_26 {line-height:26px;}
+.line_28 {line-height:28px;}
+.line_30 {line-height:30px;}
+.line_35 {line-height:35px;}
+
+/*文本样式*/
+.font12{ font-size:12px;}
+.font14{ font-size:14px;}
+.font16{ font-size:16px;}
+.font18{ font-size:18px;}
+.font20{ font-size:20px;}
+.fb{ font-weight:bold;}
+.fn{font-weight:normal;}
+.ind{text-indent:2em}
+
+.t_left{text-align:left;}/*居左*/
+.t_center{text-align:center;}/*居中*/
+.t_right{text-align:right;}/*居右*/
+
+/*主题宽度*/
+#container_1000{width:1000px; margin:0px auto;}
+#container_980{width:980px; margin:0px auto;}
+#container_960{width:960px; margin:0px auto;}
+.width-fluid {width: 100%;}
+.container_1240{width: 1240px; margin:0 auto;}
+.container_1336{width: 1336px; margin:0 auto;}
+
+/****弹出层css*****/
+/*	--------------------------------------------------
+	Reveal Modals
+	-------------------------------------------------- */
+.reveal-modal-bg { 
+	position: fixed; 
+	height: 100%;
+	width: 100%;
+	background: #000;
+	background: rgba(0,0,0,.8);
+	z-index: 100;
+	display: none;
+	top: 0;
+	left: 0; 
+	}
+a.close-reveal-modal:hover {color: #fff;background: #FF7777;}
+.reveal-modal {
+	visibility: hidden;
+	top: 100px; 
+	max-height:450px;
+	overflow-y:auto; 
+	overflow-x:hidden;
+	border: 10px solid #DEDEDE;
+	left: 50%;
+	margin-left: -300px;
+	width: 520px;
+	background: #eee;
+	position: absolute;
+	z-index: 101;
+	padding: 30px 40px 34px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	-moz-box-shadow: 0 0 10px rgba(0,0,0,.4);
+	-webkit-box-shadow: 0 0 10px rgba(0,0,0,.4);
+	-box-shadow: 0 0 10px rgba(0,0,0,.4);
+	}
+.reveal-modal.small 		{ width: 200px; margin-left: -140px;}
+.reveal-modal.medium 		{ width: 400px; margin-left: -240px;}
+.reveal-modal.large 		{ width: 600px; margin-left: -340px;}
+.reveal-modal.xlarge 		{ width: 800px; margin-left: -440px;}

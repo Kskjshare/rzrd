@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloudrich.ereader.meetpub.dao.MeetPubRichenDao" >
+  <resultMap id="BaseResultMap" type="com.cloudrich.ereader.meetpub.entity.MeetPubRichenEntity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="richenid" property="richenid" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="prichenid" property="prichenid" jdbcType="INTEGER" />
+    <result column="meetid" property="meetid" jdbcType="INTEGER" />
+    <result column="isdel" property="isdel" jdbcType="INTEGER" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+    <result column="pubtime" property="pubtime" jdbcType="TIMESTAMP" />    
+  </resultMap>
+  
+  
+   <resultMap id="BaseRichenResultMap" type="com.cloudrich.ereader.meeting.entity.MeetRichenMainEntity" >
+    <id column="richenid" property="richenid" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="prichenid" property="prichenid" jdbcType="INTEGER" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="isdel" property="isdel" jdbcType="INTEGER" />
+    <result column="meetid" property="meetid" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from er_meet_pub_richen
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cloudrich.ereader.meetpub.entity.MeetPubRichenEntity" >
+    insert into er_meet_pub_richen ( richenid, name, 
+      prichenid,  meetid, isdel, sort,version)
+    values ( #{richenid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{prichenid,jdbcType=INTEGER}, #{meetid,jdbcType=INTEGER}, 
+      #{isdel,jdbcType=INTEGER}, #{sort,jdbcType=INTEGER},#{version,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.cloudrich.ereader.meetpub.entity.MeetPubRichenEntity" >
+    update er_meet_pub_richen
+    set richenid = #{richenid,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      prichenid = #{prichenid,jdbcType=INTEGER},
+      meetid = #{meetid,jdbcType=INTEGER},
+      isdel = #{isdel,jdbcType=INTEGER},
+      sort = #{sort,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, richenid, name, prichenid, meetid, isdel, sort
+    from er_meet_pub_richen
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, richenid, name, prichenid,  meetid, isdel, sort
+    from er_meet_pub_richen
+  </select>
+  
+  <!-- 获取最新的版本号 -->
+   <select id="selectMaxVersion" resultType="java.lang.Integer" >
+   	 	select max(version) from er_meet_pub_richen
+  </select>
+  
+  <!-- 根据meetid获取所有的第一级日程 -->
+  <select id="selectParentRichenByMeetid" resultMap="BaseRichenResultMap" parameterType="java.util.Map">
+    select richenid, name, prichenid, sort,meetid
+    from er_meet_pub_richen
+    where meetid=#{meetid,jdbcType=INTEGER}
+    and isdel=0
+    and prichenid=0
+    order by sort
+  </select>
+  
+  <!-- 根据第一级日程id获取所有的第二级日程 -->
+  <select id="selectSubRichenByRichenid" resultMap="BaseRichenResultMap" parameterType="java.util.Map">
+    select richenid, name, prichenid, sort,meetid
+    from er_meet_pub_richen
+    where prichenid=#{richenid,jdbcType=INTEGER}
+    and  meetid=#{meetid,jdbcType=INTEGER}
+    and isdel=0
+    order by sort
+  </select>
+  
+  <!-- 删除发布的日程 -->
+   <delete id="deletePubRichenByMeetid" parameterType="java.lang.Integer" >
+    delete from er_meet_pub_richen
+    where meetid = #{meetid,jdbcType=INTEGER}
+  </delete>
+ 
+     <!--根据会议id获取会议议程最后的发布时间 -->
+    <select id="selectRichenPubtimeByMeetid" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select  pubtime
+		from er_meet_pub_richen
+		where meetid =#{meetid,jdbcType=INTEGER}
+		and isdel=0
+		limit 0,1
+    </select> 
+</mapper>

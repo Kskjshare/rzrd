@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="smsdefine" extends="eread-package" namespace="/smsdefine">
+		<action name="selectSmsdefineLog" class="SmsdefineAction" method="selectSmsdefineLog">
+			<result >/module/smsmanager/mindex.jsp</result>
+		</action>
+		<action name="selectSmsdefineLogDetail" class="SmsdefineAction" method="selectSmsdefineLogDetail">
+		<result type="json">
+				<param name="root">list</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+		<action name="selectSmsdefineMain" class="SmsdefineAction" method="selectSmsdefineMain">
+		    <result >/module/smsmanager/smsremind.jsp</result>
+		</action>	
+		 <action name="insertSmsdefine" class="SmsdefineAction" method="insertSmsdefine">
+			<result type="json">
+				<param name="root">codeMap</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+		<action name="selectUserList" class="SmsdefineAction" method="selectUserList">
+		    <result type="json">
+				<param name="root">userslist</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+		<action name="updateSmsdefine" class="SmsdefineAction" method="updateSmsdefine">
+			<result type="json">
+				<param name="root">codeMap</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action> 
+		<action name="selectBySmsid" class="SmsdefineAction" method="selectBySmsid">
+		    <result type="json">
+		    	<param name="root">map</param>
+				<param name="ignoreHierarchy">false</param>
+		    </result>
+		</action>
+		<action name="delete" class="SmsdefineAction" method="delete">
+			<result type="json">
+				<param name="root">codeMap</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+		<action name="getScopeUsers" class="SmsdefineAction" method="getScopeUsers"></action>
+	</package>
+</struts>

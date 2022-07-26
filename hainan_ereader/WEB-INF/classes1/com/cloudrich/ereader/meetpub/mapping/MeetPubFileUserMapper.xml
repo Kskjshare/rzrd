@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloudrich.ereader.meetpub.dao.MeetPubFileUserDao">
+  <resultMap id="BaseResultMap" type="com.cloudrich.ereader.meetpub.entity.MeetPubFileUserEntity">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="fileid" jdbcType="INTEGER" property="fileid" />
+    <result column="userid" jdbcType="INTEGER" property="userid" />
+    <result column="isdel" jdbcType="INTEGER" property="isdel" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    update er_meet_pub_file_user set isdel='1'
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cloudrich.ereader.meetpub.entity.MeetPubFileUserEntity">
+    insert into er_meet_pub_file_user (id, fileid, userid, 
+      isdel)
+    values (#{id,jdbcType=INTEGER}, #{fileid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, 
+      #{isdel,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.cloudrich.ereader.meetpub.entity.MeetPubFileUserEntity">
+    update er_meet_pub_file_user
+    set fileid = #{fileid,jdbcType=INTEGER},
+      userid = #{userid,jdbcType=INTEGER},
+      isdel = #{isdel,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, fileid, userid, isdel
+    from er_meet_pub_file_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, fileid, userid, isdel
+    from er_meet_pub_file_user
+  </select>
+
+</mapper>

@@ -1,0 +1,293 @@
+body, html {
+    position: relative;
+    background: #d81617;
+    font-family: "微软雅黑";
+    color: #fff;
+    font-size: 12px;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: url(../../../Images/login/loginbg.png)/*tpa=http://www.pdsrd.gov.cn:7081/Images/login/loginbg.png*/ no-repeat;
+    background-size: 100% 100%;
+}
+
+.hz-debug {
+    position: fixed;
+    display: inline-block;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+}
+
+.pull-left {
+    float: left;
+}
+
+.pull-right {
+    float: right;
+}
+
+.login {
+    position: fixed;
+    top: calc(50% + 36px);
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 50%;
+    min-width: 800px;
+    min-height: 400px;
+    background: #fff url(../../../Images/login/login-boxbg.png)/*tpa=http://www.pdsrd.gov.cn:7081/Images/login/login-boxbg.png*/ right;
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    border-radius: 15px;
+    background-position: 80%;
+    padding: 20px;
+}
+
+.login-div {
+    float: left;
+    height: 100%;
+}
+
+.login-div-split {
+    border-right: 1px dashed #ccc;
+}
+
+.login-form {
+    margin: 15%;
+}
+
+.login-tabs .tab {
+    font-size: 20px;
+    color: #777;
+    padding: 10px 0;
+    /*cursor: pointer;*/
+}
+
+    .login-tabs .tab.active {
+        border-bottom: 4px solid red;
+        color: #000;
+    }
+
+.hui-icon::before {
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+    width: 1.2em;
+    height: 1.2em;
+    color: #777;
+    margin-right: .3em;
+}
+
+.hui-icon-user:before {
+    background: url(../../../Images/user.png)/*tpa=http://www.pdsrd.gov.cn:7081/Images/user.png*/ no-repeat;
+    background-size: 100% 100%;
+}
+
+.hui-icon-scan:before {
+    background: url(../../../Images/scan.png)/*tpa=http://www.pdsrd.gov.cn:7081/Images/scan.png*/ no-repeat;
+    background-size: 100% 100%;
+}
+
+.hui-icon-user.active:before {
+    background: url(../../../Images/user-active.png)/*tpa=http://www.pdsrd.gov.cn:7081/Images/user-active.png*/ no-repeat;
+    background-size: 100% 100%;
+}
+
+.hui-icon-scan.active:before {
+    background: url(../../../Images/scan-active.png)/*tpa=http://www.pdsrd.gov.cn:7081/Images/scan-active.png*/ no-repeat;
+    background-size: 100% 100%;
+}
+
+.form-group {
+    position: relative;
+    padding-top: 1.5em;
+}
+
+    .form-group .form-control {
+        width: calc(100% - 50px);
+        height: 48px;
+        border: 1px solid #ddd;
+        background: #fafafa;
+        padding-left: 50px;
+    }
+
+    .form-group img {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        margin-top: -2px;
+    }
+
+.login-form .login-btn {
+    width: 100%;
+    background: #d81617;
+    border: 0;
+    color: #fff;
+    font-size: 16px;
+    margin-top: 2em;
+    line-height: 40px;
+}
+
+#msg-desc {
+    margin: 15px auto;
+    width: 205px;
+    padding: 8px 15px;
+    background: #e89315;
+    border-radius: 30px;
+}
+
+#qr-refresh {
+    color: #009139;
+    cursor: pointer;
+}
+
+#login-qrcode {
+    width: 120px;
+    height: 120px;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+    background-position-x: center;
+    background-size: 100% 100%;
+    margin-top: 25px;
+}
+
+.login-content {
+    position: relative;
+    margin-right: 0;
+    color: #000;
+    text-align: left;
+    font-weight: bold;
+    height: 100%;
+    display: table;
+    width: 100%;
+}
+
+.login-img {
+    display: inline-block;
+    text-align: center;
+    margin-right: 2em;
+}
+
+    .login-img img {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+.login-log {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -110px;
+}
+
+.login-title {
+    color: #fff100;
+    top: 0;
+    margin-left: 280px;
+    margin-top: -1.5em;
+    font-size: 36px;
+    text-shadow: 3px 3px 3px #510202;
+}
+
+.login-scan {
+    position: absolute;
+    bottom: 0;
+}
+
+.login-content-list {
+    list-style: none;
+    padding: 0;
+}
+
+    .login-content-list .h {
+        font-size: 22px;
+        margin-bottom: 1em;
+    }
+
+    .login-content-list li a {
+        display: inline-block;
+        color: inherit;
+        text-decoration: none;
+        font-size: 12px;
+        margin: .4em 0;
+    }
+
+#alertLabel {
+    color: red;
+    margin-top: 14px;
+}
+
+.login-content .item-QRCode {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    padding-left: 20px;
+}
+
+    .login-content .item-QRCode .QRCode {
+        width: 50%;
+        margin: 0 auto;
+        vertical-align: middle;
+        border: 5px solid #fff;
+        box-sizing: border-box;
+    }
+
+    .login-content .item-QRCode .QRCode-msg {
+        width: 100%;
+        vertical-align: middle;
+        text-align: center;
+        display: inline-block;
+        font-weight: normal;
+        color: #777;
+    }
+
+.more {
+    color: #808080;
+}
+
+.list-title {
+    height: 24px;
+}
+
+.login-content-list {
+    height: calc(100% - 155px);
+    overflow: auto;
+}
+
+.login-scan {
+    bottom: 0;
+    height: 130px;
+    position: absolute;
+}
+
+@media screen and (max-width: 1600px) {
+    .login-scan {
+        bottom: -20px;
+    }
+}
+
+.footer {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 2%;
+    font-family: arial, self;
+    text-shadow: 1px 1px 1px #000;
+}
+
+@media screen and (max-width: 1024px) {
+    .QR-code {
+        left: calc(100% - 230px) !important;
+        top: calc(100% - 495px) !important;
+    }
+
+    .public-sign {
+        color: black;
+        left: calc(100% - 229px) !important;
+        top: calc(100% - 390px) !important;
+    }
+}

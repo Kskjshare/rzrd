@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloudrich.ereader.system.dao.SysUserMainDao" >
+  <resultMap id="BaseResultMap" type="com.cloudrich.ereader.system.entity.SysUserMainEnity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="passwd" property="passwd" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="truename" property="truename" jdbcType="VARCHAR" />
+    <result column="isdel" property="isdel" jdbcType="INTEGER" />
+    <result column="lastlogin" property="lastlogin" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="deptid" property="deptid" jdbcType="INTEGER" />
+    <result column="usertype" property="usertype" jdbcType="CHAR" />
+    <result column="padmobile" property="padmobile" jdbcType="VARCHAR" />
+    <result column="phone2" property="phone2" jdbcType="VARCHAR" />
+    <result column="officetel" property="officetel" jdbcType="VARCHAR" />
+    <result column="phone3" property="phone3" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="zhiwu" property="zhiwu" jdbcType="VARCHAR" />
+    <result column="danwei" property="danwei" jdbcType="VARCHAR" />
+    <result column="isdestroy" property="isdestroy" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from  er_sys_user_main 
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cloudrich.ereader.system.entity.SysUserMainEnity" >
+     <selectKey keyProperty="id"  resultType="java.lang.Integer" order="AFTER">
+    	SELECT LAST_INSERT_ID() AS id
+    </selectKey>
+    insert into er_sys_user_main (id, username, passwd, 
+      sex, truename, isdel, 
+      lastlogin, tel, email, 
+      deptid, usertype, padmobile, 
+      phone2, officetel, phone3, 
+      sort, zhiwu, danwei, 
+      isdestroy)
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{passwd,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{truename,jdbcType=VARCHAR}, #{isdel,jdbcType=INTEGER}, 
+      #{lastlogin,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{deptid,jdbcType=INTEGER}, #{usertype,jdbcType=CHAR}, #{padmobile,jdbcType=VARCHAR}, 
+      #{phone2,jdbcType=VARCHAR}, #{officetel,jdbcType=VARCHAR}, #{phone3,jdbcType=VARCHAR}, 
+      #{sort,jdbcType=INTEGER}, #{zhiwu,jdbcType=VARCHAR}, #{danwei,jdbcType=VARCHAR}, 
+      #{isdestroy,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.cloudrich.ereader.system.entity.SysUserMainEnity" >
+    update er_sys_user_main
+    set username= #{username,jdbcType=VARCHAR},
+      passwd = #{passwd,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      truename = #{truename,jdbcType=VARCHAR},
+      isdel = #{isdel,jdbcType=INTEGER},
+      lastlogin = #{lastlogin,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      deptid = #{deptid,jdbcType=INTEGER},
+      usertype = #{usertype,jdbcType=CHAR},
+      padmobile = #{padmobile,jdbcType=VARCHAR},
+      phone2 = #{phone2,jdbcType=VARCHAR},
+      officetel = #{officetel,jdbcType=VARCHAR},
+      phone3 = #{phone3,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      zhiwu = #{zhiwu,jdbcType=VARCHAR},
+      danwei = #{danwei,jdbcType=VARCHAR},
+      isdestroy = #{isdestroy,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, username, passwd, sex, truename, isdel, lastlogin, tel, email, deptid, 
+    usertype, padmobile, phone2, officetel, phone3, sort, zhiwu, danwei, isdestroy
+    from er_sys_user_main
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+   <select id="selectByUserName" resultMap="BaseResultMap" parameterType="string" >
+    select id, username, passwd, sex, truename, isdel, lastlogin, tel, email, deptid, 
+    usertype, padmobile, phone2, officetel, phone3, sort, zhiwu, danwei, isdestroy
+    from er_sys_user_main
+    where username = #{username,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap"  parameterType="java.util.Map">
+    select id, username, passwd, sex, truename, isdel, lastlogin, tel, email, deptid, 
+    usertype, padmobile, phone2, officetel, phone3, sort, zhiwu, danwei, isdestroy
+    from er_sys_user_main where isdel!=1
+    <if test="usertype!=null">
+    	 and usertype=#{usertype,jdbcType=CHAR}
+    </if>
+    <if test="username!=null">
+    	and (username like CONCAT('%',CONCAT(#{username,jdbcType=VARCHAR},'%')) or truename like CONCAT('%',CONCAT(#{username,jdbcType=VARCHAR},'%'))
+    	or tel like CONCAT('%',CONCAT(#{username,jdbcType=VARCHAR},'%')) or padmobile like CONCAT('%',CONCAT(#{username,jdbcType=VARCHAR},'%')) )
+    </if>
+        order by id desc
+  </select>
+    <select id="selectAllPadUser" resultMap="BaseResultMap" >
+    (select id, username, passwd, sex, truename, isdel, lastlogin, tel, email, deptid, 
+    usertype, padmobile, phone2, officetel, phone3, sort, zhiwu, danwei, isdestroy
+    from er_sys_user_main where isdel!=1 and usertype=3)
+    order by convert(truename USING gbk) asc;
+  </select>
+    <select id="selectAllUsers" resultMap="BaseResultMap"  parameterType="java.util.Map">
+    select id, username, passwd, sex, truename, isdel, lastlogin, tel, email, deptid, 
+    usertype, padmobile, phone2, officetel, phone3, sort, zhiwu, danwei, isdestroy
+    from er_sys_user_main 
+  </select>
+  
+  <!--每天上午10点查询更新文件并短信通知  -->
+      <select id="selectSmsFileUser" resultMap="BaseResultMap"  parameterType="java.util.Map">
+		    select * from er_sys_user_main  
+		    where id in
+		       (select userid  as id from er_sys_scope_user
+		          where scopeid in 
+		         (select scopeid from er_meet_pub_file_scope
+		           where fileid in 
+		              (select fileid from er_meet_pub_file a
+		                  where  a.pubtime>date_sub(now(), interval 17 hour)
+		                  and isdel=0
+					     )
+		       )
+		   )
+    </select>
+    
+      <!--每天上午10点查询更新通知并短信通知  -->
+      <select id="selectSmsFileUser10" resultMap="BaseResultMap"  parameterType="java.util.Map">
+		    select * from er_sys_user_main  
+		    where id in
+		       (select userid  as id from er_sys_scope_user
+		          where scopeid in 
+		         (select scopeid from er_meet_pub_file_scope
+		           where fileid in 
+		              (select fileid from er_meet_pub_file a,er_meet_main b
+		                  where  a.pubtime>date_sub(now(), interval 17 hour)
+		                   and a.isdel=0
+                           and a.meetid=b.meetid
+                           and b.sdate>now()
+					     )
+		       )
+		   )
+    </select>
+    
+      <!--每天下午5点查询更新通知并短信通知  -->
+      <select id="selectSmsFileUser5" resultMap="BaseResultMap"  parameterType="java.util.Map">
+		    select * from er_sys_user_main  
+		    where id in
+		       (select userid  as id from er_sys_scope_user
+		          where scopeid in 
+		         (select scopeid from er_meet_pub_file_scope
+		           where fileid in 
+		              (select fileid from er_meet_pub_file a,er_meet_main b
+		                  where  a.pubtime>date_sub(now(), interval 7 hour)
+		                   and a.isdel=0
+                           and a.meetid=b.meetid
+                           and b.sdate>now()
+					     )
+		       )
+		   )
+    </select>
+</mapper>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloudrich.ereader.system.dao.SysRoleAuthorityDao" >
+  <resultMap id="BaseResultMap" type="com.cloudrich.ereader.system.entity.SysRoleAuthorityEntity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="roleid" property="roleid" jdbcType="INTEGER" />
+    <result column="authid" property="authid" jdbcType="INTEGER" />
+    <result column="authname" property="authname" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from er_sys_role_authority
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByRoleid" parameterType="java.lang.Integer" >
+    delete from er_sys_role_authority
+    where roleid = #{roleid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cloudrich.ereader.system.entity.SysRoleAuthorityEntity" >
+    insert into er_sys_role_authority (id, roleid, authid
+      )
+    values (#{id,jdbcType=INTEGER}, #{roleid,jdbcType=INTEGER}, #{authid,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.cloudrich.ereader.system.entity.SysRoleAuthorityEntity" >
+    update er_sys_role_authority
+    set roleid = #{roleid,jdbcType=INTEGER},
+      authid = #{authid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByRoleid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select  ra.roleid, ra.authid,am.authname
+    from er_sys_role_authority ra left join er_sys_authority_main am on am.authid=ra.authid
+    where roleid = #{roleid,jdbcType=INTEGER}
+  </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, roleid, authid
+    from er_sys_role_authority
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, roleid, authid
+    from er_sys_role_authority
+  </select>
+</mapper>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloudrich.ereader.smsmanager.dao.SmsdefineLogDao" >
+  <resultMap id="BaseResultMap" type="com.cloudrich.ereader.smsmanager.entity.SmsdefineLogEntity" >
+    <id column="logid" property="logid" jdbcType="INTEGER" />
+    <result column="smsid" property="smsid" jdbcType="INTEGER" />
+    <result column="sendtype" property="sendtype" jdbcType="CHAR" />
+    <result column="smscontent" property="smscontent" jdbcType="VARCHAR" />
+    <result column="senddate" property="senddate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from er_smsdefine_log
+    where logid = #{logid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert"  useGeneratedKeys="true" keyProperty="logid" parameterType="com.cloudrich.ereader.smsmanager.entity.SmsdefineLogEntity" >
+    insert into er_smsdefine_log ( smsid, smscontent,sendtype, senddate)
+    values ( #{smsid,jdbcType=INTEGER}, #{smscontent,jdbcType=VARCHAR},#{sendtype,jdbcType=CHAR}, 
+      now())
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.cloudrich.ereader.smsmanager.entity.SmsdefineLogEntity" >
+    update er_smsdefine_log
+    set smsid = #{smsid,jdbcType=INTEGER},
+      sendtype = #{sendtype,jdbcType=CHAR},
+      smscontent = #{smscontent,jdbcType=VARCHAR},
+      senddate = now()
+    where logid = #{logid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select logid, smsid,smscontent, sendtype, senddate
+    from er_smsdefine_log
+    where logid = #{logid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select logid, smsid, smscontent,sendtype, senddate
+    from er_smsdefine_log
+    order by logid desc
+  </select>
+  
+   <select id="selectBySmsid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select logid, smsid,smscontent, sendtype, senddate
+    from er_smsdefine_log
+    where smsid = #{logid,jdbcType=INTEGER}
+  </select>
+  
+</mapper>

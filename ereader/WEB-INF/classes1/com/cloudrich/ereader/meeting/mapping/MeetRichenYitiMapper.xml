@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloudrich.ereader.meeting.dao.MeetRichenYitiDao" >
+  <resultMap id="BaseResultMap" type="com.cloudrich.ereader.meeting.entity.MeetRichenYitiEntity" >
+    <id column="yitiid" property="yitiid" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="bindyichenid" property="bindyichenid" jdbcType="VARCHAR" />
+    <result column="richenid" property="richenid" jdbcType="INTEGER" />
+     <result column="isdel" property="isdel" jdbcType="INTEGER" />
+     <result column="bindbimu" property="bindbimu" jdbcType="VARCHAR" />
+    
+  </resultMap>
+  
+  <update id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    update  er_meet_richen_yiti
+    set isdel=1
+    where yitiid = #{yitiid,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateYitiBindBimu" parameterType="java.lang.Integer" >
+    update  er_meet_richen_yiti
+    set bindbimu=1
+    where yitiid = #{yitiid,jdbcType=INTEGER}
+  </update>
+  
+  <insert id="insert" useGeneratedKeys="true" keyProperty="yitiid" parameterType="com.cloudrich.ereader.meeting.entity.MeetRichenYitiEntity" >
+    insert into er_meet_richen_yiti 
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="bindyichenid != null" >
+        bindyichenid,
+      </if>
+      <if test="richenid != null" >
+        richenid,
+      </if>
+      <if test="bindbimu != null" >
+        bindbimu
+      </if>
+      </trim> 
+     <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="title != null" >
+         #{title,jdbcType=VARCHAR},
+      </if>
+	    <if test="sort != null" >
+	    	#{sort,jdbcType=INTEGER}, 
+	    </if>
+	     <if test="bindyichenid != null" >
+	    	 #{bindyichenid,jdbcType=VARCHAR},
+	    </if>
+	    
+	    <if test="richenid != null" >
+	    	 #{richenid,jdbcType=INTEGER},
+	    </if>
+	    <if test="bindbimu != null" >
+	    	 #{bindbimu,jdbcType=VARCHAR},
+	    </if>
+      </trim> 
+  </insert>
+  
+  <update id="updateByPrimaryKey"  parameterType="com.cloudrich.ereader.meeting.entity.MeetRichenYitiEntity" >
+    update er_meet_richen_yiti
+    set title = #{title,jdbcType=VARCHAR},
+     <if test="sort != null" >
+	    	sort = #{sort,jdbcType=INTEGER},
+	    </if>
+      <if test="bindyichenid != null" >
+	    	 bindyichenid = #{bindyichenid,jdbcType=VARCHAR},
+	    </if>
+      <if test="bindbimu != null" >
+	    	 bindbimu = #{bindbimu,jdbcType=VARCHAR},
+	    </if>
+      richenid = #{richenid,jdbcType=INTEGER}
+    where yitiid = #{yitiid,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select yitiid, title, sort, bindyichenid,richenid,isdel,bindbimu
+    from er_meet_richen_yiti
+    where yitiid = #{yitiid,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select yitiid, title, sort, bindyichenid,richenid,isdel,bindbimu
+    from er_meet_richen_yiti
+  </select>
+
+  <!-- 根据日程id获取议题-->
+    <select id="selectAllYitiByRichenid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select yitiid, title, sort, bindyichenid,richenid,isdel,bindbimu
+    from er_meet_richen_yiti
+    where richenid=#{richenid,jdbcType=INTEGER}
+    and isdel=0
+    order by sort
+  </select>
+  
+  
+  <update id="deleteYitiByRichenId" parameterType="java.lang.Integer" >
+    update  er_meet_richen_yiti
+    set isdel=1
+    where richenid = #{yitiid,jdbcType=INTEGER}
+  </update>
+  
+  <update id="deleteAllYitiByRichenId" parameterType="java.lang.Integer" >
+    update  er_meet_richen_yiti
+    set isdel=1
+    where richenid in
+    (select richenid from er_meet_richen_main
+    where richenid=#{yitiid,jdbcType=INTEGER}
+    or prichenid=#{yitiid,jdbcType=INTEGER})
+  </update>
+  
+  <!-- 查询子日程 -->
+  <select id="selectYitiByYtTitleAndRichenid" resultMap="BaseResultMap" parameterType="java.util.Map" >
+   select yitiid, title, sort, bindyichenid,richenid,isdel,bindbimu
+    from er_meet_richen_yiti
+    where richenid=#{richenid,jdbcType=INTEGER}
+    and title like CONCAT(#{title,jdbcType=VARCHAR},'%' )
+    and isdel=0
+  </select>
+  
+  <!-- 更新序号 -->
+  <update id="updateYitiSort" parameterType="java.util.Map" >
+    update  er_meet_richen_yiti
+    set sort= #{sort,jdbcType=INTEGER}
+    where yitiid = #{yitiid,jdbcType=INTEGER}
+  </update>
+  
+  
+   <!-- 根据会议id获取议题-->
+  <select id="selectYitiByMeetid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+   select yitiid, title, sort, bindyichenid,richenid,isdel,bindbimu
+    from er_meet_richen_yiti
+    where richenid in (select richenid from er_meet_richen_main where meetid=#{meetid,jdbcType=INTEGER} and isdel=0)
+    and isdel=0
+  </select>
+</mapper>

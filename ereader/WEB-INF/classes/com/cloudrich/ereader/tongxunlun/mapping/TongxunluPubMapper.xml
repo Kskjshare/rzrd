@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloudrich.ereader.tongxunlun.dao.TongxunluPubDao" >
+  <resultMap id="BaseResultMap" type="com.cloudrich.ereader.tongxunlun.entity.TongxunluPubEntity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="txlid" property="txlid" jdbcType="INTEGER" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="compcode" property="compCode" jdbcType="CHAR" />
+    <result column="phone_office" property="phoneOffice" jdbcType="VARCHAR" />
+    <result column="phone_home" property="phoneHome" jdbcType="VARCHAR" />
+    <result column="mail" property="mail" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="dept" property="dept" jdbcType="VARCHAR" />
+    <result column="comment" property="comment" jdbcType="VARCHAR" />
+    <result column="jobtitle" property="jobtitle" jdbcType="VARCHAR" />
+    <result column="isdel" property="isdel" jdbcType="INTEGER" />
+    <result column="pubtime" property="pubtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <update id="deleteByTxlid" parameterType="java.lang.Integer" >
+    update  er_pub_tongxunlu 
+    set isdel=1 
+    where txlid = #{txlid,jdbcType=INTEGER}
+  </update>
+  <insert id="insert" parameterType="com.cloudrich.ereader.tongxunlun.entity.TongxunluPubEntity" >
+    insert into er_pub_tongxunlu (id,txlid,name,sort,compcode,dept,phone_office,phone_home,mail,mobile,comment,
+    jobtitle,isdel) 
+    values (#{id,jdbcType=INTEGER},#{txlid,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{sort},
+      #{compCode,jdbcType=CHAR},#{dept,jdbcType=VARCHAR}, #{phoneOffice,jdbcType=VARCHAR}, #{phoneHome,jdbcType=VARCHAR}, 
+      #{mail,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR},#{jobtitle},0)
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.cloudrich.ereader.tongxunlun.entity.TongxunluPubEntity" >
+    update er_pub_tongxunlu 
+    set name = #{name},
+    sort=#{sort},
+    txlid=#{txlid},
+    compcode = #{compCode},
+    dept = #{dept},
+    phone_office = #{phoneOffice},
+    phone_home = #{phoneHome},
+    mail = #{mail},
+    mobile = #{mobile},
+    comment = #{comment},
+    jobtitle = #{jobtitle} 
+ 	where id = #{id}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id,txlid,name,compcode,sort,dept,phone_office,phone_home,mail,mobile,comment,jobtitle,isdel
+    from er_pub_tongxunlu
+    where isdel=0 and id=#{id}
+  </select>
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap" >
+    select id,txlid,name,sort,dept,phone_office,phone_home,mail,mobile,comment,jobtitle,isdel
+    from er_pub_tongxunlu
+    where isdel=0
+     <if test="#value!='' or #value!=null">
+		and name like '%${value}%'
+	 </if>
+	 order by sort
+  </select>
+  <select id="selectByComp" parameterType="java.lang.Integer" resultMap="BaseResultMap" >
+    select id,txlid,name,sort,dept,phone_office,phone_home,mail,mobile,comment,jobtitle,isdel
+	from er_pub_tongxunlu
+	where isdel=0 and compcode=#{value} order by sort
+  </select>
+  <select id="selectPubtime"  resultMap="BaseResultMap" >
+    select id,txlid,name,sort,dept,phone_office,phone_home,mail,mobile,comment,jobtitle,isdel,pubtime
+	from er_pub_tongxunlu
+	 order by pubtime desc 
+	 limit 0,1
+  </select>
+    <update id="deleteAll" parameterType="java.lang.Integer" >
+    update  er_pub_tongxunlu 
+    set isdel=1 ,pubtime=now()
+  </update>
+</mapper>

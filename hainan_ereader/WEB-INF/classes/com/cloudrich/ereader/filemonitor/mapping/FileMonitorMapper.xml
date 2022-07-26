@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloudrich.ereader.filemonitor.dao.FileMonitorDao">
+	<resultMap id="BaseResultMap"
+		type="com.cloudrich.ereader.filemonitor.entity.FileMonitorEntity">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="meetid" property="meetid" jdbcType="INTEGER" />
+		<result column="userid" property="userid" jdbcType="INTEGER" />
+		<result column="moduleid" property="moduleid" jdbcType="INTEGER" />
+		<result column="filecount" property="filecount" jdbcType="INTEGER" />
+		<result column="accepttime" property="accepttime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from er_filemonitor_main
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<!-- insert -->
+	<insert id="insert"
+		parameterType="com.cloudrich.ereader.filemonitor.entity.FileMonitorEntity">
+		insert into er_filemonitor_main (id, meetid, userid,
+		moduleid, filecount, accepttime
+		)
+		values (#{id,jdbcType=INTEGER}, #{meetid,jdbcType=INTEGER},
+		#{userid,jdbcType=INTEGER},
+		#{moduleid,jdbcType=INTEGER}, #{filecount,jdbcType=INTEGER}, #{accepttime,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	<!-- 更新 -->
+	<update id="updateByPrimaryKey"
+		parameterType="com.cloudrich.ereader.filemonitor.entity.FileMonitorEntity">
+		update er_filemonitor_main
+		set filecount = #{filecount,jdbcType=INTEGER},
+		accepttime = now()
+		where meetid = #{meetid,jdbcType=INTEGER}
+		and userid = #{userid,jdbcType=INTEGER}
+		and moduleid = #{moduleid,jdbcType=INTEGER}
+	</update>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select id, meetid, userid, moduleid, filecount, accepttime
+		from er_filemonitor_main
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap">
+		select id, meetid, userid, moduleid, filecount, accepttime
+		from er_filemonitor_main
+	</select>
+	<!-- 查询 -->
+	<select id="selectEntityByUseridAndMeetidAndModuleid" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		select id, meetid, userid, moduleid, filecount, accepttime
+		from er_filemonitor_main
+		where meetid=#{meetid,jdbcType=INTEGER}
+		and userid=#{userid,jdbcType=INTEGER}
+		and moduleid=#{moduleid,jdbcType=INTEGER}
+	</select>
+
+	<select id="selectFileAcceptCountByMeetidAndUserid" resultType="java.lang.Integer"
+		parameterType="java.util.Map">
+		select sum(filecount) from er_filemonitor_main
+		where meetid=#{meetid,jdbcType=INTEGER}
+		and userid=#{userid,jdbcType=INTEGER}
+	</select>
+	<select id="selectAllUsers" resultType="java.util.Map">
+		select distinct userid, truename from er_sys_user_main t left join
+		er_filemonitor_main t1 on t.id=t1.userid where t1.userid is not null
+	</select>
+	<select id="selectAllUsersByMeetid" resultType="java.util.Map"
+		parameterType="java.util.Map">
+		<!-- SELECT u.id as userid, u.truename from er_sys_user_main u where u.id 
+			in( SELECT DISTINCT (userid) FROM er_sys_scope_user WHERE scopeid IN (SELECT 
+			DISTINCT (scopeid) FROM er_meet_pub_file_scope WHERE fileid IN (SELECT fileid 
+			FROM er_meet_pub_file WHERE meetid = #{meetid,jdbcType=INTEGER} AND isdel 
+			= 0) AND isdel = 0) ) and u.username !='padpush' -->
+
+		<!-- SELECT u.id as userid, u.truename FROM er_sys_user_main u WHERE u.username 
+			!='padpush' AND EXISTS ( SELECT DISTINCT (userid) FROM er_sys_scope_user 
+			es WHERE u.id = es.userid AND EXISTS ( SELECT DISTINCT (scopeid) FROM er_meet_pub_file_scope 
+			ef WHERE isdel = 0 AND es.scopeid = ef.scopeid AND EXISTS ( SELECT fileid 
+			FROM er_meet_pub_file ep WHERE meetid = #{meetid,jdbcType=INTEGER} AND isdel 
+			= 0 AND ef.fileid = ep.fileid ) ) ) -->
+		SELECT id AS userid, truename
+		FROM er_sys_user_main AS u
+		WHERE (username !='padpush') and u.id in (SELECT DISTINCT es.userid
+		FROM er_meet_pub_file_scope AS ef INNER JOIN
+		er_sys_scope_user AS es ON ef.scopeid = es.scopeid INNER JOIN
+		er_meet_pub_file AS ep ON ef.fileid = ep.fileid
+		WHERE (ef.isdel = 0) AND (ep.isdel = 0) AND (ep.meetid=#{meetid,jdbcType=INTEGER}))
+	</select>
+</mapper>

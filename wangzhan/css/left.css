@@ -1,0 +1,208 @@
+/*govItem
+.govItem{width: 100%;padding-top: 7px;}
+.govItem .w1200{padding: 14px 10px;background: #fff;border: 1px solid #1c92cf;}
+govLe
+.govItem .govLe{width: 406px;}
+.leader{width: 380px;}
+.leader-img{width: 116px;}
+.leader-img a{width: 116px;height:152px;overflow: hidden;display: block;}
+.leader-img a img{width: 116px;height:auto;}
+.leader-list{width: 260px;}
+.leader-list a{color: #555;}
+.leader-list p{border-bottom: 1px solid #EEEEEE;padding-bottom: 10px; margin-bottom:5px;font-weight: bold;font-size: 18px;}
+.leader-list p a{font-weight: normal;}
+.leader-list .leader-box{line-height:30px;}
+.leader-list .leader-box li{float: left;display: block;padding-left:5px;font-size: 17px;}
+.leader-list .leader-box span{ display: inline-block;float: left;font-weight: bold; white-space:nowrap;font-size:16px}
+.leader-list .leader-box .leader-ul{width: 180px; float: right;}
+.leader-list .leader-box .leader-ul ul{width: 186px;}
+.mszTitle{font-weight: bold; width: 73px;display: inline-block;text-align: right}
+.leader-list .more-leader{color: #0078cd;width: 130px;line-height: 28px;display:block;background: #e8f6ff;text-indent: 15px;font-size: 14px;margin-top: 15px;}
+.part-box ul{overflow: hidden;margin-top: 20px;}
+.part-box li{float: left;text-align: center;width: 98px;height: 104px; margin-top:10px;}
+.part-box li p{ font-size: 12px; margin-top:5px;color: #555;}
+
+.leader-img{width: 116px;}
+.leader-img a{width: 116px;height:152px;overflow: hidden;display: block;}
+.leader-img a img{width: 116px;height:auto;}
+.leader-list{width: 250px;}
+.leader-list a{color: #555;}
+.leader-list p{border-bottom: 1px solid #EEEEEE;padding-bottom: 10px; margin-bottom:5px;font-weight: bold;font-size: 18px;}
+.leader-list p a{font-weight: normal;}
+.leader-list .leader-box{line-height:30px;}
+.leader-list .leader-box li{float: left;display: block;padding-left:5px;font-size: 17px;}
+ .leader-list .leader-box span{font-weight: bold;font-size:16px;}  
+.leader-list .leader-box .leader-ul{width: 176px; float: right;}
+.leader-list .leader-box .leader-ul ul{width: 186px;}*/
+
+
+
+/*govItem*/
+.govItem{width: 100%;background: #f0f8ff;padding: 40px 0;}
+.govItem .w1200{padding: 10px;background: #fff;}
+/*govLe*/
+/*.govItem .govLe{width: 406px;border-right: 1px solid #d4d4d4;margin-top: 40px;} 为了实现位置偏移增加这个margin-top: 40px*/
+.govItem .govLe{width: 406px;border-right: 0px solid #fff;margin-top: 40px;} /*为了实现位置偏移增加这个margin-top: 40px*/
+
+
+
+.leader{width: 380px;}
+.leader-img{width: 116px;}
+.leader-img a{width: 116px;height:152px;overflow: hidden;display: block;}
+.leader-img a img{width: 116px;height:auto;}
+.leader-list{width: 245px;}
+.leader-list a{color: #555;}
+.leader-list p{border-bottom: 1px solid #EEEEEE;padding-bottom: 10px; margin-bottom:5px;font-weight: bold;font-size: 18px;}
+.leader-list p a{font-weight: normal;}
+.leader-list .leader-box{line-height:32px;}
+.leader-list .leader-box li{float: left;display: block;width: 62px;font-size: 17px;}
+.leader-list .leader-box span{ width: 65px;display: inline-block;float: left;font-weight: bold;}
+.leader-list .leader-box .leader-ul{width: 180px; float: right;}
+.leader-list .leader-box .leader-ul ul{width: 186px;}
+.mszTitle{font-weight: bold;}
+.leader-list .more-leader{color: #0078cd;width: 130px;line-height: 28px;display:block;background: #e8f6ff;text-indent: 15px;font-size: 14px;margin-top: 15px;}
+.part-box ul{overflow: hidden;margin-top: 20px;}
+.part-box li{float: left;text-align: center;width: 98px;height: 104px; margin-top:10px;}
+.part-box li p{ font-size: 12px; margin-top:5px;color: #555;}
+
+/*处理党组成员*/
+.leader-list .party-box{line-height:32px;}
+.leader-list .party-box li{float: left;display: block;width: 62px;font-size: 17px;}
+.leader-list .party-box span{ width: 70px;display: inline-block;float: left;font-weight: bold;}
+.leader-list .party-box .leader-ul{width: 170px; float: right;}
+.leader-list .party-box .leader-ul ul{width: 186px;}
+
+/*govRi*/
+.govItem .govRi{width: 745px;}
+.title span{color: #0078cd;font-size: 20px;font-weight: bold;margin-left: 10px;}
+.title em{color: #0078cd;font-size: 20px;font-weight: bold;margin-left: 10px;}
+.title em a{color: #0078cd;}
+
+
+.rdhy-menu{margin-bottom:0px; overflow:hidden;}
+.rdhy-menu .menu-icons li a{
+    font-size:23px;position: relative;
+    display: block;
+    margin: 12px 0;
+    padding: 10px 15px;
+    color: #1667c2;
+    text-align: center;
+    background-color: #e7f5fe;
+}
+.rdhy-menu .menu-icons li a:before{
+    display: inline-block ; 
+    margin-right: 10px;
+    width:50px; 
+    height:50px;
+    margin-right:15px; 
+    background-image:url(../images/index_rd_icons_1.png);
+    content:'';
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+}
+.rdhy-menu .menu-icons li a font{width:200px;    display: inline-block;}
+.rdhy-menu .menu-icons li.li1 a:before{background-position:0 -50px;}
+.rdhy-menu .menu-icons li.li2 a:before{background-position:0 -100px;}
+
+.zhrd-menu{overflow:hidden;}
+.zhrd-menu .menu-icons li{width:50%;}
+.zhrd-menu .menu-icons li.li0{width:100%;}
+.zhrd-menu .menu-icons .li0 a:before{
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
+    background-image: url(../images/index_rd_icons_1.png);
+}
+.zhrd-menu .menu-icons li.li0 a font{font-size:18px;}
+.zhrd-menu .menu-icons li a{padding:10px 5px; font-size:16px;}
+.zhrd-menu .menu-icons li a:before{margin-right:0; background-image:url(../images/index_rd_icons_2.png);}
+.zhrd-menu .menu-icons li.li1 a:before{background-position:0 -40px;}
+.zhrd-menu .menu-icons li.li2 a:before{background-position:0 -80px;}
+.zhrd-menu .menu-icons li.li3 a:before{background-position:0 -120px;}
+.zhrd-menu .menu-icons li.li4 a:before{background-position:0 -160px;}
+.moblie_btn{display:none;}
+
+.ggw {margin-bottom: 0px;}
+.ggw img{max-width: 100%;}
+.ggw_moblie{display: none;}
+
+.p2{
+    overflow: hidden;
+}
+
+.p2 .left{
+    width: 27%;
+}
+
+.p2 .left .itm{
+    width: 100%;
+    height: 71px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.p2 .left .itm img{
+    height: 71px;
+    width: 100%;
+}
+
+.p2 .left .itm p{
+    font-size: 23px;
+    color: #1667c2;
+    position: absolute;
+    top: 17px;
+    left: 130px;
+    cursor: pointer;
+}
+.p2 .left .itm p i{display: none;}
+
+@media (max-width: 1199px) {
+    .wrap_mobile{padding-right: 10px; padding-left: 10px;}
+}
+.wp100{
+    width:98% !important;/*修改3个会议的宽度*/
+}
+
+
+.btn_contactstation{
+    width: 95%; /*修改按钮的宽度*/
+    height: 315px;
+    margin-top: 20px;
+    margin-left: 20px;
+    cursor: pointer;
+    position:relative;
+    background: #ffffff;
+    /*background: #1b78cf;*/
+
+    text-align:center;
+}
+
+.btn_zhrd{
+    width: 98%; /*修改按钮的宽度*/
+    /*height: 75px;*/
+    height: 126px;
+
+    margin-top: 7px;
+    cursor: pointer;
+    position:relative;
+    /*background: #1b78cf;*/
+    background: #ffffff;
+
+    text-align:center;
+}
+.btn_zhrd img{
+    margin:0 auto;
+}
+
+.btn_zhrd p{
+    font-size: 23px;
+    color: #1667c2;
+    position: absolute;
+    top: 26px;
+    left: 130px;
+}
+
+.dh_modular_news a {
+	font-size: 17px;
+}

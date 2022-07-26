@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloudrich.ereader.calendar.dao.CalendarPubDao" >
+  <resultMap id="BaseResultMap" type="com.cloudrich.ereader.calendar.entity.CalendarPubEntity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="eventid" property="eventid" jdbcType="INTEGER" />
+    <result column="eventname" property="eventname" jdbcType="VARCHAR" />
+    <result column="showdate" property="showdate" jdbcType="DATE" />
+    <result column="createuserid" property="createuserid" jdbcType="INTEGER" />
+    <result column="createdate" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="isdel" property="isdel" jdbcType="INTEGER" />
+    <result column="comment" property="comment" jdbcType="VARCHAR" />
+    <result column="eventtype" property="eventtype" jdbcType="CHAR" />
+  </resultMap>
+  <resultMap id="BaseResultMap2" type="com.cloudrich.ereader.calendar.entity.CalendarMainEntity" >
+    <id column="eventid" property="eventid" jdbcType="INTEGER" />
+    <result column="eventname" property="eventname" jdbcType="VARCHAR" />
+    <result column="showdate" property="showdate" jdbcType="DATE" />
+    <result column="createuserid" property="createuserid" jdbcType="INTEGER" />
+    <result column="createdate" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="isdel" property="isdel" jdbcType="INTEGER" />
+    <result column="comment" property="comment" jdbcType="VARCHAR" />
+    <result column="eventtype" property="eventtype" jdbcType="CHAR" />
+  </resultMap>
+  <select id="selectAll" resultMap="BaseResultMap2" >
+    select eventid, eventname, showdate, createuserid, createdate, isdel, comment,eventtype
+    from er_pub_calendar where isdel=0
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select eventid, eventname, showdate, createuserid, createdate, isdel, comment,eventtype
+    from er_pub_calendar
+    where isdel=0 and eventid = #{eventid,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" parameterType="com.cloudrich.ereader.calendar.entity.CalendarPubEntity" >
+    insert into er_pub_calendar (eventid, eventname, showdate, 
+      createuserid, isdel, 
+      comment,eventtype)
+    values (#{eventid,jdbcType=INTEGER}, #{eventname,jdbcType=VARCHAR}, #{showdate,jdbcType=DATE}, 
+      #{createuserid,jdbcType=INTEGER}, #{isdel,jdbcType=INTEGER}, 
+      #{comment,jdbcType=VARCHAR},
+      #{eventtype,jdbcType=VARCHAR})
+  </insert>
+  <update id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    update er_pub_calendar set isdel=1
+    where eventid = #{eventid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cloudrich.ereader.calendar.entity.CalendarPubEntity" >
+    update er_pub_calendar
+    set eventname = #{eventname,jdbcType=VARCHAR},
+      showdate = #{showdate,jdbcType=DATE},
+      comment = #{comment,jdbcType=VARCHAR},
+      eventtype = #{eventtype,jdbcType=VARCHAR}
+    where eventid = #{eventid,jdbcType=INTEGER}
+  </update>
+    <select id="selectLatestPubtime" resultMap="BaseResultMap" >
+    select createdate
+    from er_pub_calendar 
+    order by createdate desc
+    limit 0,1
+  </select>
+    <update id="deleteAll"  >
+    update er_pub_calendar set isdel=1 ,createdate=now()
+  </update>
+</mapper>

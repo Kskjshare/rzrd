@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="calendar" extends="eread-package" namespace="/calendar">
+		
+		<action name="select" class="CalendarAction" method="select">
+			<result name="success">/module/calendar/mindex.jsp</result>
+		</action>
+		<action name="add" class="CalendarAction" method="add">
+			<result name="success" >
+				/module/calendar/mindex.jsp
+			</result>
+		</action>
+		<action name="deleteById" class="CalendarAction" method="deleteById">
+			<result name="success" >
+				/module/calendar/mindex.jsp
+			</result> 
+		</action>
+		<action name="selectById" class="CalendarAction" method="selectById">
+			<result type="json">
+			    <param name="root">entity</param>
+			</result>
+		</action>
+		<action name="update" class="CalendarAction" method="update">
+			<result name="success" type="redirectAction">
+				<param name="actionName">select</param>
+			</result>
+		</action>
+		<action name="getSelectJson" class="CalendarAction" method="getSelectJson">
+		</action>
+		<action name="insertAndPush" class="CalendarAction" method="insertAndPush">
+			<result name="success" type="json">
+				<param name="root">codeMap</param>
+				<param name="ignoreHierarchy">false</param>getPubtime()
+			</result>
+		</action>		
+		<action name="getPubtime" class="CalendarAction" method="getPubtime">
+			<result name="success" type="json">
+				<param name="root">codeMap</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>		
+	</package>
+</struts>

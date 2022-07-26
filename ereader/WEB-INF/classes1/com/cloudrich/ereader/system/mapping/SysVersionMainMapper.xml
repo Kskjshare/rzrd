@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloudrich.ereader.system.dao.SysVersionMainDao" >
+  <resultMap id="BaseResultMap" type="com.cloudrich.ereader.system.entity.SysVersionMainEnity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="upcontent" property="upcontent" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="path" property="path" jdbcType="VARCHAR" />
+    <result column="filename" property="filename" jdbcType="VARCHAR" />
+    <result column="filetype" property="filetype" jdbcType="VARCHAR" />
+    <result column="versionnum" property="versionnum" jdbcType="VARCHAR" />
+    <result column="apptype" property="apptype" jdbcType="CHAR" />
+    <result column="isdel" property="isdel" jdbcType="CHAR" />
+    <result column="fileguid" property="fileguid" jdbcType="VARCHAR" />	
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    update  er_sys_version_main set isdel='1'
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cloudrich.ereader.system.entity.SysVersionMainEnity" >
+    insert into er_sys_version_main (id, upcontent,versionnum, createtime, 
+      path, filename, filetype, 
+      apptype,isdel,fileguid)
+    values (#{id,jdbcType=INTEGER}, #{upcontent,jdbcType=VARCHAR}, #{versionnum,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{path,jdbcType=VARCHAR}, #{filename,jdbcType=VARCHAR}, #{filetype,jdbcType=VARCHAR}, 
+      #{apptype,jdbcType=CHAR}, #{isdel,jdbcType=CHAR}, #{fileguid,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.cloudrich.ereader.system.entity.SysVersionMainEnity" >
+    update er_sys_version_main
+	<set>
+ 	<if test="upcontent!=null">
+ 		upcontent= #{upcontent,jdbcType=VARCHAR},
+ 	</if>
+ 	<if test="versionnum!=null">
+ 		versionnum= #{versionnum,jdbcType=VARCHAR},
+ 	</if>
+ 	<if test="createtime!=null">
+ 		 createtime = #{createtime,jdbcType=TIMESTAMP},
+ 	</if>
+ 	<if test="path!=null">
+ 		 path = #{path,jdbcType=VARCHAR}, 
+ 	</if>
+ 	<if test="filename!=null">
+ 		filename = #{filename,jdbcType=VARCHAR},
+ 	</if>
+  	<if test="filetype!=null">
+ 		 filetype = #{filetype,jdbcType=VARCHAR}, 
+ 	</if>	
+  	<if test="apptype!=null">
+ 		 apptype = #{apptype,jdbcType=CHAR},
+ 	</if>
+  	<if test="isdel!=null">
+ 		  isdel = #{isdel,jdbcType=CHAR},
+ 	</if> 	 	 	 	 	 	
+  	<if test="fileguid!=null">
+ 		  fileguid = #{fileguid,jdbcType=CHAR}
+ 	</if> 	 	 	 	 	 	
+   </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, upcontent,versionnum, path, createtime, filename, filetype, apptype, isdel,fileguid
+    from er_sys_version_main
+    where id = #{id,jdbcType=INTEGER} and isdel !=1
+    order by createtime desc  
+  </select>
+  
+  <select id="selectVersionByType" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select id, upcontent,versionnum, path, createtime, filename, filetype, apptype, isdel,fileguid
+    from er_sys_version_main
+    where apptype = #{id,jdbcType=INTEGER} and isdel !=1
+    order by versionnum desc  
+  </select>
+  
+  <select id="selectAll" resultMap="BaseResultMap"  parameterType="java.util.HashMap">
+    select id, upcontent,versionnum, path, createtime, filename, filetype, apptype, isdel,fileguid
+    from er_sys_version_main
+    where  isdel !=1
+     <if test="versionnum!=null">
+    	 and versionnum like CONCAT('%',CONCAT(#{versionnum,jdbcType=VARCHAR},'%'))
+    </if>
+    <if test="filetype!=null">
+    	and filetype like CONCAT('%',CONCAT(#{filetype,jdbcType=VARCHAR},'%'))
+    </if> 
+    order by createtime desc  
+  </select>
+  <select id="selectMaxVersion" resultMap="BaseResultMap">
+    select id, upcontent,versionnum, path, createtime, filename, filetype, apptype, isdel,fileguid
+    from er_sys_version_main
+    where  isdel !=1
+    order by versionnum desc 
+    limit 0,1 
+  </select>
+</mapper>

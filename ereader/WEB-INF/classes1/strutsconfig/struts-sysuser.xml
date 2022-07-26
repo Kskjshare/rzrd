@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="sysuser" extends="eread-package" namespace="/sysuser">
+		<action name="selectList" class="SysUserAction" method="selectList">
+			<result >/module/system/mindex.jsp</result>
+		</action>
+		<action name="saveUser" class="SysUserAction" method="saveUser">
+			<result type="json">
+				<param name="root">codeMap</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+		<action name="autoImportUser" class="SysUserAction" method="autoImportUser">
+			<result type="json">
+				<param name="root">codeMap</param>
+				<param name="ignoreHierarchy">false</param>
+			</result> 
+		</action>
+		<action name="updateUser" class="SysUserAction" method="updateUser">
+			<result type="json">
+				<param name="root">codeMap</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action> 
+		<action name="selectById" class="SysUserAction" method="selectById">
+		    <result type="json">
+		    <param name="root">entity</param>
+		    </result>
+		</action>
+		<action name="delete" class="SysUserAction" method="delete">
+			<result type="json">
+				<param name="root">codeMap</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+		<action name="checkUsername" class="SysUserAction" method="checkUsername">
+			<result type="json">
+				<param name="root">codeMap</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action> 
+		<action name="checkPadmobile" class="SysUserAction" method="checkPadmobile">
+			<result type="json">
+				<param name="root">codeMap</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action> 				
+		<action name="checkImeiNum" class="SysUserAction" method="checkImeiNum">
+			<result type="json">
+				<param name="root">codeMap</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action> 				
+	</package>
+</struts>

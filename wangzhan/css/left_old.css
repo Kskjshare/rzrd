@@ -1,0 +1,147 @@
+/*govItem*/
+.govItem{width: 100%;padding: 40px 0;}
+.govItem .w1200{padding: 10px;background: #fff;border: 1px solid #1c92cf;}
+/*govLe*/
+.govItem .govLe{width: 406px;}
+.leader{width: 380px;}
+.leader-img{width: 116px;}
+.leader-img a{width: 116px;height:152px;overflow: hidden;display: block;}
+.leader-img a img{width: 116px;height:auto;}
+.leader-list{width: 250px;}
+.leader-list a{color: #555;}
+.leader-list p{border-bottom: 1px solid #EEEEEE;padding-bottom: 10px; margin-bottom:5px;font-weight: bold;font-size: 18px;}
+.leader-list p a{font-weight: normal;}
+.leader-list .leader-box{line-height:32px;}
+.leader-list .leader-box li{float: left;display: block;width: 62px;font-size: 17px;}
+.leader-list .leader-box span{ display: inline-block;float: left;font-weight: bold; white-space:nowrap;font-size:16px}
+.leader-list .leader-box .leader-ul{width: 180px; float: right;}
+.leader-list .leader-box .leader-ul ul{width: 186px;}
+.mszTitle{font-weight: bold;}
+.leader-list .more-leader{color: #0078cd;width: 130px;line-height: 28px;display:block;background: #e8f6ff;text-indent: 15px;font-size: 14px;margin-top: 15px;}
+.part-box ul{overflow: hidden;margin-top: 20px;}
+.part-box li{float: left;text-align: center;width: 98px;height: 104px; margin-top:10px;}
+.part-box li p{ font-size: 12px; margin-top:5px;color: #555;}
+
+.leader-img{width: 116px;}
+.leader-img a{width: 116px;height:152px;overflow: hidden;display: block;}
+.leader-img a img{width: 116px;height:auto;}
+.leader-list{width: 250px;}
+.leader-list a{color: #555;}
+.leader-list p{border-bottom: 1px solid #EEEEEE;padding-bottom: 10px; margin-bottom:5px;font-weight: bold;font-size: 18px;}
+.leader-list p a{font-weight: normal;}
+.leader-list .leader-box{line-height:32px;}
+.leader-list .leader-box li{float: left;display: block;width: 62px;font-size: 17px;}
+/* .leader-list .leader-box span{ width: 65px;display: inline-block;float: left;font-weight: bold;font-size:16px} */
+.leader-list .leader-box .leader-ul{width: 180px; float: right;}
+.leader-list .leader-box .leader-ul ul{width: 186px;}
+
+
+.rdhy-menu{margin-bottom:10px; overflow:hidden;}
+.rdhy-menu .menu-icons li a{
+    font-size:23px;position: relative;
+    display: block;
+    margin: 10px 5px 10px 0;
+    padding: 10px 15px;
+    color: #1667c2;
+    text-align: center;
+    background-color: #e7f5fe;
+}
+.rdhy-menu .menu-icons li a:before{
+    display: inline-block ; 
+    margin-right: 10px;
+    width:50px; 
+    height:50px;
+    margin-right:15px; 
+    background-image:url(../images/index_rd_icons_1.png);
+    content:'';
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+}
+.rdhy-menu .menu-icons li a font{width:150px;    display: inline-block;}
+.rdhy-menu .menu-icons li.li1 a:before{background-position:0 -50px;}
+.rdhy-menu .menu-icons li.li2 a:before{background-position:0 -100px;}
+
+.zhrd-menu{overflow:hidden;}
+.zhrd-menu .menu-icons li{width:50%;}
+.zhrd-menu .menu-icons li.li0{width:100%;}
+.zhrd-menu .menu-icons .li0 a:before{
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
+    background-image: url(../images/index_rd_icons_1.png);
+}
+.zhrd-menu .menu-icons li.li0 a font{font-size:18px;}
+.zhrd-menu .menu-icons li a{padding:10px 5px; font-size:16px;}
+.zhrd-menu .menu-icons li a:before{margin-right:0; background-image:url(../images/index_rd_icons_2.png);}
+.zhrd-menu .menu-icons li.li1 a:before{background-position:0 -40px;}
+.zhrd-menu .menu-icons li.li2 a:before{background-position:0 -80px;}
+.zhrd-menu .menu-icons li.li3 a:before{background-position:0 -120px;}
+.zhrd-menu .menu-icons li.li4 a:before{background-position:0 -160px;}
+.moblie_btn{display:none;}
+
+.ggw {margin-bottom: 10px;}
+.ggw img{max-width: 100%;}
+.ggw_moblie{display: none;}
+
+.p2{
+    overflow: hidden;
+}
+
+.p2 .left{
+    width: 27%;
+}
+
+.p2 .left .itm{
+    width: 100%;
+    height: 71px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.p2 .left .itm img{
+    height: 71px;
+    width: 100%;
+}
+
+.p2 .left .itm p{
+    font-size: 23px;
+    color: #1667c2;
+    position: absolute;
+    top: 17px;
+    left: 130px;
+    cursor: pointer;
+}
+.p2 .left .itm p i{display: none;}
+
+@media (max-width: 1199px) {
+    .wrap_mobile{padding-right: 10px; padding-left: 10px;}
+}
+.wp100{
+    width:100% !important;
+}
+
+.btn_zhrd{
+    width: 100%;
+    height: 75px;
+    margin-top: 12px;
+    cursor: pointer;
+    position:relative;
+    background: #1b78cf;
+    text-align:center;
+}
+.btn_zhrd img{
+    margin:0 auto;
+}
+
+.btn_zhrd p{
+    font-size: 23px;
+    color: #1667c2;
+    position: absolute;
+    top: 26px;
+    left: 130px;
+}
+
+.dh_modular_news a {
+	font-size: 17px;
+}

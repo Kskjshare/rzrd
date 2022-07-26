@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="sysdictdata" extends="eread-package" namespace="/sysdictdata">
+		<action name="selectList" class="DictDataAction" method="selectList">
+			<result >/module/system/dictdata.jsp</result>
+		</action>
+		<action name="saveDictData" class="DictDataAction" method="saveDictData">
+			<result type="json">
+				<param name="root">codeMap</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+		<action name="updateDictData" class="DictDataAction" method="updateDictData">
+			<result type="json">
+				<param name="root">codeMap</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action> 
+		<action name="selectById" class="DictDataAction" method="selectById">
+		    <result type="json">
+		    <param name="root">selectentity</param>
+		    </result>
+		</action> 
+		<action name="checkdictdaratype" class="DictDataAction" method="checkdictdaratype">
+			<result type="json">
+				<param name="root">codeMap</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action> 
+	</package>
+</struts>

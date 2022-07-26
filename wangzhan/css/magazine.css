@@ -1,0 +1,11 @@
+.cl{zoom:1}
+.cl:after{display:block;clear:both;content:"";}
+.media{}
+.itemBox{margin-left: 54%;margin-top: 0px;}
+.journal{overflow: hidden;margin-top: 10px;}
+.journal li{float: left;width: 168px;height: 210px;margin-left: 0px;}
+.journal1 li{margin-left: 20px;}
+.journal li:first-child{margin-left: 0;}
+.journal li img{display: block;width: 168px;height: 210px;border: 1px solid #eee;}
+.fl{float: left;}
+.fr{float: right;}

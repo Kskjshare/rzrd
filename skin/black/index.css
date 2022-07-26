@@ -1,0 +1,43 @@
+html, body { padding: 0; margin: 0; width: 100%; height: 100%; overflow: hidden; color: #666; }
+body { font: 12px Arial, "宋体", Verdana, sans-serif; background: #fff; }
+
+#header { background-color: #333; position: absolute; z-index: 1; width: 100%; }
+#header p { height: 20px; }
+#header>div{position:absolute; right:10px; top:11px; color:white;}
+#header>div img{vertical-align:middle;}
+#header>div a{ color:white;}
+
+#nav { overflow: hidden; height: 40px; }
+#nav li { display: inline-block; color: white; height: 40px; margin-right: 0; font-size: 13px; font-weight: bold; text-decoration: none; cursor: pointer; padding: 0 15px; line-height: 40px;}
+#nav li.actived { color: #fff; text-decoration: none; text-align: center; background: #1abc9c; border-color: #173c68; }
+
+#content { position: absolute; top: 41px; bottom: 30px; left: 0px; right: 0px; }
+#content table { width: 100%; }
+
+#left { position: absolute; top: 0; left: 0; bottom: 0; width: 120px; overflow: hidden; border-right: solid 1px #ccc;background: #eaedf1; }
+#leftMenus { margin: 0px auto; margin-bottom: 20px; }
+#leftMenus li { background: white; cursor: pointer; }
+#leftMenus p { color: #666; text-decoration: none;padding-left: 18px;line-height: 40px; }
+#leftMenus p:before{ content: '• '}
+#leftMenus p:hover { color: red; font-weight: bold; }
+#leftMenus p.selected {background: #fff;  color: #69c9b8;}
+
+#leftMenus dt { line-height: 40px; color: #999; font-weight: bold; padding-left: 5px; background-color:#f2f2f2; cursor: pointer; }
+#leftMenus dt:before{ content: '⇲ '}
+#leftMenus li.reset { padding: 0; background: none; line-height: normal; border: none; }
+
+#right { position: absolute; left: 120px; top: 0; right: 0; bottom: 0; }
+#right > ul { position: absolute;left: 1px; right: 0; height: 40px; line-height: 24px; background-color:#f2f2f2; padding-left: 10px; }
+#right > ul li { display: inline-block; padding: 0 8px; border: 1px solid #ccc; color: #ccc; background-color:white; margin-top: 7px; margin-right: 5px; cursor: pointer;}
+#right > ul li.actived { color: black; }
+#right > ul b { float: right; width:15px; height: 15px; text-align: center; line-height: 15px; margin-top: 4px; margin-left: 3px; border-radius:50%; border: solid 1px gray; }
+#right > ul b:hover { border-color: #fff; }
+#right > div { position: absolute; left: 0; right: 0; top: 45px; bottom: 0; }
+#right iframe { width: 100%; height: 100%; border: none; }
+
+#controlbtn { cursor: pointer; padding-right: 10px; }
+
+#footer { background: #333; position: absolute; bottom: 0px; height: 30px; line-height: 30px; width: 100%; text-align: center; color: white; }
+#login { color: blue; text-align: right; }
+#login img { vertical-align: middle; }
+#login a { color: blue; }

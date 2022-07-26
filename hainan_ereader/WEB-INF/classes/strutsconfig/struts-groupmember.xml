@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="groupmember" extends="eread-package" namespace="/groupmember">
+		<action name="selectGroup" class="GroupMemberAction" method="selectGroup">
+			<result >/module/groupmember/mindex.jsp</result>
+		</action>
+		<action name="select" class="GroupMemberAction" method="select">
+			<result >/module/groupmember/membermanage.jsp</result>
+		</action>
+		<action name="delete" class="GroupMemberAction" method="delete">
+			<result name="success" type="redirectAction">
+				<param name="actionName">select</param>
+			</result>
+		</action>
+		<action name="update" class="GroupMemberAction" method="update">
+			<result name="success" type="redirectAction">
+				<param name="actionName">select</param>
+			</result>
+		</action>
+		<action name="selectById" class="GroupMemberAction" method="selectById">
+			<result type="json">
+			    <param name="root">entity</param>
+			</result>
+		</action>
+		<action name="add" class="GroupMemberAction" method="add">
+			<result name="success" type="redirectAction">
+				<param name="actionName">select</param>
+			</result>
+		</action>
+		<action name="updateSort1" class="GroupMemberAction" method="updateSort1">
+		</action>
+		<action name="updateSort2" class="GroupMemberAction" method="updateSort2">
+		</action>
+		<action name="insertPub" class="GroupMemberAction" method="insertPub">
+		    <result type="json">
+				<param name="root">codeMap</param>
+				<param name="ignoreHierarchy">false</param>
+		    </result>
+		</action>
+		<action name="selectPubtime" class="GroupMemberAction" method="selectPubtime">
+		    <result type="json">
+				<param name="root">codeMap</param>
+				<param name="ignoreHierarchy">false</param>
+		    </result>
+		</action>	
+	</package>
+</struts>

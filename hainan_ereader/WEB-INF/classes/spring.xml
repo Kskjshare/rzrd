@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-3.0.xsd
+http://www.springframework.org/schema/task
+http://www.springframework.org/schema/task/spring-task-3.0.xsd"
+	xmlns:task="http://www.springframework.org/schema/task">
+	<!-- 引入属性文件 -->
+	<context:property-placeholder location="classpath:config.properties" />
+	<!-- 自动扫描(自动注入) -->
+	<context:component-scan base-package="com.cloudrich.*" />
+	<!--  <task:annotation-driven />-->
+	
+	<bean id="quartzScheduler" name="quartzScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:quartz.properties" />
+		<property name="applicationContextSchedulerContextKey" value="applicationContextKey" />
+		<property name="autoStartup" value="false"/>
+	</bean>
+	<bean id="scheduleManager" class="com.cloudrich.framework.job.common.ScheduleManager" init-method="start">
+		<property name="scheduler" ref="quartzScheduler" />
+	</bean>
+		<bean id="springBeanUtil" class="com.cloudrich.ereader.util.SpringBeanUtil">
+	</bean>
+	
+		 <task:scheduled-tasks>   
+        <task:scheduled ref="smsPreJob10" method="work" cron="0 0 10 * * ?"/>  
+        <task:scheduled ref="smsPreJob5" method="work" cron="0 0 17 * * ?"/> 
+        
+       
+    </task:scheduled-tasks>  
+	
+</beans>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloudrich.ereader.briefing.dao.MeetBriefingMainDao" >
+  <resultMap id="BaseResultMap" type="com.cloudrich.ereader.briefing.entity.MeetBriefingMainEntity" >
+    <id column="briefid" property="briefid" jdbcType="INTEGER" />
+    <result column="briefname" property="briefname" jdbcType="VARCHAR" />
+    <result column="meetid" property="meetid" jdbcType="INTEGER" />
+    <result column="filename" property="filename" jdbcType="VARCHAR" />
+    <result column="filepath" property="filepath" jdbcType="VARCHAR" />
+    <result column="sendtype" property="sendtype" jdbcType="CHAR" />
+    <result column="sendtime" property="sendtime" jdbcType="TIMESTAMP" />
+    <result column="pubtime" property="pubtime" jdbcType="TIMESTAMP" />    
+    <result column="fileguid" property="fileguid" jdbcType="VARCHAR" />    
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    update  er_meet_briefing_main
+    set isdel=1
+    where briefid = #{briefid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cloudrich.ereader.briefing.entity.MeetBriefingMainEntity" keyProperty="briefid">
+  	  <selectKey keyProperty="briefid"  resultType="java.lang.Integer" order="AFTER">
+      	SELECT LAST_INSERT_ID() AS briefid
+      </selectKey>
+    insert into er_meet_briefing_main (briefid, briefname, meetid, 
+      filename, filepath, sendtype, 
+      sendtime,pubtime,fileguid)
+    values (#{briefid,jdbcType=INTEGER}, #{briefname,jdbcType=VARCHAR}, #{meetid,jdbcType=INTEGER}, 
+      #{filename,jdbcType=VARCHAR}, #{filepath,jdbcType=VARCHAR}, #{sendtype,jdbcType=CHAR}, 
+      #{sendtime,jdbcType=TIMESTAMP}, #{pubtime,jdbcType=TIMESTAMP},#{fileguid,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.cloudrich.ereader.briefing.entity.MeetBriefingMainEntity" >
+    update er_meet_briefing_main
+    set briefname = #{briefname,jdbcType=VARCHAR},
+      meetid = #{meetid,jdbcType=INTEGER},
+      filename = #{filename,jdbcType=VARCHAR},
+      filepath = #{filepath,jdbcType=VARCHAR},
+      sendtype = #{sendtype,jdbcType=CHAR},
+      sendtime = #{sendtime,jdbcType=TIMESTAMP},
+      pubtime  = #{pubtime,jdbcType=TIMESTAMP},
+      fileguid= #{fileguid,jdbcType=VARCHAR}
+    where briefid = #{briefid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select briefid, briefname, meetid, filename, filepath, sendtype, sendtime,pubtime,fileguid
+    from er_meet_briefing_main
+    where briefid = #{briefid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select briefid, briefname, meetid, filename, filepath, sendtype, sendtime,pubtime,fileguid
+    from er_meet_briefing_main
+    where isdel=0
+  </select>
+  
+  <select id="selectAllByMeetid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select briefid, briefname, meetid, filename, filepath, sendtype, sendtime,pubtime,fileguid
+    from er_meet_briefing_main
+    where meetid=#{meetid,jdbcType=INTEGER}
+    and isdel=0
+    order by pubtime desc
+  </select>
+  
+  <!-- 根据用户id获取简报 -->
+  <select id="selectAllByMeetidAndUserid" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select briefid, briefname, meetid, filename, filepath, sendtype, sendtime,pubtime,fileguid
+    from er_meet_briefing_main
+    where meetid=#{meetid,jdbcType=INTEGER}
+    and isdel=0
+     and briefid in 
+		 (
+		   select briefid from er_meet_briefing_sendscope where scopeid in
+		   (select scopeid from er_sys_scope_user
+		    where userid=#{userid,jdbcType=INTEGER}
+		   )
+   ) 
+    order by pubtime desc
+  </select>
+  
+  <!-- 按关键字搜索 -->
+  <select id="searchBriefByKeyword" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select briefid, briefname, meetid, filename, filepath, sendtype, sendtime,pubtime,fileguid
+    from er_meet_briefing_main
+    where briefname like CONCAT('%',#{briefname},'%' )
+    and isdel=0
+    and briefid in 
+		 (
+		   select briefid from er_meet_briefing_sendscope where scopeid in
+		   (select scopeid from er_sys_scope_user
+		    where userid=#{userid,jdbcType=INTEGER}
+		   )
+   )
+  </select>
+  
+  <!-- 选择简报数量 -->
+  <select id="selectBriefCountByMeetidAndUserid" resultType="java.lang.Integer" parameterType="java.util.Map" >
+   select count(briefid) from er_meet_briefing_main 
+		where meetid=#{meetid,jdbcType=INTEGER}
+      	and isdel=0 
+	    and briefid in 
+		 (
+		   select briefid from er_meet_briefing_sendscope where scopeid in
+		   (select scopeid from er_sys_scope_user
+		    where userid=#{userid,jdbcType=INTEGER}
+		   )
+   )
+  </select>
+</mapper>

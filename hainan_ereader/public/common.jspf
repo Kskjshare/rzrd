@@ -1,0 +1,46 @@
+<%@ page language="java" import="java.util.*,com.cloudrich.ereader.common.constant.*,com.cloudrich.ereader.login.entity.*" pageEncoding="utf-8"%>
+
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<LINK href="themes/default/images/indexlogo.jpg" type=image/x-icon rel="shortcut icon" /> 
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+		
+	String username=null;	
+	String usertype=null;
+	Map<String,Object> permission=null;
+	LoginUser user = (LoginUser) request.getSession().getAttribute(LoginConstant.USER);
+		 if(user!=null){
+			 username=user.getUsername();
+			 permission=user.getPermissionmap();
+	         usertype=user.getUsertype().trim();
+		 }
+		
+		  
+	    String themespath="/themes/default/";
+	    String imagePath=basePath+"/themes/default/images";
+%>
+		<link rel="stylesheet" type="text/css" href="<%=basePath%>third/jquery/themes/default/easyui.css">
+		<link rel="stylesheet" type="text/css" href="<%=basePath%>third/jquery/themes/icon.css">
+		<link rel="stylesheet" type="text/css" href="<%=basePath%>third/jquery/themes/default/index.css">
+		<script type="text/javascript" src="<%=basePath%>third/jquery/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript" src="<%=basePath%>third/jquery/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="<%=basePath%>third/jquery/treegrid-dnd.js"></script>
+		<script type="text/javascript" src="<%=basePath%>third/jquery/plugins/jquery.draggable.js"></script>
+		<script type="text/javascript" src="<%=basePath%>third/jquery/locale/easyui-lang-zh_CN.js"></script>
+  		<script type="text/javascript" src="<%=basePath%>third/ztree/js/jquery.ztree.core-3.5.js"></script>
+ 	    <link rel="stylesheet" href="<%=basePath%>third/ztree/css/zTreeStyle/zTreeStyle.css" type="text/css">
+ 	    <script type="text/javascript" src="<%=basePath%>third/jquery/jquery.cookie.js"></script>  
+ 		<script type="text/javascript" src="<%=basePath%>third/ztree/js/jquery.ztree.excheck-3.5.js"></script>
+ 		<script type="text/javascript" src="<%=basePath%>third/myJs/my.js"></script>
+ 		<link rel="stylesheet" type="text/css" href="<%=basePath%>themes/default/css/style.css">
+ 		<script type="text/javascript">
+			function goback(){
+				window.history.go(-1);
+			}
+		</script>

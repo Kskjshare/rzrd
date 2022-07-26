@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloudrich.ereader.meeting.dao.MeetRichenMainDao" >
+  <resultMap id="BaseResultMap" type="com.cloudrich.ereader.meeting.entity.MeetRichenMainEntity" >
+    <id column="richenid" property="richenid" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="prichenid" property="prichenid" jdbcType="INTEGER" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="isdel" property="isdel" jdbcType="INTEGER" />
+    <result column="meetid" property="meetid" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    update er_meet_richen_main
+    set isdel=1
+    where richenid = #{richenid,jdbcType=INTEGER}
+    or prichenid=#{richenid,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="com.cloudrich.ereader.meeting.entity.MeetRichenMainEntity" >
+    insert into er_meet_richen_main
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="meetid != null" >
+        meetid,
+      </if>
+      <if test="prichenid != null" >
+        prichenid,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      </trim> 
+      <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="meetid != null" >
+         #{meetid,jdbcType=INTEGER},
+      </if>
+	    <if test="prichenid != null" >
+	    	#{prichenid,jdbcType=INTEGER}, 
+	    </if>
+       <if test="name != null" >
+	    	#{name,jdbcType=VARCHAR}, 
+	    </if>
+	     <if test="sort != null" >
+	    	#{sort,jdbcType=INTEGER}, 
+	    </if>
+      </trim> 
+  </insert>
+  
+  <!-- insert and return identity -->
+    <insert id="insertAndGetId"  useGeneratedKeys="true" keyProperty="richenid" parameterType="com.cloudrich.ereader.meeting.entity.MeetRichenMainEntity" >    
+   insert into er_meet_richen_main
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="meetid != null" >
+        meetid,
+      </if>
+      <if test="prichenid != null" >
+        prichenid,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      </trim> 
+      <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="meetid != null" >
+         #{meetid,jdbcType=INTEGER},
+      </if>
+	    <if test="prichenid != null" >
+	    	#{prichenid,jdbcType=INTEGER}, 
+	    </if>
+       <if test="name != null" >
+	    	#{name,jdbcType=VARCHAR}, 
+	    </if>
+	     <if test="sort != null" >
+	    	#{sort,jdbcType=INTEGER}, 
+	    </if>
+      </trim> 
+      </insert>
+  
+  <update id="updateByPrimaryKey" parameterType="com.cloudrich.ereader.meeting.entity.MeetRichenMainEntity" >
+    update er_meet_richen_main
+    set name = #{name,jdbcType=VARCHAR},
+       <if test="prichenid != null" >
+	    	prichenid = #{prichenid,jdbcType=INTEGER},
+	    </if>
+      <if test="sort != null" >
+	    	sort = #{sort,jdbcType=INTEGER},
+	    </if>
+      meetid = #{meetid,jdbcType=INTEGER}
+    where richenid = #{richenid,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select richenid, name, prichenid, sort,meetid,isdel
+    from er_meet_richen_main
+    where richenid = #{richenid,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select richenid, name, prichenid, sort,meetid,isdel
+    from er_meet_richen_main
+  </select>
+  
+  <!-- 根据meetid获取所有的日程 -->
+  <select id="selectAllRichenByMeetid" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select richenid, name, prichenid, sort,meetid,isdel
+    from er_meet_richen_main
+    where meetid=#{meetid,jdbcType=INTEGER}
+    and isdel=0
+    order by sort
+  </select>
+  
+  
+  <!-- 根据meetid获取所有的第一级日程 -->
+  <select id="selectParentRichenByMeetid" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select richenid, name, prichenid, sort,meetid
+    from er_meet_richen_main
+    where meetid=#{meetid,jdbcType=INTEGER}
+    and isdel=0
+    and prichenid=0
+    order by sort
+  </select>
+  
+  <!-- 根据第一级日程id获取所有的第二级日程 -->
+  <select id="selectSubRichenByRichenid" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select richenid, name, prichenid, sort,meetid
+    from er_meet_richen_main
+    where prichenid=#{richenid,jdbcType=INTEGER}
+    and isdel=0
+    order by sort
+  </select>
+  
+  <!--  -->
+  <select id="selectMeetIdByRichenYiyiid" parameterType="java.lang.Integer"  resultMap="BaseResultMap">
+    select r.meetid from er_meet_richen_main r,er_meet_richen_yiti y where r.richenid=y.richenid
+     and y.yitiid=#{yitiid,jdbcType=INTEGER}
+  </select>
+  
+  <!--查询父日程  -->
+   <select id="selectParentRichenByNameAndMeetid" resultMap="BaseResultMap" parameterType="java.util.Map" >
+   select richenid, name, prichenid, sort,meetid
+    from er_meet_richen_main
+    where 
+    meetid = #{meetid,jdbcType=INTEGER}
+    and name like CONCAT(#{name,jdbcType=VARCHAR},'%' )
+    and prichenid = 0
+    and isdel = 0
+  </select>
+  
+  <!-- 查询子日程 -->
+  <select id="selectSubRichenByNameAndMeetid" resultMap="BaseResultMap" parameterType="java.util.Map" >
+   select richenid, name, prichenid, sort,meetid
+    from er_meet_richen_main
+    where 
+    meetid = #{meetid,jdbcType=INTEGER}
+    and name like CONCAT(#{name,jdbcType=VARCHAR},'%' )
+    and prichenid = #{prichenid,jdbcType=INTEGER}
+    and isdel = 0
+  </select>
+  
+  <!-- 更新序号 -->
+   <update id="updateRichenSort" parameterType="java.util.Map" >
+    update er_meet_richen_main set sort=#{sort,jdbcType=INTEGER}
+    where richenid = #{richenid,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 查询闭幕会日程 -->
+  <select id="selectBmhDateRichenByMeetid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select * from er_meet_richen_main
+               where meetid=#{meetid,jdbcType=INTEGER}
+                  and isdel=0
+                 and prichenid=0
+             order by sort desc
+         LIMIT 1
+  </select>
+  
+  <!-- 查询闭幕会时间日程 -->
+  <select id="selectBmhTimeRichenByRichenid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select * from er_meet_richen_main
+       where prichenid = #{richenid,jdbcType=INTEGER}
+       and isdel=0
+     order by sort desc
+     limit 1
+  </select>
+  
+     <!-- 根据fileid获取关联闭幕会文件日程 -->
+   <select id="selectRichenFileByFileid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select *
+    from er_meet_richen_main
+    where richenid in 
+	 (select richenid from er_meet_richen_yiti where yitiid in
+	  (select richenid from er_meet_richen_file where fileid  = #{fileid,jdbcType=INTEGER} and isdel=0) 
+	  and isdel=0)
+    and isdel=0
+  </select>
+</mapper>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SM Proxy 配置文件 -->
+<config>
+	<!--与ISMG(Internet Short Message Gateway)建立连接所需参数 -->
+	<CMPPConnect>
+		<!-- ISMG主机地址 -->
+		<host>112.35.10.164</host>
+		<!-- ISMG主机端口号:行业网关地址7890 -->
+		<port>1990</port>
+		<!-- 心跳信息发送间隔时间(单位：秒) -->
+		<heartbeat-interval>10</heartbeat-interval>
+		<!-- 连接中断时重连间隔时间(单位：秒) -->
+		<reconnect-interval>10</reconnect-interval>
+		<!-- 需要重连时，连续发出心跳而没有接收到响应的个数（单位：个) -->
+		<heartbeat-noresponseout>5</heartbeat-noresponseout>
+		<!-- 操作超时时间(单位：秒) -->
+		<transaction-timeout>10</transaction-timeout>
+		<!--SP…ID(最大为六位字符) 移动提供的用户名 企业代码-->
+		<source-addr>sepjkl</source-addr>
+		<!--双方协商的版本号(大于0，小于256)，其值的计算方法为：主版本号*16+副版本号 例如：版本1.2的值为0x12 -->
+		<version>18</version>
+		<!--shared-secret由中国移动与ICP事先商定，移动提供的用户密码 -->
+		<shared-secret>passwd@1472</shared-secret>
+		<!--是否属于调试状态,true表示属于调试状态，所有的消息被打印输出到屏幕，false表示不属于调试状态，所有的消息不被输出 -->
+		<debug>true</debug>
+	</CMPPConnect>
+	<!--与ISMG(Internet Short Message Gateway)提交短信所需的配置 -->
+	<CMPPSubmitMessage>
+		<!--相同Msg_id消息的总条数，目前只能为1 -->
+		<pk_Total>1</pk_Total>
+		<!--相同Msg_id的消息序号，目前只能为1 -->
+		<pk_Number>1</pk_Number>
+		<!--是否需要状态报告，0:不需要，1:需要，2:产生SMS话单 -->
+		<registered_Delivery>1</registered_Delivery>
+		<!--信息类别 -->
+		<msg_Level>1</msg_Level>
+		<!--业务类型，应与Infox对应 -->
+		<service_Id>DWItALe3A</service_Id>
+		<!--计费用户类型， 0：对目的终端MSISDN计费； 1：对源终端MSISDN计费；2：对SP计费；3：表示本字段无效，对谁计费参见Fee_terminal_Id字段 -->
+		<fee_UserType>2</fee_UserType>
+		<!--计费终端 -->
+		<fee_Terminal_Id></fee_Terminal_Id>
+		<!--GSM协议类型 -->
+		<tp_Pid>0</tp_Pid>
+		<!--GSM协议类型 -->
+		<tp_Udhi>0</tp_Udhi>
+		<!--编码GBK -->
+		<msg_Fmt>15</msg_Fmt>
+		<!--信息内容来源，对应于登录Infox的帐号，移动提供的用户名 -->
+		<msg_Src>sepjkl</msg_Src>
+		<!--资费类别，“短消息类型”为“发送”，对“计费用户号码”不计信息费，此类话单仅用于核减SP对称的信道费01计费用户号免费。02按条计费信息费。03对“计费用户号码”按包月收取信息费 
+			04：对“计费用户号码”的信息费封顶 05：对“计费用户号码”的收费是由SP实现 -->
+		<fee_Type>01</fee_Type>
+		<!--资费代码，以分为单位 -->
+		<fee_Code>000</fee_Code>
+		<!--存活有效期(单位:分钟) -->
+		<valid_Time />
+		<!--定时发送时间 -->
+		<at_Time />
+
+		<src_Id>10657204002</src_Id>
+		<!--源终端MSISDN号码(为SP的服务代码或前缀, 为服务代码的长号码, 网关将该号码完整的填到SMPP协议相应的destination_address字段，该号码最终在用户手机上显示为短消息的主叫号码) 
+			(没有可以为空)，短信接入号 -->
+		<src_Terminal_Id>10657204002</src_Terminal_Id>
+		<!--接收业务的MSISDN号码，即被叫号码 -->
+		<dest_Terminal_Id />
+		<!--消息内容 -->
+		<msg_Content />
+		<!-- 保留 -->
+		<reserve />
+	</CMPPSubmitMessage>
+</config>

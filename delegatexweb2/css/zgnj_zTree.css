@@ -1,0 +1,149 @@
+.ztree * {
+    font-size: 10pt;
+    font-family: "Microsoft Yahei", Verdana, Simsun, "Segoe UI Web Light", "Segoe UI Light", "Segoe UI Web Regular", "Segoe UI", "Segoe UI Symbol", "Helvetica Neue", Arial
+}
+
+.ztree {
+    padding: 5px 5px 5px 0;
+}
+
+.ztree li ul {
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid #e0e0e0;
+}
+
+.ztree li {
+    width: 230px;
+    line-height: 30px;
+    background-color: #fff;
+}
+
+.ztree li a {
+    width: 177px;
+    height: 37px;
+    padding-top: 0px;
+    padding-left: 5px;
+}
+
+.ztree li a:hover {
+    text-decoration: none;
+    background-color: #d52319;
+    background-size: 14px;
+    color: #fff;
+}
+
+.ztree li a span.button.switch {
+    visibility: hidden
+}
+
+.ztree li a.curSelectedNode {
+    background-color: #d52319;
+    background-size: 14px;
+    border: 0;
+    height: 37px;
+    color: #fff;
+    opacity: 1;
+}
+
+.ztree.showIcon li a span.button.switch {
+    visibility: visible
+}
+
+.ztree li span {
+    line-height: 30px;
+    font-size: 16px;
+}
+
+.ztree li span.button {
+    margin-top: -7px;
+}
+
+.ztree li span.button.switch {
+    width: 16px;
+    height: 16px;
+    float: left;
+}
+
+.ztree li a.level0 span {
+    font-family: "微软雅黑";
+    font-size: 16px;
+}
+
+.ztree li span.button {
+    background-image: url(left_menuForOutLook.png);
+    /**background-image: url("imags/left_menuForOutLook.gif")*/
+}
+
+.ztree li span.button.switch.level0 {
+    width: 20px;
+    height: 20px
+}
+
+.ztree li span.button.switch.level1 {
+    width: 20px;
+    height: 20px;
+    float: left;
+    margin: 8px 0 0 30px;
+    z-index: 9999;
+    position: absolute;
+    vertical-align: middle;
+    display: block;
+}
+
+.ztree li span.button.noline_open {
+    background-position: 0px -18px;
+}
+
+.ztree li span.button.noline_close {
+    background-position: -18px -18px;
+}
+
+.ztree li span.button.noline_open.level0 {
+    background-position: 0 -18px;
+    margin-left: 28px;
+    margin-top: 4px;
+    position: absolute;
+    z-index: 99999;
+    vertical-align: middle;
+}
+
+.ztree li span.button.noline_close.level0 {
+    background-position: -18px -18px;
+    margin-left: 28px;
+    margin-top: 5px;
+    position: absolute;
+    z-index: 99999;
+    vertical-align: middle;
+}
+
+.center_left_Result_title {
+    font-family: "微软雅黑";
+    font-size: 18px;
+    padding-left: 6px;
+}
+
+#chnlTree_1_a {
+    /*color: #000;*/
+    display: block!important;
+    padding-left: 50px!important;
+}
+
+#chnlTree_1_ul {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.pSearch_null {
+    color: #333;
+    font-size: 15px;
+    margin: 10px 0;
+}
+
+.top_con_IE9 {
+    position: relative;
+    top: 10px;
+    color: red;
+    padding-left: 220px;
+    font-size: 15px;
+    font-family: "微软雅黑";
+}

@@ -1,0 +1,987 @@
+var menudata = {
+    'my': {
+        'text': '基础信息',
+        'children': {
+            'menutop': {
+                'text': "功能导航",
+                'children': {
+                }
+            },
+            'welcome': {
+                'text': '基础信息管理',
+                'powerid': '1',
+                'children': {
+                    'head': {
+                        'text': '首页',
+                        'url': '/suggest/homepage.jsp'
+                    },
+                    'representative': {
+                        'text': '代表管理',
+                        'url': '/delegate/list.jsp',
+                        'powerid': '2',
+                        'button': {
+                            'quicksearch': {
+                                'text': '快速查询',
+                            },
+                            'append': {
+                                'text': '新增代表',
+                            },
+                            'edit': {
+                                'text': '编辑代表',
+                            },
+                            'butview': {
+                                'text': '查看',
+                            },
+                            'import': {
+                                'text': '导入',
+                            },
+                            'butreports': {
+                                'text': '报表',
+                            }
+                        }
+                    },
+                    'delegation': {
+                        'text': '代表团管理',
+                        'url': '/delegation/list.jsp',
+                        'powerid': '3',
+                        'button': {
+                            'quicksearch': {
+                                'text': '快速查询',
+                            },
+                            'append': {
+                                'text': '新增代表团',
+                            },
+                            'edit': {
+                                'text': '编辑代表团',
+                            },
+                            'delete': {
+                                'text': '删除',
+                            },
+                            'butview': {
+                                'text': '查看',
+                            },
+                            'butreports': {
+                                'text': '报表',
+                            }
+                        }
+                    },
+                    'company': {
+                        'text': '单位管理',
+                        'url': '/company/list.jsp',
+                        'powerid': '4',
+                        'button': {
+                            'quicksearch': {
+                                'text': '快速查询',
+                            },
+                            'append': {
+                                'text': '新增单位',
+                            },
+                            'edit': {
+                                'text': '编辑单位',
+                            },
+                            'delete': {
+                                'text': '删除',
+                            },
+                            'butview': {
+                                'text': '查看',
+                            },
+                            'butreports': {
+                                'text': '报表',
+                            }
+                        }
+                    },
+                    'companyuser': {
+                        'text': '单位联系人',
+                        'powerid': '5',
+                        'url': '/company/companyuser/list.jsp',
+                        'button': {
+                            'quicksearch': {
+                                'text': '快速查询',
+                            },
+                            'append': {
+                                'text': '新增单位',
+                            },
+                            'edit': {
+                                'text': '编辑单位',
+                            },
+                            'delete': {
+                                'text': '删除',
+                            },
+                            'butview': {
+                                'text': '查看',
+                            },
+                            'butreports': {
+                                'text': '报表',
+                            }
+                        }
+                    },
+                }
+            },
+            'recharge': {
+                'text': '系统管理',
+                'powerid': '6',
+                'children': {
+                    'staff': {
+                        'text': '用户管理',
+                        'url': '/staff/list.jsp',
+                        'powerid': '7',
+                    },
+                    'power': {
+                        'text': '权限管理',
+                        'url': '/staff/powerlist/list.jsp',
+                        'powerid': '8',
+                    },
+                    'group': {
+                        'text': '角色管理',
+                        'url': '/staff/power/group/list.jsp',
+                        'powerid': '9',
+                    },
+                    'position': {
+                        'text': '日志管理',
+                        'url': '/staff/position/list.jsp',
+                        'powerid': '10',
+                    },
+                    'department': {
+                        'text': '用户组',
+                        'url': '/staff/department/list.jsp',
+                        'powerid': '11',
+                    }
+                }
+            },
+            'settings': {
+                'text': '设置管理',
+                'powerid': '12',
+                'children': {
+                    'code': {
+                        'text': '代码管理',
+                        'url': '/suggest/list.jsp',
+                        'powerid': '13',
+                    },
+                    'dictionary': {
+                        'text': '字典管理',
+                        'url': '/suggest/list.jsp',
+                        'powerid': '14',
+                    },
+                    'timer': {
+                        'text': '届次管理',
+                        'url': '/setup/session/list.jsp',
+                        'powerid': '15',
+                    },
+                    'companytypeee': {
+                        'text': '会议次数管理',
+                        'powerid': '15',
+                        'url': '/setup_1/companytypeee/list.jsp'
+                    },
+                    'companytype': {
+                        'text': '单位分类管理',
+                        'url': '/setup/companytype/list.jsp',
+                        'powerid': '15',
+                    },
+                    'conf': {
+                        'text': '配置管理',
+                        'url': '/suggest/list.jsp',
+                        'powerid': '16',
+                    },
+                    'statistics': {
+                        'text': '统计管理',
+                        'url': '/suggest/list.jsp',
+                        'powerid': '17',
+                    },
+                    'reports': {
+                        'text': '报表管理',
+                        'url': '/suggest/list.jsp',
+                        'powerid': '18',
+                    },
+                    'version': {
+                        'text': '版本',
+                        'powerid': '19',
+                        'url': '/version/list.jsp'
+                    },
+                    'companytypee': {
+                        'text': '审查分类管理',
+                        'powerid': '173',
+                        'url': '/setup_1/companytypee/list.jsp'
+                    },
+                    'mingancitype': {
+                        'text': '敏感词库管理',
+                        'powerid': '184',
+                        'url': '/setup_1/mingancitype/list.jsp'
+                    },
+                    'feedback': {
+                        'text': '意见反馈管理',
+                        'url': '/meetfeedback/list.jsp',
+                        'powerid': '173',
+                    },
+                    'partytype': {
+                        'text': '党派管理',
+                        'url': '/setup_1/partytype/list.jsp',
+                        'powerid': '190',
+                    }
+                }
+            }
+        }
+    },
+    'top2': {
+        'text': '履职管理',
+        'powerid': '20',
+        'children': {
+            'menutop': {
+                'text': "功能导航",
+                'children': {
+                }
+            },
+            'consult4': {
+                'text': '“三个满意度”测评',
+                'powerid': '27',
+                'children': {
+                    'monitor4': {
+                        'text': '“一府一委两院”专项工作满意度测评',
+                        'url': '/evaluation/government/list.jsp',
+                        'powerid': '27',
+                    },
+                    'monitor3': {
+                        'text': '代表建议办理情况满意度测评',
+                        'url': '/evaluation/evaluation/list.jsp',
+                        'powerid': '27',
+                    },
+                    'notice1': {
+                        'text': '代表履职满意度测评',
+                        'url': '/evaluation/delegation/list.jsp',
+                    },
+                }
+            },
+            'consult1': {
+                'text': '通知公告',
+                'powerid': '21',
+                'children': {
+                    'notice': {
+                        'text': '最新资讯',
+                        'url': '/newinformation/list.jsp',
+                    }
+                }
+            },
+            'consult2': {
+                'text': '履职等级',
+                'powerid': '22',
+                'children': {
+                }
+            },
+            'consult3': {
+                'text': '履职交流',
+                'powerid': '23',
+                'children': {
+                }
+            },
+            'consult': {
+                'text': '代表意见征询',
+                'powerid': '24',
+                'children': {
+                    'submit': {
+                        'text': '已提交征询意见',
+                        'url': '/opinion/see.jsp',
+                        'powerid': '25',
+                    },
+                    'monitor': {
+                        'text': '意见征询情况',
+                        'url': '/opinion/look.jsp',
+                        'powerid': '26',
+                    },
+//                    'monitor2': {
+//                        'text': '承办单位测评',
+//                        'url': '/opinion/evaluation/list.jsp',
+//                        'powerid': '24',
+//                    },
+//                    'monitor3': {
+//                        'text': '单位办理满意度测表',
+//                        'url': '/opinion/satisfaction/list.jsp',
+//                        'powerid': '24',
+//                    },
+//                    'monitor4': {
+//                        'text': '一府一委两院满意度评分',
+//                        'url': '/opinion/government/list.jsp',
+//                        'powerid': '24',
+//                    }
+                }
+            },
+//            'consult4': {
+//                'text': '“三个满意度”测评',
+//                'powerid': '27',
+//                'children': {
+//                     'monitor4': {
+//                        'text': '“一府一委两院”专项工作满意度测评',
+//                        'url': '/evaluation/government/list.jsp',
+//                        'powerid': '27',
+//                    },
+//                    'monitor3': {
+//                        'text': '建议办理情况满意度测评',
+//                        'url': '/evaluation/satisfaction/list.jsp',
+//                        'powerid': '27',
+//                    },
+//                     'notice1': {
+//                        'text': '代表履职测评',
+//                        'url': '/evaluation/delegation/list.jsp',
+//                    },
+//                }
+//            },
+//            'consult4': {
+//                'text': '办理单位满意度测评',
+//                'powerid': '27',
+//                'children': {
+//                    'notice': {
+//                        'text': '我的建议办理满意度测评',
+//                        'url': '/evaluation/mysuggest/list.jsp',
+//                    },
+//                    'monitor2': {
+//                        'text': '承办单位测评',
+//                        'url': '/evaluation/evaluation/list.jsp',
+//                        'powerid': '27',
+//                    },
+//                    'monitor3': {
+//                        'text': '单位办理满意度测表',
+//                        'url': '/evaluation/satisfaction/list.jsp',
+//                        'powerid': '27',
+//                    },
+//                    'monitor4': {
+//                        'text': '一府一委两院满意度评分',
+//                        'url': '/evaluation/government/list.jsp',
+//                        'powerid': '27',
+//                    }
+//                }
+//            },
+//            'consult5': {
+//                'text': '代表履职满意度测评',
+//                'powerid': '28',
+//                'children': {
+//                    'notice1': {
+//                        'text': '代表履职满意度测评',
+//                        'url': '/evaluation/delegation/list.jsp',
+//                    },
+//                    'notice': {
+//                        'text': '履职详情',
+//                        'url': '/lvzhilist/list.jsp',
+//                    },
+//                    'notice2': {
+//                        'text': '评分规则',
+//                        'url': '/scoringrules/list.jsp',
+//                        'powerid': '29',
+//                    }
+//                }
+//            },
+//            'consult6': {
+//                'text': '评分规则',
+//                'children': {
+//                    'notice': {
+//                        'text': '评分规则',
+//                        'url': '/scoringrules/list.jsp',
+//                        'powerid': '29',
+//                    }
+//                }
+//            },
+            'consult7': {
+                'text': '代表活动',
+                'powerid': '30',
+                'children': {
+                    'notice1': {
+                        'text': '我的活动',
+                        'powerid': '31',
+                        'url': '/activities/myactivities/list.jsp',
+                    },
+                    'notice2': {
+                        'text': '发起活动',
+                        'powerid': '32',
+                        'url': '/activities/start/list.jsp',
+                    },
+                    'notice3': {
+                        'text': '活动报名中',
+                        'powerid': '33',
+                        'url': '/activities/sign/list.jsp',
+                    },
+                    'notice4': {
+                        'text': '活动进行中',
+                        'powerid': '34',
+                        'url': '/activities/ongoing/list.jsp',
+                    },
+                    'notice5': {
+                        'text': '活动成果总结',
+                        'powerid': '35',
+                        'url': '/activities/summary/list.jsp',
+                    },
+                    'notice6': {
+                        'text': '活动管理',
+                        'powerid': '36',
+                        'url': '/activities/admin/list.jsp',
+                    }
+                }
+            }
+        }
+    }, 'top3': {
+        'text': '议案建议',
+        'powerid': '37',
+        'children': {
+            'menutop': {
+                'text': "功能导航",
+                'children': {
+                }
+            },
+            'guanli': {
+                'text': "议案建议管理",
+                'powerid': '38',
+                'children': {
+                    'suggest': {
+                        'text': '建议管理',
+                        'url': '/suggest/list.jsp',
+                        'powerid': '39',
+                        'button': {
+                            'quicksearch': {
+                                'text': '快速查询',
+                            },
+                            'supersearch': {
+                                'text': '高级查询',
+                            },
+                            'append': {
+                                'text': '新增建议',
+                            },
+                            'edit': {
+                                'text': '编辑建议',
+                            },
+                            'butreview': {
+                                'text': '审查',
+                            },
+                            'butview': {
+                                'text': '查看',
+                            },
+                            'butimportance': {
+                                'text': '重点建议',
+                            },
+                            'butexcellent': {
+                                'text': '优秀建议',
+                            },
+                            'butreports': {
+                                'text': '报表',
+                            }
+                        }
+                    },
+                    'motion': {
+                        'text': '议案管理',
+                        'url': '/billlist/list.jsp',
+                        'powerid': '40',
+                        'button': {
+                            'quicksearch': {
+                                'text': '快速查询',
+                            },
+                            'supersearch': {
+                                'text': '高级查询',
+                            },
+                            'append': {
+                                'text': '新增议案',
+                            },
+                            'edit': {
+                                'text': '编辑议案',
+                            },
+                            'butreview': {
+                                'text': '审查',
+                            },
+                            'butview': {
+                                'text': '查看',
+                            },
+                            'butimportance': {
+                                'text': '重点议案',
+                            },
+                            'butexcellent': {
+                                'text': '优秀议案',
+                            },
+                            'yareports': {
+                                'text': '报表',
+                            }
+                        }
+                    },
+                }
+            },
+            'motionsubmit': {
+                'text': '议案建议提交',
+                'powerid': '41',
+                'children': {
+                    'motionadd': {
+                        'text': '新增议案建议',
+                        'url': '/bill/edit.jsp',
+                        'powerid': '42',
+                    },
+                    'situation': {
+                        'text': '信息提交情况',
+                        'url': '/bill/see.jsp',
+                        'powerid': '43',
+                    }
+                }
+            },
+            'review': {
+                'text': '议案建议审查',
+                'powerid': '44',
+                'children': {
+                    'situation': {
+                        'text': '选联委审查情况',
+                        'url': '/examine/see.jsp',
+                        'powerid': '45',
+                    },
+                    'processing': {
+                        'text': '选联委审查处理',
+                        'url': '/examine/handle.jsp',
+                        'powerid': '46',
+                    },
+                    'DBTsituation': {
+                        'text': '代表团审查情况',
+                        'url': '/examine/see_1.jsp',
+                        'powerid': '159',
+                    },
+                    'DBTprocessing': {
+                        'text': '代表团审查处理',
+                        'url': '/examine/handle_1.jsp',
+                        'powerid': '160',
+                    },
+                    'zfbTsituation': {
+                        'text': '乡镇政府办审查情况',
+                        'url': '/examine/see_2.jsp',
+                        'powerid': '174',
+                    },
+                    'zfbTprocessing': {
+                        'text': '乡镇政府办审查处理',
+                        'url': '/examine/handle_2.jsp',
+                        'powerid': '175',
+                    }
+                }
+            },
+            'handle': {
+                'text': '议案建议办理',
+                'powerid': '47',
+                'children': {
+                    'company': {
+                        'text': '确定办理单位',
+                        'url': '/handle/confirm/see.jsp',
+                        'powerid': '48',
+                    },
+                    'submit': {
+                        'text': '议案建议交办',
+                        'url': '/handle/assign/look.jsp',
+                        'powerid': '49',
+                    },
+                    'zfbsubmit': {
+                        'text': '乡镇政府办办复',
+                        'url': '/handle/assign/handle_2.jsp',
+                        'powerid': '183',
+                    },
+                    'reply': {
+                        'text': '议案建议办复',
+                        'url': '/handle/resume/resume.jsp',
+                        'powerid': '50',
+                    },
+                    'monitor': {
+                        'text': '办理进度监控',
+                        'url': '/handle/company.jsp',
+                        'powerid': '51',
+                    },
+                    'report': {
+                        'text': '办理总结报告',
+                        'url': '/handle/summary/list.jsp',
+                        'powerid': '52',
+                    }
+                }
+            },
+            'consult1': {
+                'text': '我领衔的议案建议',
+                'powerid': '53',
+                'children': {
+                    'report': {
+                        'text': '我领衔的议案建议列表',
+                        'url': '/mysuggest/list.jsp',
+                    }
+                }
+            },
+            'consult2': {
+                'text': '我联名的议案建议',
+                'powerid': '54',
+                'children': {
+                    'report': {
+                        'text': '我联名的议案建议列表',
+                        'url': '/secsuggest/list.jsp',
+                    }
+                }
+            },
+            'consult3': {
+                'text': '草稿箱议案建议',
+                'powerid': '55',
+                'children': {
+                    'report': {
+                        'text': '草稿箱的议案建议列表',
+                        'url': '/drsuggest/list.jsp',
+                    }
+                }
+            },
+            'consult4': {
+                'text': '不予接收建议',
+                'powerid': '56',
+                'children': {
+                    'report': {
+                        'text': '不予接收议案建议列表',
+                        'url': '/drsuggest/list.jsp',
+                    }
+                }
+            },
+            'consult5': {
+                'text': '申请退回建议',
+                'powerid': '57',
+                'children': {
+                    'report': {
+                        'text': '申请退回议案建议列表',
+                        'url': '/drsuggest/list.jsp',
+                    }
+                }
+            },
+            'consult5': {
+                'text': '置回议案建议',
+                'powerid': '170',
+                'children': {
+                    'report': {
+                        'text': '已置回建议列表',
+                        'url': '/drsuggest/list_1.jsp',
+                        'powerid': '171',
+                    }, 'reqport': {
+                        'text': '已置回议案列表',
+                        'url': '/drsuggest/list_1_1.jsp',
+                        'powerid': '172',
+                    },
+                }
+            },
+            'consult6': {
+                'text': '申请延期建议',
+                'powerid': '58',
+                'children': {
+                    'report': {
+                        'text': '申请延期议案建议列表',
+                        'url': '/drsuggest/list.jsp',
+                    }
+                }
+            },
+            'consult7': {
+                'text': '对口联系专委会建议',
+                'powerid': '59',
+                'children': {
+                    'report': {
+                        'text': '对口联系专委会建议',
+                        'url': '/drsuggest/list.jsp',
+                    }
+                }
+            },
+            'statistics': {
+                'text': '信息统计分析',
+                'powerid': '60',
+                'children': {
+                    'company': {
+                        'text': '议案建议统计',
+                        'url': '/statistics/suggest/list.jsp',
+                        'powerid': '61',
+                    },
+                    'submit': {
+                        'text': '代表信息统计',
+                        'url': '/statistics/delegateinfo/list.jsp',
+                        'powerid': '62',
+                    },
+                    'reply': {
+                        'text': '履职统计',
+                        'url': '/statistics/lvzhistatistics/list.jsp',
+                        'powerid': '63',
+                    },
+//                    'monitor': {
+//                        'text': '建议办理统计',
+//                        'url': '/statistics/proposal.jsp',
+//                        'powerid': '64',
+//                    }
+                }
+            },
+            'inquire': {
+                'text': '信息综合查询',
+                'powerid': '65',
+                'children': {
+                    'reply': {
+                        'text': '代表信息',
+                        'url': '/query/delegate/list.jsp',
+                        'powerid': '68',
+                    },
+                    'company': {
+                        'text': '建议信息',
+                        'url': '/query/suggest/list.jsp',
+                        'powerid': '66',
+                    },
+                    'submit': {
+                        'text': '议案信息',
+                        'url': '/query/billlist/list.jsp',
+                        'powerid': '67',
+                    },
+                    'monitor': {
+                        'text': '单位信息',
+                        'url': '/query/company/list.jsp',
+                        'powerid': '69',
+                    }
+                }
+            },
+        }
+    }, 'top4': {
+        'text': '学习培训',
+        'powerid': '70',
+        'children': {
+            'menutop': {
+                'text': "功能导航",
+                'children': {
+                }
+            },
+            'menutop1': {
+                'text': "学习课件",
+                'powerid': '71',
+                'children': {
+                    'monitor': {
+                        'text': '学习课件',
+                        'url': '/training/courseware/list.jsp',
+                    }
+                }
+            },
+            'menutop2': {
+                'text': "专题讲座",
+                'powerid': '72',
+                'children': {
+                    'monitor': {
+                        'text': '专题讲座',
+                        'url': '/training/lecture/list.jsp',
+                    }
+                }
+            },
+            'menutop3': {
+                'text': "法律法规",
+                'powerid': '73',
+                'children': {
+                    'monitor': {
+                        'text': '宪法',
+                        'url': '/training/statute/xianfa/list.jsp',
+                    },
+                    'monitor1': {
+                        'text': '国家法律',
+                        'url': '/training/statute/guofa/list.jsp',
+                    },
+                    'monitor2': {
+                        'text': '相关法规',
+                        'url': '/training/statute/fagui/list.jsp',
+                    }
+                }
+            },
+            'menutop4': {
+                'text': "履职参考",
+                'powerid': '74',
+                'children': {
+                    'monitor': {
+                        'text': '履职参考',
+                        'url': '/training/reference/list.jsp',
+                    }
+                }
+            }
+        }
+    }, 'top5': {
+        'text': '工作交流1',
+        'powerid': '75',
+        'children': {
+            'menutop': {
+                'text': "功能导航",
+                'children': {
+                }
+            },
+            'menutop1': {
+                'text': "通知公告1",
+                'powerid': '76',
+                'children': {
+                    'notice': {
+                        'text': '通知公告列表1',
+                        'url': '/notice/list.jsp',
+                    }
+                }
+            },
+            'menutop2': {
+                'text': "短信平台",
+                'powerid': '77',
+                'children': {
+                }
+            },
+            'menutop3': {
+                'text': "实时邮箱",
+                'powerid': '78',
+                'children': {
+                    'notice1': {
+                        'text': '写信',
+                        'url': '/workexchange/mailbox/write/write.jsp',
+                    },
+                    'notice2': {
+                        'text': '看信',
+                        'url': '/workexchange/mailbox/see/list.jsp',
+                    },
+                    'notice3': {
+                        'text': '草稿箱',
+                        'url': '/workexchange/mailbox/draft/list.jsp',
+                    },
+                    'notice4': {
+                        'text': '已发送邮件',
+                        'url': '/workexchange/mailbox/send/list.jsp',
+                    },
+                    'notice5': {
+                        'text': '已删除邮件',
+                        'url': '/workexchange/mailbox/delete/list.jsp',
+                    },
+                    'notice6': {
+                        'text': '通讯录',
+                        'url': '/workexchange/mailbox/directories/list.jsp',
+                    },
+//                    'notice7': {
+//                        'text': '代表查询',
+//                        'url': '/workexchange/write/list.jsp',
+//                    }
+                }
+            },
+            'menutop4': {
+                'text': "内部消息",
+                'powerid': '79',
+                'children': {
+                }
+            }
+        }
+    },
+    'top6': {
+        'text': '双联服务',
+        'powerid': '80',
+        'children': {
+            'menutop': {
+                'text': "功能导航",
+                'children': {
+                }
+            },
+            'menutop1': {
+                'text': "网上代表联络站",
+                'powerid': '81',
+                'children': {
+                    'notice1': {
+                        'text': '联络站列表',
+                        'url': '/contactstation/list.jsp',
+                        'powerid': '193',
+                    },
+                    'notice2': {
+                        'text': '联络站管理',
+                        'url': '/contactstation/my/list.jsp',
+                        'powerid': '194',
+                    },
+                    'notice3': {
+                        'text': '留言管理',
+                        'url': '/contactstation/leaveword/handle.jsp',
+                        'powerid': '193',
+                    },
+                    'leaveword': {
+                        'text': '代表留言管理',
+                        'url': '/contactstation/leaveword/objlist.jsp',
+                        'powerid': '192',
+                    }
+                }
+            },
+        }
+    },
+    'top7': {
+        'text': '代表网',
+        'powerid': '82',
+        'children': {
+            'menutop': {
+                'text': "功能导航",
+                'children': {
+                }
+            },
+            'menutop1': {
+                'text': "工作动态",
+                'powerid': '83',
+                'children': {
+                    'notice': {
+                        'text': '工作动态',
+                        'url': '/delegatexweb/workdynamics/list.jsp',
+                    }
+                }
+            },
+            'menutop2': {
+                'text': "人大代表制度",
+                'powerid': '84',
+                'children': {
+                    'notice': {
+                        'text': '人大代表制度',
+                        'url': '/delegatexweb/personsystem/list.jsp',
+                    }
+                }
+            },
+//            'menutop3': {
+//                'text': "人大代表信息查看",
+//                'powerid': '85',
+//                'children': {
+//                }
+//            }
+        }
+    },
+    'top8': {
+        'text': '工作交流',
+        'powerid': '86',
+        'children': {
+            'menutop': {
+                'text': "功能导航",
+                'children': {
+                },
+            },
+            'menutop1': {
+                'text': "工作交流",
+                'children': {
+                    'notice': {
+                        'text': '工作交流信息',
+                        'url': '/poll/list.jsp',
+                        'powerid': '87',
+                    }
+                }
+            },
+        }
+    },
+    'top9': {
+        'text': '建议议案点评',
+        'powerid': '88',
+        'children': {
+            'menutop': {
+                'text': "功能导航",
+                'children': {
+                }
+            },
+            'menutop1': {
+                'text': "建议议案点评",
+                'children': {
+                    'notice': {
+                        'text': '点评信息',
+                        'url': '/suggest/comment/list.jsp',
+                    }
+                }
+            },
+        }
+    },
+    'top10': {
+        'text': '建议议案线索',
+        'powerid': '89',
+        'children': {
+            'menutop': {
+                'text': "功能导航",
+                'children': {
+                }
+            },
+            'menutop1': {
+                'text': "建议议案线索",
+                'children': {
+                    'notice': {
+                        'text': '线索信息',
+                        'url': '/suggest/clue/list.jsp',
+                    }
+                }
+            },
+        }
+    },
+
+}

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="com.cloudrich.ereader.dict.dao.DictDataDao">
+
+
+ <resultMap id="BaseResultMap" type="com.cloudrich.ereader.dict.entity.DictDataEntity" >
+ 
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="CHAR" />
+    <result column="parentcode" property="parentcode" jdbcType="CHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="isactive" property="isactive" jdbcType="CHAR" />
+    <result column="des" property="des" jdbcType="VARCHAR" />
+    <result column="isshow" property="isshow" jdbcType="CHAR" />
+    <result column="typename" property="typename" jdbcType="VARCHAR" />
+  </resultMap>
+  
+ <sql id="Base_Column_List" >
+ 		id, type, code, parentcode, name,isactive,des,isshow,typename
+  </sql>
+
+  <!--根据类型获取数据字典信息-->
+    <select id="getDictDataByType" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	    select 
+  	    <include refid="Base_Column_List" />
+  	   from er_dict_data  where type = #{type1,jdbcType=VARCHAR} and isactive='y'
+  </select>
+  
+  <!--根据类型和父Parentcode获取数据字典信息-->
+    <select id="getDictDataByTypeAndParent" resultMap="BaseResultMap" >
+  	    select 
+  	    <include refid="Base_Column_List" />
+  	   from er_dict_data  
+  	   where type =#{0} and isactive='y'
+  	   and parentcode=#{1}
+  </select>
+  
+  <!--根据类型和code获取-->
+    <select id="getNameByTypeAndCode" resultMap="BaseResultMap"  >
+  	    select 
+  	    <include refid="Base_Column_List" />
+  	   from er_dict_data  
+  	   where type =#{0} and isactive='y'
+  	   and code=#{1}
+  </select>
+  
+    <!--获取全部数据字典信息-->
+    <select id="getAllDictData" resultMap="BaseResultMap" parameterType="java.util.Map">
+  	    select 
+  	    <include refid="Base_Column_List" />
+  	   from er_dict_data  where isactive='y' and isshow='0'
+  	   <if test="type!=null">
+  	   	and	 type = #{type,jdbcType=VARCHAR} 
+  	   </if>
+  	   order by  type
+  </select>	   
+    <!--获取全部数据字典信息-->
+    <select id="getAllDictDataType" resultMap="BaseResultMap" parameterType="java.util.Map">
+  	    select 
+  	    distinct type,typename
+  	   from er_dict_data  where isactive='y' and isshow='0'
+  </select>
+  
+    <insert id="insert" parameterType="com.cloudrich.ereader.dict.entity.DictDataEntity" >
+    insert into er_dict_data (
+      id, isshow, typename, 
+      type, code, name, 
+      parentcode, isactive, des)
+    values (#{id,jdbcType=INTEGER}, #{isshow,jdbcType=CHAR}, #{typename,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{code,jdbcType=CHAR}, #{name,jdbcType=VARCHAR}, 
+      #{parentcode,jdbcType=CHAR}, #{isactive,jdbcType=CHAR}, #{des,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.cloudrich.ereader.dict.entity.DictDataEntity" >
+    update er_dict_data
+    <set>
+   	<if test="isshow!=null">
+   		 isshow=  #{isshow,jdbcType=CHAR},
+   	</if>
+   	<if test="typename!=null">
+   		 typename = #{typename,jdbcType=VARCHAR},
+   	</if>
+   	<if test="type!=null">
+   		 type =#{type,jdbcType=VARCHAR},
+   	</if>  
+   	<if test="code!=null">
+   		code =  #{code,jdbcType=CHAR},
+   	</if>     
+   	<if test="name!=null">
+   		name =#{name,jdbcType=VARCHAR}, 
+   	</if>      
+   	<if test="parentcode!=null">
+   		parentcode =  #{parentcode,jdbcType=CHAR},
+   	</if>
+   	<if test="isactive!=null">
+   		 isactive = #{isactive,jdbcType=CHAR},
+   	</if>
+   	<if test="des!=null">
+   		des = #{des,jdbcType=VARCHAR}
+   	</if>   	   	       
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+      <!--根据id获取字典信息-->
+    <select id="getDictDataById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  	    select 
+  	   <include refid="Base_Column_List" />
+  	   from er_dict_data  where isactive='y' and isshow='0'
+  	   and id= #{id,jdbcType=INTEGER}
+  </select>
+  </mapper>

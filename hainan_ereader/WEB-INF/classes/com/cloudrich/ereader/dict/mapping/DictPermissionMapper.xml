@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloudrich.ereader.dict.dao.DictPermissionDao" >
+  <resultMap id="BaseResultMap" type="com.cloudrich.ereader.dict.entity.DictPermissionEntity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="persimoncode" property="persimoncode" jdbcType="CHAR" />
+    <result column="moduleno" property="moduleno" jdbcType="INTEGER" />
+    <result column="operation" property="operation" jdbcType="CHAR" />
+    <result column="opename" property="opename" jdbcType="VARCHAR" />
+    <result column="modulename" property="modulename" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from er_dict_permission
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cloudrich.ereader.dict.entity.DictPermissionEntity" >
+    insert into er_dict_permission (id, persimoncode, moduleno, 
+      operation, opename)
+    values (#{id,jdbcType=INTEGER}, #{persimoncode,jdbcType=CHAR}, #{moduleno,jdbcType=INTEGER}, 
+      #{operation,jdbcType=CHAR}, #{opename,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.cloudrich.ereader.dict.entity.DictPermissionEntity" >
+    update er_dict_permission
+    set persimoncode = #{persimoncode,jdbcType=CHAR},
+      moduleno = #{moduleno,jdbcType=INTEGER},
+      operation = #{operation,jdbcType=CHAR},
+      opename = #{opename,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, persimoncode, moduleno, operation, opename
+    from er_dict_permission
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select p.id, p.persimoncode, p.moduleno, m.mname as modulename, p.operation, p.opename,m.murl
+    from er_dict_permission p, er_dict_module m
+    where p.moduleno=m.moduleno
+  </select>
+  
+   <select id="selectByPermissionCode" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select p.id, p.persimoncode, p.moduleno, m.mname as modulename, p.operation, p.opename,m.murl
+    from er_dict_permission p, er_dict_module m
+    where p.moduleno=m.moduleno
+    and p.persimoncode=#{persimoncode,jdbcType=CHAR}
+  </select>
+</mapper>

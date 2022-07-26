@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloudrich.ereader.system.dao.SysRoleMainDao" >
+  <resultMap id="BaseResultMap" type="com.cloudrich.ereader.system.entity.SysRoleMainEntity" >
+    <id column="roleid" property="roleid" jdbcType="INTEGER" />
+    <result column="rolename" property="rolename" jdbcType="VARCHAR" />
+    <result column="des" property="des" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="isdel" property="isdel" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    update  er_sys_role_main set isdel=1
+    where roleid = #{roleid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cloudrich.ereader.system.entity.SysRoleMainEntity"  useGeneratedKeys="true">
+        <selectKey keyProperty="roleid"  resultType="java.lang.Integer" order="AFTER">
+      	SELECT LAST_INSERT_ID() AS roleid
+      </selectKey>
+    insert into er_sys_role_main (roleid, rolename, des, 
+      createtime, isdel)
+    values (#{roleid,jdbcType=INTEGER}, #{rolename,jdbcType=VARCHAR}, #{des,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{isdel,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.cloudrich.ereader.system.entity.SysRoleMainEntity" >
+    update er_sys_role_main
+    set rolename = #{rolename,jdbcType=VARCHAR},
+      des = #{des,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      isdel = #{isdel,jdbcType=INTEGER}
+    where roleid = #{roleid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select roleid, rolename, des, createtime, isdel
+    from er_sys_role_main 
+    where roleid = #{roleid,jdbcType=INTEGER} and isdel!=1
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select roleid, rolename, des, createtime, isdel
+    from er_sys_role_main where isdel!=1
+    order by createtime desc
+  </select>
+</mapper>

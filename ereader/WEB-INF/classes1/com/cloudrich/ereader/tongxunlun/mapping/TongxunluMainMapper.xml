@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloudrich.ereader.tongxunlun.dao.TongxunluMainDao" >
+  <resultMap id="BaseResultMap" type="com.cloudrich.ereader.tongxunlun.entity.TongxunluMainEntity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="compcode" property="compCode" jdbcType="CHAR" />
+    <result column="phone_office" property="phoneOffice" jdbcType="VARCHAR" />
+    <result column="phone_home" property="phoneHome" jdbcType="VARCHAR" />
+    <result column="mail" property="mail" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="dept" property="dept" jdbcType="VARCHAR" />
+    <result column="comment" property="comment" jdbcType="VARCHAR" />
+    <result column="jobtitle" property="jobtitle" jdbcType="VARCHAR" />
+    <result column="isdel" property="isdel" jdbcType="INTEGER" />
+  </resultMap>
+  <update id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    update er_tongxunlu_main 
+    set isdel=1 
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <insert id="insert" parameterType="com.cloudrich.ereader.tongxunlun.entity.TongxunluMainEntity" >
+    insert into er_tongxunlu_main (name,sort,compcode,dept,phone_office,phone_home,mail,mobile,comment,
+    jobtitle,isdel) 
+    values (#{name,jdbcType=VARCHAR},#{sort},
+      #{compCode,jdbcType=CHAR},#{dept,jdbcType=VARCHAR}, #{phoneOffice,jdbcType=VARCHAR}, #{phoneHome,jdbcType=VARCHAR}, 
+      #{mail,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR},#{jobtitle},0)
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.cloudrich.ereader.tongxunlun.entity.TongxunluMainEntity" >
+    update er_tongxunlu_main 
+    set name = #{name},
+    sort=#{sort},
+    compcode = #{compCode},
+    dept = #{dept},
+    phone_office = #{phoneOffice},
+    phone_home = #{phoneHome},
+    mail = #{mail},
+    mobile = #{mobile},
+    comment = #{comment},
+    jobtitle = #{jobtitle} 
+ 	where id = #{id}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id,name,compcode,sort,dept,phone_office,phone_home,mail,mobile,comment,jobtitle,isdel
+    from er_tongxunlu_main
+    where isdel=0 and id=#{id}
+  </select>
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap" >
+    select id,name,sort,dept,compcode,phone_office,phone_home,mail,mobile,comment,jobtitle,isdel
+    from er_tongxunlu_main
+    where isdel=0
+     <if test="#value!='' or #value!=null">
+		and name like '%${value}%'
+	 </if>
+	 order by sort
+  </select>
+  <select id="selectByComp" parameterType="java.lang.Integer" resultMap="BaseResultMap" >
+    select id,name,sort,dept,phone_office,phone_home,mail,mobile,comment,jobtitle,isdel
+	from er_tongxunlu_main
+	where isdel=0 and compcode=#{value} order by sort
+  </select>
+</mapper>

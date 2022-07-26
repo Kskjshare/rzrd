@@ -1,0 +1,416 @@
+
+<!DOCTYPE html>
+
+<html>
+<head><meta http-equiv=Content-Type content='text/html; charset=utf-8'>
+
+    <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="renderer" content="webkit">
+    <title>&#x5E73;&#x9876;&#x5C71;&#x5E02;&#x4EBA;&#x5927;&#x4EE3;&#x8868;&#x5C65;&#x804C;&#x5E73;&#x53F0; </title>
+    <link href="ViewsUI/Home/css/Login.css" rel="stylesheet" />
+    <link type="image/x-icon" rel="icon" href="Images/favicon.ico-v=671" />
+    <link type="favicon" rel="shortcut icon" href="Images/favicon.ico-v=671" />
+    <script src="HUI/external/jquery-v1.10.2/jquery-1.10.2.min.js"></script>
+    <script src="HUI/external/layer-v3.1.1/layer.js"></script>
+    <script src="HUI/hui.js"></script>
+    <script src="HUI/external/CryptoJS/components/core.js"></script>
+    <script src="HUI/external/CryptoJS/components/cipher-core.js"></script>
+    <script src="HUI/external/CryptoJS/components/mode-ecb.js"></script>
+    <script src="HUI/external/CryptoJS/components/enc-base64.js"></script>
+    <script src="HUI/external/CryptoJS/components/aes.js"></script>
+    <script src="HUI/external/CryptoJS/HzCrypto.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        (function ($) {
+            var capsLockState = "unknown";
+
+            var methods = {
+                init: function (options) {
+
+                                        var settings = $.extend({
+                        
+                    },
+                        options);
+
+                                        var capsLockForcedUppercase = /MacPPC|MacIntel/.test(window.navigator.platform) === true;
+
+                    var helpers = {
+                        isCapslockOn: function (event) {
+
+                            var shiftOn = false;
+                            if (event.shiftKey) {                                 shiftOn = event.shiftKey;                             } else if (event.modifiers) {                                 shiftOn = !!(event.modifiers & 4);
+                            }
+
+                            var keyString = String.fromCharCode(event.which);                             if (keyString.toUpperCase() === keyString.toLowerCase()) {
+                                                            } else if (keyString.toUpperCase() === keyString) {
+                                if (capsLockForcedUppercase === true && shiftOn) {
+                                                                    } else {
+                                    capsLockState = !shiftOn;
+                                }
+                            } else if (keyString.toLowerCase() === keyString) {
+                                capsLockState = shiftOn;
+                            }
+
+                            return capsLockState;
+
+                        },
+
+                        isCapslockKey: function (event) {
+
+                            var keyCode = event.which;                             if (keyCode === 20) {
+                                if (capsLockState !== "unknown") {
+                                    capsLockState = !capsLockState;
+                                }
+                            }
+
+                            return capsLockState;
+
+                        },
+
+                        hasStateChange: function (previousState, currentState) {
+
+                            if (previousState !== currentState) {
+                                $('body').trigger("capsChanged");
+
+                                if (currentState === true) {
+                                    $('body').trigger("capsOn");
+                                } else if (currentState === false) {
+                                    $('body').trigger("capsOff");
+                                } else if (currentState === "unknown") {
+                                    $('body').trigger("capsUnknown");
+                                }
+                            }
+                        }
+                    };
+
+                                        $('body').bind("keypress.capslockstate",
+                        function (event) {
+                            var previousState = capsLockState;
+                            capsLockState = helpers.isCapslockOn(event);
+                            helpers.hasStateChange(previousState, capsLockState);
+                        });
+
+                                        $('body').bind("keydown.capslockstate",
+                        function (event) {
+                            var previousState = capsLockState;
+                            capsLockState = helpers.isCapslockKey(event);
+                            helpers.hasStateChange(previousState, capsLockState);
+                        });
+
+                                        $(window).bind("focus.capslockstate",
+                        function () {
+                            var previousState = capsLockState;
+                            capsLockState = "unknown";
+                            helpers.hasStateChange(previousState, capsLockState);
+                        });
+
+                                        helpers.hasStateChange(null, "unknown");
+
+                                        return this.each(function () { });
+
+                },
+                state: function () {
+                    return capsLockState;
+                },
+                destroy: function () {
+                    return this.each(function () {
+                        $('body').unbind('.capslockstate');
+                        $(window).unbind('.capslockstate');
+                    });
+                }
+            };
+
+            jQuery.fn.capslockstate = function (method) {
+                                if (methods[method]) {
+                    return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
+                } else if (typeof method === 'object' || !method) {
+                    return methods.init.apply(this, arguments);
+                } else {
+                    $.error('Method ' + method + ' does not exist on jQuery.capslockstate');
+                }
+            };
+        })(jQuery);
+
+        $(function () {
+            var checkQR;
+
+            $("#tab_scan").on('click',
+                function () {
+                    $("#login-account").hide();
+                    $("#tab_login").addClass("gray_div");
+                    $("#tab_login").removeClass("red_div");
+                    $("#login-qrcode").show();
+                    $("#login-qrcodebox").show();
+                    $("#tab_scan").addClass("red_div");
+                    $("#tab_scan").removeClass("gray_div");
+
+                    hui.ajax.post("/Home/QRGenerate",
+                        {},
+                        function (result) {
+                            if (result && result.Code === hui.CODE_SUCCESS) {
+                                var data = JSON.parse(result.Data);
+                                $("#login-qrcode").attr("qrid", data.ID);
+                                $("#login-qrcode").css("background-image", "url(../.." + data.Path + ")");
+                                checkQR = setInterval(QRVerify, 3000);
+                            } else {
+                                $("#msg-desc").text("二维码生成失败，请联系系统�?�理员�?");
+                            }
+                        });
+                });
+
+            $("#tab_login").on('click',
+                function () {
+                    $("#login-account").show();
+                    $("#tab_login").addClass("red_div");
+                    $("#tab_login").removeClass("gray_div");
+                    $("#login-qrcode").hide();
+                    $("#login-qrcodebox").hide();
+                    $("#tab_scan").addClass("gray_div");
+                    $("#tab_scan").removeClass("red_div");
+                    $("#login-qrcode").attr("qrid", "");
+                    window.clearInterval(checkQR);
+                });
+
+            $("#qr-refresh").on('click',
+                function () {
+                    var id = $("#login-qrcode").attr("qrid");
+                    hui.ajax.post("/Home/QRRefresh",
+                        { qrid: id },
+                        function (result) {
+                            if (result && result.Code === hui.CODE_SUCCESS) {
+                                var data = JSON.parse(result.Data);
+                                $("#login-qrcode").attr("qrid", data.ID);
+                                $("#login-qrcode").css("background-image", "url(../.." + data.Path + ")");
+                                $("#msg-desc").text("请使用APP�?一�?登录");
+                            } else {
+                                $("#msg-desc").text("二维码生成失败，请联系系统�?�理员�?");
+                            }
+                        });
+                });
+
+            onloadBind();
+            var agent = navigator.userAgent.toLowerCase();
+            var isWebkit = agent.indexOf('applewebkit/') > 0;
+            if (!isWebkit) {
+                $(".message360").show();
+                                                                                //    window.open("https://browser.360.cn/se/");
+                
+                                                                                                                                                //$(".layui-layer-content").css("font-size", "12px");
+                //$(".layui-layer-title").hide();
+                //$(".layui-layer-setwin").hide();
+            }
+
+            $("#download_360").on('click', function () {
+                window.open("https://browser.360.cn/se/");
+            })
+            $("#close_360").on('click', function () {
+                $(".message360").hide();
+            })
+        });
+        function setWebkitNotificationOff(val) {
+            var key = 'notifyoff';
+            setCookie(key, '1');
+        }
+
+        function isWebkitNotificationOff() {
+            var key = 'notifyoff',
+                val = getCookie(key);
+
+            return val === '1' ? true : false;
+        }
+
+        function setCookie(name, value) {
+            var date = new Date();
+            date.setTime(date.getTime() + (365 * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString();
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        }
+
+        function getCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+
+        function QRVerify() {
+            var id = $("#login-qrcode").attr("qrid");
+            hui.ajax.post("/Home/QRVerify",
+                { qrid: id },
+                function (result) {
+                    if (result && result.Code === hui.CODE_SUCCESS) {
+                        if (result.Data) {
+                            window.location.href = result.Data;
+                        }
+                    } else {
+                        if (result.Message.length > 0) {
+                            $("#msg-desc").text(result.Message);
+                        }
+                    }
+                });
+        }
+
+        var isCapslockOn;
+
+        function onloadBind() {
+            var countTips = 0;
+
+            $(window).bind("capsOn",
+                function (event) {
+                    countTips = layer.tips('大写锁定已打开', '.capTip');
+                });
+            $(window).bind("capsOff",
+                function (event) {
+                    countTips = layer.tips('大写锁定已关�?', '.capTip');
+                });
+            $(window).bind("capsUnknown",
+                function (event) {
+                                    });
+
+            /*
+            * Additional event notifying there has been a change, but not the state
+            */
+            $(window).bind("capsChanged",
+                function (event) {
+                });
+
+            /*
+            * Initialize the capslockstate plugin.
+            * Monitoring is happening at the window level.
+            */
+            $(window).capslockstate();
+
+                        var initialState = $(window).capslockstate("state");
+            //layer.tips(initialState, '.capTip');
+
+            //$('.login-tabs .tab').click(function () {
+                        //    $('#' + panel).show().siblings().hide();
+            //    $(this).addClass('active').siblings().removeClass('active');
+                        //        hui.ajax.post("/Home/QRGenerate",
+                                    //                if (result && result.Code === hui.CODE_SUCCESS) {
+            //                    var data = JSON.parse(result.Data);
+            //                    $("#login-qrcode").attr("qrid", data.ID);
+            //                    $("#login-qrcode").css("background-image", "url(../.." + data.Path + ")");
+                                                                                            }
+
+        function save() {
+            if (typeof (hui) === "undefined") {
+                $(".message360").show();
+            }
+            else {
+                var auth = HzCrypto.Encrypt($("#username").val() + '||' + $("#password").val());
+                var formData = new FormData();
+                formData.append("pdsauth", auth);
+                hui.ajax.form('/Home/AjaxWebLogin',
+                    formData,
+                    function (result) {
+                        if (result) {
+                            if (result.Code === hui.CODE_SUCCESS) {
+                                window.location.href = result.Data.ReturnUrl;
+                            } else {
+                                $("#alertLabel").html(result.Message);
+                            }
+                        }
+                    });
+            }
+        }
+
+        function enterSearch(event) {
+            if (event.keyCode == 13) {
+                save();
+            }
+        }
+
+    </script>
+    <style>
+        /*360极速弹窗提示部分样式修�?*/
+        .layui-layer-content {
+            color: black;
+            font-weight: 700;
+        }
+
+        .message360 {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0,0,0,.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </STYLE>
+  <link rel="stylesheet" href="css/nav.css">
+</head>
+<body style="text-align: center;">
+    <div class="login">
+        <img class="login-log" src="upload/file/image/050c31824dd14b71a2ce109c27f0909b.png" />
+        <div class="login-div login-div-split" style="width: 55%;">
+            <form class="login-form">
+                <div class="login-tabs">
+                    <label class="tab hui-icon hui-icon-user pull-left active" data-panel="user">账号登录</label>
+                </div>
+                <div style="clear: both"></div>
+                <div class="login-panel">
+                    <div id="user">
+                        <div id="alertLabel"></div>
+                        <div class="form-group">
+                            <img src="Images/user.png">
+                            <input type="text" name="username" id="username" onkeydown="enterSearch(event)" class="form-control" data-valify="*" placeholder="请输入用户名">
+                        </div>
+                        <div class="form-group capTip">
+                            <img src="Images/password.png">
+                            <input type="password" name="password" id="password" autocomplete="off" onkeydown="enterSearch(event)" class="form-control" data-valify="*" placeholder="请输入密�?">
+                        </div>
+                        <button type="button" class="login-btn" id="btnLogin" onclick="save()">登录</button>
+                        <div id="divAlert" style="display: none; margin-top: 13px;" class="form-group">
+                            <span style="color: rgb(162, 162, 162);">最佳推荐使用浏览器</span>
+                            <br><span style="color: rgb(162, 162, 162); line-height: 30px;">360浏�?�器-极速模�?,分辨率：1920*1080</span>
+                        </div>
+                    </div>
+                    <div id="scan" style="display: none;">
+                        <div id="login-qrcode"></div>
+                        <div id="msg-desc">请使用APP�?一�?登录</div>
+                        <a id="qr-refresh">刷新</a>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <div class="login-div" style="width: calc(45% - 2px);">
+            <div class="login-content">
+                <div class="item-QRCode">
+                    <p></p>
+                    <div class="QRCode-msg">
+                        <div><p><img alt="" src="upload/editor/9b423c2a469440eabd2504a3b87f287e.png" style="width: 200px; height: 200px;" /></p>
+
+<p>请使用安�?6.0以上，IOS10.0以上系统版本</p>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="CustomerInfo">
+            <span></span>&nbsp;&nbsp;&nbsp;&nbsp;<span></span>
+        </div>
+        <div class="Copyright">
+            Copyright &copy; 2020 &nbsp; &nbsp;&nbsp; 技�?�?持：<a target="_blank" href="javascript:if(confirm(%27http://www.hongzhengtech.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.hongzhengtech.com/%27" title="双龙智慧人大" alt="双龙智慧人大" style="color: #fff; text-decoration: none;">&#x91D1;&#x534E;&#x9E3F;&#x6B63;&#x79D1;&#x6280;&#x6709;&#x9650;&#x516C;&#x53F8; </a> &nbsp; &nbsp; &nbsp; 联系电话�?0579-82668010
+        </div>
+    </div>
+    <div class="message360" style="display:none;">
+        <img src="Images/360speed_min.png" width="812" height="488" usemap="#Map" />
+        <map name="Map">
+            <area shape="rect" id="download_360" coords="471,111,619,148" href="#" alt="下载360浏�?�器" style="outline:none">
+            <area shape="rect" id="close_360" coords="768,11,796,42" href="#" alt="关闭" style="outline:none">
+        </map>
+    </div>
+</body>
+</html>

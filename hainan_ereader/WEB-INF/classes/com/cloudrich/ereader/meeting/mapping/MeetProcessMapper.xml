@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloudrich.ereader.meeting.dao.MeetProcessDao" >
+  <resultMap id="BaseResultMap" type="com.cloudrich.ereader.meeting.entity.MeetProcessEntity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="meetid" property="meetid" jdbcType="INTEGER" />
+    <result column="submodulecode" property="submodulecode" jdbcType="CHAR" />
+    <result column="curstate" property="curstate" jdbcType="VARCHAR" />
+    <result column="tjuserid" property="tjuserid" jdbcType="INTEGER" />
+    <result column="tjdatetime" property="tjdatetime" jdbcType="TIMESTAMP" />
+    <result column="comment" property="comment" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from er_meet_process
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="com.cloudrich.ereader.meeting.entity.MeetProcessEntity" >
+    insert into er_meet_process ( meetid, 
+      submodulecode, curstate, tjuserid, 
+       comment)
+    values ( #{meetid,jdbcType=INTEGER}, 
+      #{submodulecode,jdbcType=CHAR}, #{curstate,jdbcType=CHAR}, #{tjuserid,jdbcType=INTEGER}, 
+       #{comment,jdbcType=VARCHAR})
+  </insert>
+  
+  <update id="updateByPrimaryKey" parameterType="com.cloudrich.ereader.meeting.entity.MeetProcessEntity" >
+    update er_meet_process
+    set 
+      meetid = #{meetid,jdbcType=INTEGER},
+      submodulecode = #{submodulecode,jdbcType=VARCHAR},
+      curstate = #{curstate,jdbcType=CHAR},
+      tjuserid = #{tjuserid,jdbcType=INTEGER},
+      comment = #{comment,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id,  meetid, submodulecode, curstate, tjuserid, tjdatetime, comment
+    from er_meet_process
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, meetid, submodulecode, curstate, tjuserid, tjdatetime, comment
+    from er_meet_process
+  </select>
+  
+  <!--  -->
+  <select id="selectCurProcessByMeetidAndSubmodulecode" resultMap="BaseResultMap" parameterType="java.util.Map">
+    select id, meetid, submodulecode, curstate, tjuserid, tjdatetime, comment
+    from er_meet_process
+    where meetid=#{meetid,jdbcType=INTEGER}
+    and submodulecode=#{submodulecode,jdbcType=VARCHAR}
+  </select>
+  
+  <!-- 更 新流程当前状态 -->
+  <update id="updateCurState" parameterType="java.util.Map" >
+    update er_meet_process
+    set curstate = #{curstate,jdbcType=CHAR}
+    where meetid = #{meetid,jdbcType=INTEGER}
+      and submodulecode = #{submodulecode,jdbcType=VARCHAR}
+  </update>
+</mapper>

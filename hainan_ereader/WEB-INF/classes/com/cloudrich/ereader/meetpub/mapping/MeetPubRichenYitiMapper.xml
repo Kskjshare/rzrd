@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloudrich.ereader.meetpub.dao.MeetPubRichenYitiDao" >
+  <resultMap id="BaseResultMap" type="com.cloudrich.ereader.meetpub.entity.MeetPubRichenYitiEntity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="yitiid" property="yitiid" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="INTEGER" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="bindyichenid" property="bindyichenid" jdbcType="VARCHAR" />
+    <result column="richenid" property="richenid" jdbcType="INTEGER" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+    <result column="isdel" property="isdel" jdbcType="INTEGER" />
+    <result column="bindbimu" property="bindbimu" jdbcType="VARCHAR" />
+  </resultMap>
+  
+   <resultMap id="BaseYitiResultMap" type="com.cloudrich.ereader.meeting.entity.MeetRichenYitiEntity" >
+    <id column="yitiid" property="yitiid" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="INTEGER" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="bindyichenid" property="bindyichenid" jdbcType="VARCHAR" />
+    <result column="richenid" property="richenid" jdbcType="INTEGER" />
+     <result column="isdel" property="isdel" jdbcType="INTEGER" />
+     <result column="bindbimu" property="bindbimu" jdbcType="VARCHAR" />
+     
+    
+  </resultMap>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from er_meet_pub_richen_yiti
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cloudrich.ereader.meetpub.entity.MeetPubRichenYitiEntity" >
+    insert into er_meet_pub_richen_yiti ( yitiid, title, 
+      sort, bindyichenid, richenid,isdel,bindbimu
+      )
+    values ( #{yitiid,jdbcType=INTEGER}, #{title,jdbcType=INTEGER}, 
+      #{sort,jdbcType=INTEGER}, #{bindyichenid,jdbcType=VARCHAR}, #{richenid,jdbcType=INTEGER},
+      #{isdel,jdbcType=INTEGER},#{bindbimu,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.cloudrich.ereader.meetpub.entity.MeetPubRichenYitiEntity" >
+    update er_meet_pub_richen_yiti
+    set yitiid = #{yitiid,jdbcType=INTEGER},
+      title = #{title,jdbcType=INTEGER},
+      sort = #{sort,jdbcType=INTEGER},
+      bindyichenid = #{bindyichenid,jdbcType=VARCHAR},
+      richenid = #{richenid,jdbcType=INTEGER},
+      isdel = #{isdel,jdbcType=INTEGER},
+      bindbimu = #{bindbimu,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, yitiid, title, sort, bindyichenid, richenid
+    from er_meet_pub_richen_yiti
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, yitiid, title, sort, bindyichenid, richenid
+    from er_meet_pub_richen_yiti
+  </select>
+  
+  
+  <!-- 根据日程id获取议题-->
+    <select id="selectAllYitiByRichenid" resultMap="BaseYitiResultMap" parameterType="java.util.Map" >
+    select yitiid, title, sort, bindyichenid,richenid,isdel,bindbimu
+    from er_meet_pub_richen_yiti
+    where richenid=#{richenid,jdbcType=INTEGER}
+    and isdel=0
+    order by sort
+  </select>
+  
+  <!-- 删除日程议题 -->
+  <delete id="deletePubRichenYitiByMeetid" parameterType="java.lang.Integer" >
+    delete from er_meet_pub_richen_yiti
+    where richenid in (select richenid from er_meet_pub_richen 
+    where meetid = #{meetid,jdbcType=INTEGER} )
+  </delete>
+</mapper>

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="meeting" namespace="/" extends="json-default">
+		
+		<!-- 对应着MethodAction里面的execute方法 -->
+		<action name="listMeeting" class="MeetingAction" method="listMeeting">
+			<result name="success">/module/main/mindex.jsp</result>
+		</action>
+		<action name="deleteMeeting" class="MeetingAction" method="deleteMeeting">
+			<result name="success">/module/main/mindex.jsp</result>
+		</action>
+		<action name="getMeetingInfo" class="MeetingAction" method="getMeetingInfo">
+			<result name="success">/module/main/meet/zhurenh/index.jsp?meetid=${meetid}</result>
+			<result name="changwhindex">/module/main/meet/changwh/index.jsp?meetid=${meetid}</result> 
+			<result name="zhurenhindex">/module/main/meet/zhurenh/index.jsp?meetid=${meetid}</result> 
+			<result name="fazhiwhindex">/module/main/meet/fazhiwh/index.jsp?meetid=${meetid}</result> 
+			<result name="chaijwhindex">/module/main/meet/chaijwh/index.jsp?meetid=${meetid}</result> 
+			<result name="rendajgindex">/module/main/meet/rendajg/index.jsp?meetid=${meetid}</result> 
+		</action>
+		<action name="saveOrUpdateMeeting" class="MeetingAction" method="saveOrUpdateMeeting">
+			<result name="success">/module/main/meet/zhurenh/index.jsp</result>
+			<result name="changwhindex">/module/main/meet/changwh/index.jsp?meetid=${meetid}&amp;type=${type}</result> 
+			<result name="zhurenhindex">/module/main/meet/zhurenh/index.jsp?meetid=${meetid}&amp;type=${type}</result> 
+			<result name="fazhiwhindex">/module/main/meet/fazhiwh/index.jsp?meetid=${meetid}</result> 
+			<result name="chaijwhindex">/module/main/meet/chaijwh/index.jsp?meetid=${meetid}</result> 
+			<result name="rendajgindex">/module/main/meet/rendajg/index.jsp?meetid=${meetid}</result> 
+		</action>
+		<action name="getYichengInfo" class="MeetingAction" method="getYichengInfo">
+			<result name="success">/module/main/meet/zhurenh/yichengmanage.jsp?meetid=${meetid}</result>
+		</action>
+		<action name="selectHisMeeting" class="MeetingAction" method="selectHisMeeting">
+			<result name="success">/module/main/history.jsp?type=${type}</result>
+		</action>
+		<action name="selectCurMeeting" class="MeetingAction" method="selectCurMeeting">
+			<result name="success">/module/main/currentmeet.jsp?type=${type}</result>
+		</action>
+		<action name="meet_*" class="MeetingAction" method="{1}">
+			<result name="benchAddByFilecwh">/module/main/meet/changwh/yichengmanage.jsp?meetid=${meetid}</result>
+			<result name="benchRichenAddByFilecwh">/module/main/meet/changwh/richengmanage.jsp?meetid=${meetid}</result>
+			<result name="getRichengInfo">/module/main/meet/zhurenh/richengmanage.jsp?meetid=${meetid}</result>
+			<result name="getMeetFile">/module/main/meet/zhurenh/filemanage.jsp?meetid=${meetid}&amp;
+			fileown=${fileown}&amp;filetype=${filetype}
+			</result>
+			<result name="getMeetFile2">/module/main/meet/zhurenh/filemanage.jsp?meetid=${meetid}&amp;
+			fileown=${fileown}&amp;filetype=${filetype}
+			</result>
+			<result name="deleteFileAction"  type="redirectAction">/meet_getMeetFile.action?meetid=${meetid}&amp;
+			fileown=${fileown}&amp;filetype=${filetype}
+			</result>
+			<result name="selectYichen" type="json"><param name="includeProperties">name,id,sort</param></result> 
+			<result name="changwhindex">/module/main/meet/changwh/index.jsp?meetid=${meetid}</result> 
+			<result name="zhurenhindex">/module/main/meet/zhurenh/index.jsp?meetid=${meetid}</result> 
+			<result name="fazhiwhindex">/module/main/meet/fazhiwh/index.jsp?meetid=${meetid}</result> 
+			<result name="chaijwhindex">/module/main/meet/chaijwh/index.jsp?meetid=${meetid}</result> 
+			<result name="rendajgindex">/module/main/meet/rendajg/index.jsp?meetid=${meetid}</result> 
+			
+			<result name="benchRichenAddByFilezrh">/module/main/meet/zhurenh/richengmanage.jsp?meetid=${meetid}</result> 
+			<result name="benchRichenAddByFilecwh">/module/main/meet/changwh/richengmanage.jsp?meetid=${meetid}</result> 
+			<result name="benchRichenAddByFilefzw">/module/main/meet/fazhiwh/richengmanage.jsp?meetid=${meetid}</result> 
+			<result name="benchRichenAddByFilecjw">/module/main/meet/chaijwh/richengmanage.jsp?meetid=${meetid}</result> 
+			<result name="benchRichenAddByFilerdjg">/module/main/meet/rendajg/richengmanage.jsp?meetid=${meetid}</result> 
+			
+			<result name="getMeetFilezrh1">/module/main/meet/zhurenh/filemanage.jsp?meetid=${meetid}&amp;
+				fileown=${fileown}&amp;filetype=${filetype}&amp;type=${type}
+			</result>
+			<result name="getMeetFilecwh1">/module/main/meet/changwh/filemanage.jsp?meetid=${meetid}&amp;
+				fileown=${fileown}&amp;filetype=${filetype}&amp;type=${type}
+			</result>
+			<result name="getMeetFilecwh2">/module/main/meet/changwh/huizhongzhuren.jsp?meetid=${meetid}&amp;
+				fileown=${fileown}&amp;filetype=${filetype}
+			</result>
+			<result name="getMeetFilecwh3">/module/main/meet/changwh/closingmeeting.jsp?meetid=${meetid}&amp;
+				fileown=${fileown}&amp;filetype=${filetype}
+			</result>
+			<result name="getMeetFilefzw1">/module/main/meet/fazhiwh/filemanage.jsp?meetid=${meetid}&amp;
+				fileown=${fileown}&amp;filetype=${filetype}
+			</result>
+			<result name="getMeetFilecjw1">/module/main/meet/chaijwh/filemanage.jsp?meetid=${meetid}&amp;
+				fileown=${fileown}&amp;filetype=${filetype}
+			</result>
+			<result name="getMeetFilerdjg1">/module/main/meet/rendajg/filemanage.jsp?meetid=${meetid}&amp;
+				fileown=${fileown}&amp;filetype=${filetype}
+			</result>
+			<result name="selectProcessLogByMeetid">/module/main/meet/changwh/shenherecord.jsp?meetid=${meetid}
+			</result>
+			<result name="getBriefingList">/module/main/meet/changwh/briefing.jsp
+			</result>
+			<result name="getJiyaoList">/module/main/meet/changwh/jiyao.jsp
+			</result>
+		    <!-- <result name="selectFiledefineMainList">/module/smsmanager/smsremind.jsp</result> -->
+		
+			<result name="getFenzuList">/module/main/meet/changwh/fenzu.jsp?meetid=${meetid}
+			</result>
+			<result name="getPubFenzuList">module/main/meet/lishih/group.jsp?meetid=${meetid}
+			</result>
+			<result type="json" name="selectFiledefineMainList">
+			<param name="root">codeMap</param>
+			</result> 
+			<result type="json" name="addJiyao">
+				<param name="root">codeMap</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+			<result type="json" name="deleteJiyao">
+				<param name="root">codeMap</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+			<result type="json" name="getJiyao">
+				<param name="root">briefEntity</param>
+			</result>
+			<result type="json" name="updateJiyao">
+				<param name="root">codeMap</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+			<result type="json" name="addBriefing">
+				<param name="root">codeMap</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+			<result type="json" name="deleteBriefing">
+				<param name="root">codeMap</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+			<result type="json" name="getBriefing">
+				<param name="root">briefsendmap</param>
+			</result>
+			<result type="json" name="updateBriefing">
+				<param name="root">codeMap</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+			<result type="json" name="selectPubtimeYichen">
+				<param name="root">codeMap</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+			<result type="json" name="selectPubtimeRichen">
+				<param name="root">codeMap</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+			<result type="json" name="selectPubtimeFile">
+				<param name="root">codeMap</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+		<!-- <action name="selectFiledefineMainList" class="MeetingAction" method="selectFiledefineMainList">
+		    <result name="success" type="json">
+		    <param name="root">codeMap</param>
+		    </result>
+		</action>  -->
+		<action name="showHistoryMeet" class="MeetingAction" method="showHistoryMeet">
+			<result name="success">/module/main/meet/lishih/index.jsp?meetid=${meetid}&amp;type=${type}
+			</result>
+		</action>
+		<action name="selectYichengList" class="MeetingAction" method="selectYichengList">
+			<result name="success">/module/main/meet/lishih/yicheng.jsp?meetid=${meetid}&amp;type=${type}
+			</result>
+		</action>
+		<action name="selectRichengList" class="MeetingAction" method="selectRichengList">
+			<result name="success">/module/main/meet/lishih/richeng.jsp?meetid=${meetid}&amp;type=${type}
+			</result>
+		</action>
+		<action name="selectMeetFileList" class="MeetingAction" method="selectMeetFileList">
+			<result name="success">/module/main/meet/lishih/canyuewj.jsp?meetid=${meetid}&amp;type=${type}
+			</result>
+		</action>	
+		<action name="getHistoryBriefingList" class="MeetingAction" method="getHistoryBriefingList">
+			<result name="success">/module/main/meet/lishih/brief.jsp?meetid=${meetid}&amp;type=${type}
+			</result>
+		</action>
+		<action name="selectMeetDirectorList" class="MeetingAction" method="selectMeetDirectorList">
+			<result name="success">/module/main/meet/lishih/directormeet.jsp?meetid=${meetid}&amp;type=${type}
+			</result>
+		</action>
+		<action name="selectFinalMeetList" class="MeetingAction" method="selectFinalMeetList">
+			<result name="success">/module/main/meet/lishih/finalmeet.jsp?meetid=${meetid}&amp;type=${type}
+			</result>
+		</action>	
+		<action name="selectFenzuList" class="MeetingAction" method="selectFenzuList">
+			<result type="json">/module/main/meet/lishih/group.jsp?meetid=${meetid}&amp;type=${type}
+			</result>
+		</action>
+ 		<action name="selectYichengListByVersion" class="MeetingAction" method="selectYichengListByVersion">
+			<result name="success">/module/main/meet/changwh/shenheyicheng.jsp?meetid=${meetid}&amp;type=${type}&amp;version=${version}
+			</result>
+		</action>
+		<action name="selectMeetFileListByVersion" class="MeetingAction" method="selectMeetFileListByVersion">
+			<result name="success">/module/main/meet/changwh/shenhemeetfile.jsp?meetid=${meetid}&amp;type=${type}&amp;version=${version}
+			</result>
+		</action>						
+	</package>
+</struts>

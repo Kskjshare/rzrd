@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body{width: 1100px;margin: 0 auto;}
+            #header{width: 100%;background:url(img/header.jpg) no-repeat ;background-size: cover;height:123px;  }
+            nav{height: 28px;width: 100%; background: linear-gradient(#2fb2fa,#006ec8); }
+            nav a{background:url(img/shuxian.png) no-repeat 0 5px;  color: #fff;width: 78px;display:inline-block;line-height: 28px;text-align: center;cursor: pointer;}
+            nav a:first-child{border: 0;margin-left: 20px;background:0}
+            #webbody {background:url(img/bodybackground.jpg) no-repeat;background-size: 750px 650px;height:600px   }
+            #webbody>div{float: right;margin:10px 0 0px 600px;width: 330px;line-height: 30px;border: #cacaca solid 2px;padding: 4px;padding-bottom: 9px;}
+            #webbody>div>p{background: url(img/blueright.png) no-repeat 4px 11px; margin: 0;font-size: 14px;margin-left: 10px;text-indent: 20px;border-bottom: #cacaca dashed 1px;cursor: pointer;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;}
+            #webbody>div>h1{margin: 0;font-size: 16px;color:#0071d2 ;text-indent: 10px;background: #f5f5f5;margin-bottom: 9px;font-weight: 500 ;}
+            #webbody>div>h1>span{float: right;color: #333333;font-size: 12px;}
+             #webbody>div>div>label{display: inline-block;margin: 0 20px;}
+            #webbody>div>div{ padding-left: 10px; font-size: 14px;}
+            #webbody>div>div>input{ margin: 0 5px;height: 25px; vertical-align: middle; border: #cacaca solid 2px;text-indent: 5px;}
+            #webbody>div>div>button{width: 80px;height: 27px; background: #415ef0; color: #fff;border: none; border-radius: 5px;vertical-align: middle;}
+            #newlist{padding: 0;}
+            #newlist li{list-style-type: none; width: 535px; display: inline-block; line-height: 30px; border: #cacaca solid 2px; padding: 4px; padding-bottom: 9px;margin-bottom: 10px}
+            #newlist li h1{margin: 0;font-size: 16px;color: #0071d2; text-indent: 10px;background: #f5f5f5;margin-bottom: 9px;font-weight: 500;}
+            #newlist li>div{ height: 120px;margin: 0 10px 5px 0; border-bottom: #cacaca solid 2px;}
+            #newlist li>div>div{float: left; width: 160px;height: 110px;overflow: hidden;margin-right: 10px;}
+            #newlist li>div>div>img{width: 160px;}
+            #newlist li>div>p{text-indent: 2em;line-height: 18px;font-size: 14px;height: 110px;overflow: hidden; font-weight: 500;}
+            #newlist li>p{background: url(img/blueright.png) no-repeat 4px 11px; font-size: 14px;margin:0 10px;text-indent: 20px;border-bottom: #cacaca dashed 1px;cursor: pointer;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;}
+            #newlist .top2>p{background: url(img/bluedian.png) no-repeat 7px 13px;}
+            
+            
+        </style>
+        <script type="text/javascript" src="jquery.min.js"></script>
+        <script type="text/javascript" src="dictdata.js"></script>
+    </head>
+    <body>
+        <div id="header"></div>
+        <!-- <nav><a>首页</a><a>那社乡</a><a>那社乡</a><a>那社乡</a><a>那社乡</a><a>那社乡</a><a>那社乡</a><a>那社乡</a><a>那社乡</a><a>那社乡</a><a>那社乡</a><a>那社乡</a></nav> -->
+        <nav id="distNav"><a>首页</a></nav>
+        <div id="webbody">
+            <div>
+                <h1>代表网上联络点<span>更多&nbsp;》</span></h1>
+                <p>杭州市上城区紫阳街道人大代表网上联络站</p>
+                <p>杭州市上城区紫阳街道人大代表网上联络站</p>
+                <p>杭州市上城区紫阳街道人大代表网上联络站</p>
+                <p>杭州市上城区紫阳街道人大代表网上联络站</p>
+                <p>杭州市上城区紫阳街道人大代表网上联络站</p>
+                <p>杭州市上城区紫阳街道人大代表网上联络站</p>
+                <p>杭州市上城区紫阳街道人大代表网上联络站</p>
+                <p>杭州市上城区紫阳街道人大代表网上联络站</p>
+            </div>
+            <div>
+                <h1>查询联络站</h1>
+                <div>站点名称<input type="text"><button type="button">查询</button></div>
+            </div>
+            <div>
+                <h1>查询代表</h1>
+                <div><label><input type="radio" name="delegate">全国人大代表</label><label><input type="radio" name="delegate">省级人大代表</label><label><input type="radio" name="delegate">市级人大代表</label><label><input type="radio" name="delegate">县级人大代表</label><label><input type="radio" name="delegate">乡镇人大代表</label></div>
+                <div>代表姓名<input type="text"><button type="button">查询</button></div>
+            </div>
+        </div>
+        <ul id="newlist">
+            <li class="top2">
+                <h1>工作动态</h1>
+                <div><div><img src="../css/limg/lecture.jpg" alt=""/></div><p>乌牛:全面推进乡村振兴“清洁家园 、壮大村级集体经济、移风易俗“三大攻坚行动动员大会为了深入贯彻十九大，全面推进一二五主题活动，推进乡村振兴战略在乌牛落地生根，乌牛街道党工委、办事处研究决定</p></div>
+                <p>淮口镇人大代表“走出去”学习取经,“带回来”履职为民</p>
+                <p>淮口镇人大代表“走出去”学习取经,“带回来”履职为民</p>
+                <p>淮口镇人大代表“走出去”学习取经,“带回来”履职为民</p>
+                <p>淮口镇人大代表“走出去”学习取经,“带回来”履职为民</p>
+            </li>
+            <li class="top2">
+                <h1>代表述职</h1>
+                <div><div><img src="../css/limg/lecture.jpg" alt=""/></div><p>口镇人大代表“走出去”学口镇人大代表“走出去”学口镇人大代表“走出去”学口镇人大代表“走出去”学</p></div>
+                <p>淮口镇人大代表“走出去”学习取经,“带回来”履职为民</p>
+                <p>淮口镇人大代表“走出去”学习取经,“带回来”履职为民</p>
+                <p>淮口镇人大代表“走出去”学习取经,“带回来”履职为民</p>
+                <p>淮口镇人大代表“走出去”学习取经,“带回来”履职为民</p>
+            </li>
+            <li>
+                <h1>活动预告</h1>
+                <!--<div><div><img src="../css/limg/lecture.jpg" alt=""/></div><p>口镇人大代表“走出去”学口镇人大代表“走出去”学口镇人大代表“走出去”学口镇人大代表“走出去”学</p></div>-->
+                <p>淮口镇人大代表“走出去”学习取经,“带回来”履职为民</p>
+                <p>淮口镇人大代表“走出去”学习取经,“带回来”履职为民</p>
+                <p>淮口镇人大代表“走出去”学习取经,“带回来”履职为民</p>
+                <p>淮口镇人大代表“走出去”学习取经,“带回来”履职为民</p>
+            </li>
+            <li>
+                <h1>示范联络站</h1>
+                <!--<div><div><img src="../css/limg/lecture.jpg" alt=""/></div><p>口镇人大代表“走出去”学口镇人大代表“走出去”学口镇人大代表“走出去”学口镇人大代表“走出去”学</p></div>-->
+                <p>淮口镇人大代表“走出去”学习取经,“带回来”履职为民</p>
+                <p>淮口镇人大代表“走出去”学习取经,“带回来”履职为民</p>
+                <p>淮口镇人大代表“走出去”学习取经,“带回来”履职为民</p>
+                <p>淮口镇人大代表“走出去”学习取经,“带回来”履职为民</p>
+            </li>
+        </ul>
+    </body>
+
+    <script>
+        $(function(){
+            $.each(dictdata["ssxarea"], function (k, v) {
+                console.log(v[1]);
+                if (v[1] == "0") {
+                    //alert(v[2]);
+                    $("nav").append("<a cid='" + k + "' myid='"+v[2]+"'>" + v[0] + "</a>");
+                }
+            });
+        });
+    </script>
+</html>
